@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Messages View Controller-->
+        <scene sceneID="7MM-of-jgj">
+            <objects>
+                <viewController id="ObA-dk-sSI" customClass="MessagesViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qkL-Od-lgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="n38-gi-rB5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osf-07-FrB">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="lzP-vX-OuW"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="H5A-JQ-CUs" kind="embed" id="OEM-Il-p8Q"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="osf-07-FrB" secondAttribute="trailing" id="1j7-XO-1cD"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="osf-07-FrB" secondAttribute="bottom" id="LHH-Xj-L9d"/>
+                            <constraint firstItem="osf-07-FrB" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="ptC-ML-OTP"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="528"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33.600000000000001" y="37.781109445277366"/>
+        </scene>
+        <!--Reactions Picker View Controller-->
+        <scene sceneID="J8N-Jj-TLa">
+            <objects>
+                <viewController storyboardIdentifier="ReactionsPickerViewController" id="H5A-JQ-CUs" customClass="ReactionsPickerViewController" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZUi-cs-rUv"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Ra-N7-kVL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B7x-VQ-E6B">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afy-NQ-0PF">
+                                    <size key="itemSize" width="65" height="65"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReactionCell" id="XDW-l7-HXp" customClass="ReactionCell" customModule="MessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8w-gU-1Jb" customClass="MSStickerView">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="n8w-gU-1Jb" secondAttribute="bottom" id="1P5-VO-VPd"/>
+                                            <constraint firstAttribute="trailing" secondItem="n8w-gU-1Jb" secondAttribute="trailing" id="C4C-ch-mNR"/>
+                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="top" secondItem="XDW-l7-HXp" secondAttribute="top" id="KiA-DR-kEl"/>
+                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="leading" secondItem="XDW-l7-HXp" secondAttribute="leading" id="U2D-jL-wO0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="reactionView" destination="n8w-gU-1Jb" id="Tdd-aZ-P8a"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="78" y="0.0" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-FF-qEp"/>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Mvh-FF-qEp" secondAttribute="bottom" id="AZB-Sm-ngv"/>
+                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="leading" secondItem="dhD-mb-GrO" secondAttribute="leading" id="GkH-mC-PWW"/>
+                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="top" secondItem="dhD-mb-GrO" secondAttribute="top" id="grZ-do-FSE"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mvh-FF-qEp" secondAttribute="trailing" id="y6Y-mL-po2"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="addImage" destination="Mvh-FF-qEp" id="v2m-CF-4aO"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="H5A-JQ-CUs" id="qcz-EM-L0U"/>
+                                    <outlet property="delegate" destination="H5A-JQ-CUs" id="eoO-wX-nDY"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
+                            <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" id="NM9-CR-VmY"/>
+                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" id="h0q-hw-OKS"/>
+                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="ZUi-cs-rUv" secondAttribute="bottom" id="tMh-CQ-tVS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="bVW-ng-Ahz" id="LGb-YI-1Fa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXJ-pI-VyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="779" y="38"/>
+        </scene>
+        <!--Camera Screen-->
+        <scene sceneID="lzl-om-pUT">
+            <objects>
+                <viewController storyboardIdentifier="CameraScreen" id="Bqy-3n-0gQ" customClass="CameraScreen" customModule="MessagesExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jvj-zG-Zmf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ii7-hu-aXb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AwX-KV-nVp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-1d-VIa">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="5cq-YC-HAq"/>
+                                    <constraint firstAttribute="height" constant="21" id="jtd-iW-nNn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Etv-1d-VIa" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="JSg-mn-FUC"/>
+                            <constraint firstItem="Etv-1d-VIa" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="zgq-0v-UK9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1493.5999999999999" y="44.527736131934034"/>
+        </scene>
+    </scenes>
+</document>
