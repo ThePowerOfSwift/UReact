@@ -17,7 +17,6 @@
 		14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C2FA221D2222120065344B /* MessagesViewController.swift */; };
 		14C2FA261D2222120065344B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA241D2222120065344B /* MainInterface.storyboard */; };
 		14C2FA281D2222120065344B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA271D2222120065344B /* Assets.xcassets */; };
-		14C2FA341D2222980065344B /* ReactionBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C2FA331D2222980065344B /* ReactionBrowserViewController.swift */; };
 		14C2FA531D22325A0065344B /* dwarf.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA491D22325A0065344B /* dwarf.png */; };
 		14C2FA541D22325A0065344B /* earthMage.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA4A1D22325A0065344B /* earthMage.png */; };
 		14C2FA551D22325A0065344B /* iceMage.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA4B1D22325A0065344B /* iceMage.png */; };
@@ -68,7 +67,6 @@
 		14C2FA251D2222120065344B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		14C2FA271D2222120065344B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C2FA291D2222120065344B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C2FA331D2222980065344B /* ReactionBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionBrowserViewController.swift; sourceTree = "<group>"; };
 		14C2FA491D22325A0065344B /* dwarf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dwarf.png; sourceTree = "<group>"; };
 		14C2FA4A1D22325A0065344B /* earthMage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earthMage.png; sourceTree = "<group>"; };
 		14C2FA4B1D22325A0065344B /* iceMage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iceMage.png; sourceTree = "<group>"; };
@@ -93,6 +91,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1492B91C1D73CFF700C2F1EA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				140F8C841D696F92005454F1 /* ReactionCell.swift */,
+				140F8C861D6978B3005454F1 /* AddReactionCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		1492B91D1D73D01300C2F1EA /* Sample Images */ = {
+			isa = PBXGroup;
+			children = (
+				14C2FA491D22325A0065344B /* dwarf.png */,
+				14C2FA4A1D22325A0065344B /* earthMage.png */,
+				14C2FA4D1D22325A0065344B /* cleric.png */,
+				14C2FA4E1D22325A0065344B /* samurai.png */,
+				14C2FA4F1D22325A0065344B /* firemage.png */,
+				14C2FA501D22325A0065344B /* bandit.png */,
+				14C2FA511D22325A0065344B /* pirate.png */,
+				14C2FA521D22325A0065344B /* archer.png */,
+				14C2FA4B1D22325A0065344B /* iceMage.png */,
+				14C2FA4C1D22325A0065344B /* angel.png */,
+			);
+			name = "Sample Images";
+			sourceTree = "<group>";
+		};
 		14C2FA091D2222120065344B = {
 			isa = PBXGroup;
 			children = (
@@ -134,23 +158,12 @@
 			children = (
 				14C2FA221D2222120065344B /* MessagesViewController.swift */,
 				14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */,
-				140F8C841D696F92005454F1 /* ReactionCell.swift */,
-				140F8C861D6978B3005454F1 /* AddReactionCell.swift */,
-				14C2FA491D22325A0065344B /* dwarf.png */,
-				14C2FA4A1D22325A0065344B /* earthMage.png */,
-				14C2FA4B1D22325A0065344B /* iceMage.png */,
-				14C2FA4C1D22325A0065344B /* angel.png */,
-				14C2FA4D1D22325A0065344B /* cleric.png */,
-				14C2FA4E1D22325A0065344B /* samurai.png */,
-				14C2FA4F1D22325A0065344B /* firemage.png */,
-				14C2FA501D22325A0065344B /* bandit.png */,
-				14C2FA511D22325A0065344B /* pirate.png */,
-				14C2FA521D22325A0065344B /* archer.png */,
+				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
+				1492B91C1D73CFF700C2F1EA /* Cells */,
+				1492B91D1D73D01300C2F1EA /* Sample Images */,
 				14C2FA241D2222120065344B /* MainInterface.storyboard */,
 				14C2FA271D2222120065344B /* Assets.xcassets */,
 				14C2FA291D2222120065344B /* Info.plist */,
-				14C2FA331D2222980065344B /* ReactionBrowserViewController.swift */,
-				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
 			);
 			path = MessagesExtension;
 			sourceTree = "<group>";
@@ -271,7 +284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */,
-				14C2FA341D2222980065344B /* ReactionBrowserViewController.swift in Sources */,
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,

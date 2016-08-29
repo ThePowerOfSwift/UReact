@@ -18,12 +18,12 @@ class MessagesViewController: MSMessagesAppViewController {
     addObservers()
     }
 
+  override func willBecomeActive(with conversation: MSConversation) {
+    presentViewController(withPresentationStyle: presentationStyle)
+  }
+
   override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
     super.didTransition(to: presentationStyle)
-
-//    if let controller = addReactionViewController where presentationStyle == .expanded {
-//      present(addReactionViewController!, animated: true, completion: nil)
-//    }
   }
 
   override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
@@ -34,19 +34,10 @@ class MessagesViewController: MSMessagesAppViewController {
   func tappedAddNewReaction() {
     requestPresentationStyle(.expanded)
     print("Observer Received - tappedAddNewReaction")
-
-
-//    let controller = storyboard?.instantiateViewController(withIdentifier: "AddReactionViewController") as? AddReactionViewController
-//
-//    addReactionViewController = controller
-//    requestPresentationStyle(.expanded)
-
-
   }
 
   func addObservers() {
       NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedAddNewReaction), name:NSNotification.Name(rawValue: "AddReactionTapped"), object: nil)
-    print("Observers Added")
   }
 }
 
@@ -69,15 +60,15 @@ extension MSMessagesAppViewController {
 
     addChildViewController(controller)
 
-//    controller.view.translatesAutoresizingMaskIntoConstraints = false
+    controller.view.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(controller.view)
 
-//    NSLayoutConstraint.activate([
-//      controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-//      controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-//      controller.view.topAnchor.constraint(equalTo: view.topAnchor),
-//      controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//      ])
+    NSLayoutConstraint.activate([
+      controller.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+      controller.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+      controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+      controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      ])
 
     controller.didMove(toParentViewController: self)
   }
@@ -85,17 +76,11 @@ extension MSMessagesAppViewController {
   func instantiateCameraViewController() -> UIViewController {
     guard let controller = storyboard?.instantiateViewController(withIdentifier: "CameraScreen") as? CameraScreen else { fatalError("Unable to instantiate a camera screen") }
 
-    print("instantiateCameraViewController Called")
-
-//    requestPresentationStyle(.expanded)
-
     return controller
   }
 
   func instantiateReactionsPickerViewController() -> UIViewController {
     guard let controller = storyboard?.instantiateViewController(withIdentifier: "ReactionsPickerViewController") as? ReactionsPickerViewController else { fatalError("Unable to instantiate a camera screen") }
-
-//    requestPresentationStyle(.compact)
 
     return controller
   }

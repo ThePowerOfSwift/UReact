@@ -17,22 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osf-07-FrB">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="lzP-vX-OuW"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="H5A-JQ-CUs" kind="embed" id="OEM-Il-p8Q"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="osf-07-FrB" secondAttribute="trailing" id="1j7-XO-1cD"/>
-                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="osf-07-FrB" secondAttribute="bottom" id="LHH-Xj-L9d"/>
-                            <constraint firstItem="osf-07-FrB" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="ptC-ML-OTP"/>
-                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
@@ -50,11 +35,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1Ra-N7-kVL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B7x-VQ-E6B">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afy-NQ-0PF">
                                     <size key="itemSize" width="65" height="65"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -85,7 +70,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="77.5" y="0.0" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -114,9 +99,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
+                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" id="MUO-uk-aZ0"/>
                             <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" id="NM9-CR-VmY"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" id="h0q-hw-OKS"/>
-                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="ZUi-cs-rUv" secondAttribute="bottom" id="tMh-CQ-tVS"/>
                         </constraints>
                     </view>
                     <connections>
@@ -125,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXJ-pI-VyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="779" y="38"/>
+            <point key="canvasLocation" x="778.39999999999998" y="37.331334332833585"/>
         </scene>
         <!--Camera Screen-->
         <scene sceneID="lzl-om-pUT">
@@ -149,7 +134,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.53333333329999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Etv-1d-VIa" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="JSg-mn-FUC"/>
                             <constraint firstItem="Etv-1d-VIa" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="zgq-0v-UK9"/>
@@ -158,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493.5999999999999" y="44.527736131934034"/>
+            <point key="canvasLocation" x="1500" y="37"/>
         </scene>
     </scenes>
 </document>

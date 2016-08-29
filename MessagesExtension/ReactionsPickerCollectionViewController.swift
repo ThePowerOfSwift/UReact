@@ -108,13 +108,8 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 
     switch reaction {
     case .addReaction:
-
       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddReactionTapped"), object: nil)
-      print("Observer - Notification Posted on Add Tap")
       
-      // Code here to present expanded view
-//      delegate.tappedAddNewReaction()    Might not need the delegate. Just call this function
-
     default:
       break
     }
