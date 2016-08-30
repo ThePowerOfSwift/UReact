@@ -124,26 +124,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etv-1d-VIa">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="142" id="5cq-YC-HAq"/>
-                                    <constraint firstAttribute="height" constant="21" id="jtd-iW-nNn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-hW-viL">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.98039215690000003" green="0.53333333329999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Etv-1d-VIa" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="JSg-mn-FUC"/>
-                            <constraint firstItem="Etv-1d-VIa" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="zgq-0v-UK9"/>
+                            <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
+                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="iAo-hW-viL" secondAttribute="bottom" id="dbt-hT-KRx"/>
+                            <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
+                            <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="iAo-hW-viL" id="tBI-Nw-ex3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="37"/>
+            <point key="canvasLocation" x="1500" y="36.431784107946029"/>
         </scene>
     </scenes>
 </document>

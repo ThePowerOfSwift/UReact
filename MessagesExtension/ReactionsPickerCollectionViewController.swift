@@ -32,14 +32,14 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
   }
 
   func loadReactions() {
-    createSticker(assetName: "dwarf", localizedDescription: "Ninja image")
-    createSticker(assetName: "earthMage", localizedDescription: "Angel image")
-    createSticker(assetName: "samurai", localizedDescription: "Samurai image")
-    createSticker(assetName: "angel", localizedDescription: "Ninja image")
-    createSticker(assetName: "bandit", localizedDescription: "Angel image")
+    createSticker("dwarf", localizedDescription: "Ninja image")
+    createSticker("earthMage", localizedDescription: "Angel image")
+    createSticker("samurai", localizedDescription: "Samurai image")
+    createSticker("angel", localizedDescription: "Ninja image")
+    createSticker("bandit", localizedDescription: "Angel image")
   }
 
-  func createSticker(assetName: String, localizedDescription: String) {
+  func createSticker(_ assetName: String, localizedDescription: String) {
 
     guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "png") else {
       print("Could not create sticker path for \(assetName)")
@@ -85,7 +85,7 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
   }
   
 
-  private func dequeueReactionStickerCell(for reaction: MSSticker, at indexPath: IndexPath) -> UICollectionViewCell {
+  fileprivate func dequeueReactionStickerCell(for reaction: MSSticker, at indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReactionCell", for: indexPath) as! ReactionCell
 
     cell.reactionView.sticker = reaction
@@ -94,7 +94,7 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 
   }
 
-  private func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
+  fileprivate func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddReactionCell", for: indexPath) as! AddReactionCell
 
     cell.addImage.image = UIImage(named: "Plus-500")
@@ -108,14 +108,14 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 
     switch reaction {
     case .addReaction:
-      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddReactionTapped"), object: nil)
+      NotificationCenter.default.post(name: Notification.Name(rawValue: "AddReactionTapped"), object: nil)
       
     default:
       break
     }
   }
 
-  private func stickerCanAnimate(sticker: MSSticker) -> Bool {
+  fileprivate func stickerCanAnimate(_ sticker: MSSticker) -> Bool {
     guard let stickerImageSource = CGImageSourceCreateWithURL(sticker.imageFileURL as CFURL, nil) else {
       // If there are issues here, the "as CFURL" wasn't necessary in the WWDC video. Xcode gave you a fix it
       return false
@@ -130,7 +130,7 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     if (cell.reuseIdentifier == "ReactionCell") {
       let reactionCell = cell as! ReactionCell
 
-      if stickerCanAnimate(sticker: reactionCell.reactionView.sticker!) {
+      if stickerCanAnimate(reactionCell.reactionView.sticker!) {
         reactionCell.reactionView.startAnimating()
       }
     }

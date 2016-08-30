@@ -8,6 +8,7 @@
 
 import UIKit
 import Messages
+import AVFoundation
 
 class MessagesViewController: MSMessagesAppViewController {
 
@@ -16,6 +17,7 @@ class MessagesViewController: MSMessagesAppViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     addObservers()
+    AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: nil)
     }
 
   override func willBecomeActive(with conversation: MSConversation) {
