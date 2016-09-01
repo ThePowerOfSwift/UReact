@@ -127,16 +127,55 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-hW-viL">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quw-M7-nCP">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="hbT-cF-tli"/>
+                                    <constraint firstAttribute="height" constant="50" id="sh2-T1-I0K"/>
+                                </constraints>
+                                <state key="normal" image="flash-auto"/>
+                                <connections>
+                                    <action selector="toggleFlash:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="J25-VA-lIe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-xm-Wwb">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="up1-tu-EJk"/>
+                                    <constraint firstAttribute="height" constant="30" id="x9A-y2-NEX"/>
+                                </constraints>
+                                <state key="normal" title="Switch View"/>
+                                <connections>
+                                    <action selector="switchToFrontCamera:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="474-Ab-0N3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="5xv-zG-IfJ"/>
+                                    <constraint firstAttribute="height" constant="68" id="O1i-DI-Mtq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                <state key="normal" title="START"/>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7ED-KL-Uag"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
+                            <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" constant="-54.5" id="Yzf-jP-TnK"/>
+                            <constraint firstItem="quw-M7-nCP" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="cWg-in-u0e"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="iAo-hW-viL" secondAttribute="bottom" id="dbt-hT-KRx"/>
                             <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
+                            <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="erO-uL-MTa"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
+                            <constraint firstItem="quw-M7-nCP" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="o1f-jH-Cda"/>
+                            <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="iAo-hW-viL" id="tBI-Nw-ex3"/>
+                        <outlet property="flashToggleButton" destination="quw-M7-nCP" id="8hS-Qn-u30"/>
+                        <outlet property="recordButton" destination="a7Z-fa-iei" id="4mx-pY-PPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,4 +183,7 @@
             <point key="canvasLocation" x="1500" y="36.431784107946029"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="flash-auto" width="100" height="100"/>
+    </resources>
 </document>
