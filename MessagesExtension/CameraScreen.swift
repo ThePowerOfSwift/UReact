@@ -12,7 +12,7 @@ import AVFoundation
 let CaptureModePhoto = 0
 let CaptureModeVideo = 1
 
-class CameraScreen: UIViewController, UINavigationControllerDelegate {
+class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate {
 
   @IBOutlet weak var cameraView: UIView!
   @IBOutlet weak var tempImageView: UIImageView!
@@ -22,7 +22,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
   @IBOutlet weak var recordButton: UIButton!
 
   let captureSession = AVCaptureSession()
-  var stillImageOutput: AVCaptureStillImageOutput?
+  var photoOutput: AVCapturePhotoOutput?
   var previewLayer: AVCaptureVideoPreviewLayer?
   var activeInput: AVCaptureDeviceInput!
   var captureMode: Int = CaptureModePhoto
@@ -55,12 +55,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
 
         captureSession.addInput(input)
         activeInput = input
-        stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey : AVVideoCodecJPEG]
+        photoOutput = AVCapturePhotoOutput()
+//        photoOutput?.availablePhotoCodecTypes = AVVideoCodecJPEG
+//        photoOutput?.outputSettings = [AVVideoCodecKey : AVVideoCodecJPEG]
 
-        if captureSession.canAddOutput(stillImageOutput) {
+        if captureSession.canAddOutput(photoOutput) {
 
-          captureSession.addOutput(stillImageOutput)
+          captureSession.addOutput(photoOutput)
           previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
           previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect
           previewLayer?.connection.videoOrientation = .portrait
@@ -76,6 +77,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
 
   @IBAction func toggleFlash(_ sender: UIButton) {
     let device = activeInput.device
+
     if (device?.hasFlash)! {
       var currentMode = currentFlashMode().mode
       let flashButtonName = currentFlashMode().name
@@ -87,7 +89,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
 
       let newMode = AVCaptureFlashMode(rawValue: currentMode)!
 
-      if (device?.isFlashModeSupported(newMode))! {
+      if device?.isFlashAvailable == true {
+
         do {
           try device?.lockForConfiguration()
           device?.flashMode = newMode
@@ -98,7 +101,21 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
         } catch {
           print("Error setting flash mode: \(error)")
         }
+
       }
+
+//      if (device?.isFlashModeSupported(newMode))! {
+//        do {
+//          try device?.lockForConfiguration()
+//          device?.flashMode = newMode
+//          device?.unlockForConfiguration()
+//
+//          flashToggleButton.setImage(UIImage(named: flashButtonName), for: UIControlState())
+//
+//        } catch {
+//          print("Error setting flash mode: \(error)")
+//        }
+//      }
     }
   }
 
@@ -189,45 +206,92 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate {
 
   func didPressTakePhoto() {
 
-    if let videoConnection = stillImageOutput?.connection(withMediaType: AVMediaTypeVideo) {
+    if let videoConnection = photoOutput?.connection(withMediaType: AVMediaTypeVideo) {
       videoConnection.videoOrientation = .portrait
 
-      stillImageOutput?.captureStillImageAsynchronously(from: videoConnection, completionHandler: {
-        (sampleBuffer, error) in
+      let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecJPEG])
 
-        if sampleBuffer != nil {
-          let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-          let dataProvider = CGDataProvider(data: imageData as! CFData)
-          let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+      photoOutput?.capturePhoto(with: settings, delegate: self)
 
-          let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
 
-          self.tempImageView.image = image
-          self.tempImageView.isHidden = false
-          self.saveImageLocally()
 
-          self.takePictureButton.backgroundColor = UIColor.cyan
-          self.takePictureButton.setTitle("Upload Image", for: UIControlState())
-          self.takePictureButton.removeTarget(nil, action: nil, for: .allEvents)
-        }
-      })
+//      photoOutput?.captureStillImageAsynchronously(from: videoConnection, completionHandler: {
+//        (sampleBuffer, error) in
+//
+//
+//
+//        if sampleBuffer != nil {
+//          let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+//          let dataProvider = CGDataProvider(data: imageData as! CFData)
+//          let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+//
+//          let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
+//
+//          self.tempImageView.image = image
+//          self.tempImageView.isHidden = false
+//          self.saveImageLocally()
+//
+//          self.takePictureButton.backgroundColor = UIColor.cyan
+//          self.takePictureButton.setTitle("Upload Image", for: UIControlState())
+//          self.takePictureButton.removeTarget(nil, action: nil, for: .allEvents)
+//        }
+//      })
     }
   }
 
   @IBAction func recordButtonPressed(_ sender: AnyObject) {
 
-    if isRecording == false {
-      recordButton.setTitle("START", for: .normal)
-    } else {
-      recordButton.setTitle("STOP", for: .normal)
-    }
+//    if isRecording == false {
+//      recordButton.setTitle("START", for: .normal)
+//    } else {
+//      recordButton.setTitle("STOP", for: .normal)
+//    }
 
     // Do record video stuff here
+    let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
+
+    let videoFileOutput = AVCaptureMovieFileOutput()
+    self.captureSession.addOutput(videoFileOutput)
+
+    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let filePath = documentsURL.appendingPathComponent("temp")
+
+    // Do recording and save the output to the `filePath`
+    videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
 
   }
 
+  //Delegate methods
 
-  
+  func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+    recordButton.setTitle("STOP", for: .normal)
+  }
+
+  func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+    recordButton.setTitle("START", for: .normal)
+  }
+
+  func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+
+      if photoSampleBuffer != nil {
+//        let imageData = AVCapturePhotoOutput.jpegStillImageNSDataRepresentation(photoSampleBuffer)
+        let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
+        let dataProvider = CGDataProvider(data: imageData as! CFData)
+        let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+
+
+        let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.right)
+
+        tempImageView.image = image
+        tempImageView.isHidden = false
+        saveImageLocally()
+
+//        takePictureButton.backgroundColor = UIColor.cyan
+//        takePictureButton.setTitle("Upload Image", for: UIControlState())
+//        takePictureButton.removeTarget(nil, action: nil, for: .allEvents)
+    }
+  }
+
   func saveImageLocally() {
     
     let imageData: Data = UIImageJPEGRepresentation(tempImageView.image!, 1)!
