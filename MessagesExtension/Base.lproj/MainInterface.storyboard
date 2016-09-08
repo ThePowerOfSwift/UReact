@@ -158,11 +158,30 @@
                                     <action selector="recordButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7ED-KL-Uag"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbO-9h-WiZ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="0xb-3z-Z8g"/>
+                                    <constraint firstAttribute="height" constant="30" id="brX-oK-pIz"/>
+                                </constraints>
+                                <state key="normal" title="Create Sticker"/>
+                                <connections>
+                                    <action selector="createStickerPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="qrF-2S-W2H"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Zr-38c">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Ot5-LT-fSz"/>
+                                    <constraint firstAttribute="width" constant="240" id="xIN-Hd-LZH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
+                            <constraint firstItem="cJe-Zr-38c" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="Fpa-hb-oZa"/>
+                            <constraint firstItem="cJe-Zr-38c" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="10" id="IVq-KO-RUL"/>
                             <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" constant="-54.5" id="Yzf-jP-TnK"/>
+                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="vbO-9h-WiZ" secondAttribute="bottom" constant="12" id="b4D-rq-QGD"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="cWg-in-u0e"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="iAo-hW-viL" secondAttribute="bottom" id="dbt-hT-KRx"/>
                             <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
@@ -170,11 +189,13 @@
                             <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="o1f-jH-Cda"/>
                             <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ"/>
+                            <constraint firstItem="vbO-9h-WiZ" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="ufQ-iK-MGY"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="iAo-hW-viL" id="tBI-Nw-ex3"/>
                         <outlet property="flashToggleButton" destination="quw-M7-nCP" id="8hS-Qn-u30"/>
+                        <outlet property="previewImage" destination="cJe-Zr-38c" id="OWg-8U-Vzq"/>
                         <outlet property="recordButton" destination="a7Z-fa-iei" id="4mx-pY-PPU"/>
                     </connections>
                 </viewController>

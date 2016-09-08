@@ -20,6 +20,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
   @IBOutlet weak var switchToFrontCameraButton: UIButton!
   @IBOutlet weak var flashToggleButton: UIButton!
   @IBOutlet weak var recordButton: UIButton!
+  @IBOutlet weak var previewImage: UIImageView!
 
   let captureSession = AVCaptureSession()
   var photoOutput: AVCapturePhotoOutput?
@@ -27,6 +28,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
   var activeInput: AVCaptureDeviceInput!
   var captureMode: Int = CaptureModePhoto
   var isRecording = false
+
+  let videoFileOutput = AVCaptureMovieFileOutput()
 
   var imageURL: URL!
   let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
@@ -239,36 +242,92 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
   }
 
-  @IBAction func recordButtonPressed(_ sender: AnyObject) {
-
-//    if isRecording == false {
-//      recordButton.setTitle("START", for: .normal)
-//    } else {
-//      recordButton.setTitle("STOP", for: .normal)
-//    }
-
-    // Do record video stuff here
-    let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
-
-    let videoFileOutput = AVCaptureMovieFileOutput()
-    self.captureSession.addOutput(videoFileOutput)
-
-    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    let filePath = documentsURL.appendingPathComponent("temp")
-
-    // Do recording and save the output to the `filePath`
-    videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
-
+  func getVideoFilePath() -> String {
+    let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+    let videoPath = path.appendingPathComponent("temp")
+    return videoPath
+//
+//    var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+//    var getImagePath = paths.stringByAppendingPathComponent("filename")
+//    myImageView.image = UIImage(contentsOfFile: getImagePath)
   }
 
+  func previewImageForLocalVideo(url: NSURL) -> UIImage? {
+
+    let asset = AVAsset(url: url as URL)
+
+    print("Asset = \(asset)")
+
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    imageGenerator.appliesPreferredTrackTransform = true
+
+    var time = asset.duration
+    print("Asset Duration = \(time)")
+    //If possible - take not the first frame (it could be completely black or white on camara's videos)
+//    time.value = min(time.value, 2)
+//    time = CMTimeMultiplyByFloat(time, 0.5)
+    time = CMTimeMultiplyByFloat64(time, 0.5)
+
+    print("Take Asset Image at \(time)")
+
+    do {
+      let imageRef = try imageGenerator.copyCGImage(at: time, actualTime: nil)
+      return UIImage(cgImage: imageRef)
+    }
+    catch let error as NSError
+    {
+      print("Image generation failed with error \(error)")
+      return nil
+    }
+  }
+
+  func setPreviewImage() {
+    print("setPreviewImage Called")
+    let videoPath = getVideoFilePath()
+    let videoURL = NSURL(string: videoPath)
+    previewImage.image = previewImageForLocalVideo(url: videoURL!)
+  }
+
+  @IBAction func recordButtonPressed(_ sender: AnyObject) {
+
+    let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
+
+    if isRecording == false {
+
+      isRecording = true
+
+      // Do record video stuff here
+      self.captureSession.addOutput(videoFileOutput)
+
+      let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+      let filePath = documentsURL.appendingPathComponent("temp")
+
+      // Do recording and save the output to the `filePath`
+      videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
+
+    } else {
+
+      isRecording = false
+      videoFileOutput.stopRecording()
+    }
+  }
+
+  @IBAction func createStickerPressed(_ sender: UIButton) {
+    print("Create Sticker Button Pressed")
+    setPreviewImage()
+  }
   //Delegate methods
 
   func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
     recordButton.setTitle("STOP", for: .normal)
+    print("Video Started Recording")
   }
 
   func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
     recordButton.setTitle("START", for: .normal)
+
+    print("Video Stopped Recording")
+    print("Retrieved Video Path = \(getVideoFilePath())")
   }
 
   func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
