@@ -10,6 +10,8 @@
 		140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F8C841D696F92005454F1 /* ReactionCell.swift */; };
 		140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F8C861D6978B3005454F1 /* AddReactionCell.swift */; };
 		1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1492B91A1D73C27600C2F1EA /* CameraScreen.swift */; };
+		14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */; };
+		14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95D1D84EADA00CF6495 /* Regift.swift */; };
 		14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */; };
 		14C2FA141D2222120065344B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA131D2222120065344B /* Assets.xcassets */; };
 		14C2FA1B1D2222120065344B /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14C2FA1A1D2222120065344B /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -57,6 +59,8 @@
 		140F8C841D696F92005454F1 /* ReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		140F8C861D6978B3005454F1 /* AddReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReactionCell.swift; sourceTree = "<group>"; };
 		1492B91A1D73C27600C2F1EA /* CameraScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetImageGenerator.swift; sourceTree = "<group>"; };
+		14A2E95D1D84EADA00CF6495 /* Regift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regift.swift; sourceTree = "<group>"; };
 		14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionsPickerCollectionViewController.swift; sourceTree = "<group>"; };
 		14C2FA101D2222120065344B /* UReact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UReact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C2FA131D2222120065344B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,6 +121,14 @@
 			name = "Sample Images";
 			sourceTree = "<group>";
 		};
+		14A2E95A1D84EA1000CF6495 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		14C2FA091D2222120065344B = {
 			isa = PBXGroup;
 			children = (
@@ -156,9 +168,11 @@
 		14C2FA211D2222120065344B /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				14A2E95A1D84EA1000CF6495 /* Extensions */,
 				14C2FA221D2222120065344B /* MessagesViewController.swift */,
 				14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */,
 				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
+				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
 				1492B91C1D73CFF700C2F1EA /* Cells */,
 				1492B91D1D73D01300C2F1EA /* Sample Images */,
 				14C2FA241D2222120065344B /* MainInterface.storyboard */,
@@ -289,7 +303,9 @@
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,
+				14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */,
 				14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */,
+				14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

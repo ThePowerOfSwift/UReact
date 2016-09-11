@@ -96,7 +96,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 
         do {
           try device?.lockForConfiguration()
-          device?.flashMode = newMode
+
+          let settings = AVCapturePhotoSettings()
+          settings.flashMode = newMode
           device?.unlockForConfiguration()
 
           flashToggleButton.setImage(UIImage(named: flashButtonName), for: UIControlState())
@@ -128,7 +130,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var currentMode: Int = 0
 
     if captureMode == CaptureModePhoto {
-      currentMode = activeInput.device.flashMode.rawValue
+
+      let settings = AVCapturePhotoSettings()
+      currentMode = settings.flashMode.rawValue
 
     } else {
       currentMode = activeInput.device.torchMode.rawValue
@@ -252,41 +256,57 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 //    myImageView.image = UIImage(contentsOfFile: getImagePath)
   }
 
-  func previewImageForLocalVideo(url: NSURL) -> UIImage? {
+//  func previewImageForLocalVideo(url: NSURL) -> UIImage? {
+//
+//    let asset = AVAsset(url: url as URL)
+//
+//    print("Asset = \(asset)")
+//
+//    let imageGenerator = AVAssetImageGenerator(asset: asset)
+//    imageGenerator.appliesPreferredTrackTransform = true
+//
+//    let time = asset.duration
+//    print("Asset Duration = \(time)")
+//    //If possible - take not the first frame (it could be completely black or white on camara's videos)
+////    time.value = min(time.value, 2)
+////    time = CMTimeMultiplyByFloat(time, 0.5)
+//    let time1 = CMTimeMultiplyByFloat64(time, 0.1)
+//    let time2 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time3 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time4 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time5 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time6 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time7 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time8 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time9 = CMTimeMultiplyByFloat64(time, 0.5)
+//    let time10 = CMTimeMultiplyByFloat64(time, 0.5)
+//    print("Take Asset Image at \(time)")
+//
+//    var times: [CMTime] = []
+//
+//    times.append(time1)
+//
+//    imageGenerator.generateCGImagesAsynchronously(forTimes: times) { (<#CMTime#>, <#CGImage?#>, <#CMTime#>, <#AVAssetImageGeneratorResult#>, <#Error?#>) in
+//      <#code#>
+//    }
+//
+//    do {
+//      let imageRef = try imageGenerator.copyCGImage(at: time, actualTime: nil)
+//      return UIImage(cgImage: imageRef)
+//    }
+//    catch let error as NSError
+//    {
+//      print("Image generation failed with error \(error)")
+//      return nil
+//    }
+//  }
 
-    let asset = AVAsset(url: url as URL)
-
-    print("Asset = \(asset)")
-
-    let imageGenerator = AVAssetImageGenerator(asset: asset)
-    imageGenerator.appliesPreferredTrackTransform = true
-
-    var time = asset.duration
-    print("Asset Duration = \(time)")
-    //If possible - take not the first frame (it could be completely black or white on camara's videos)
-//    time.value = min(time.value, 2)
-//    time = CMTimeMultiplyByFloat(time, 0.5)
-    time = CMTimeMultiplyByFloat64(time, 0.5)
-
-    print("Take Asset Image at \(time)")
-
-    do {
-      let imageRef = try imageGenerator.copyCGImage(at: time, actualTime: nil)
-      return UIImage(cgImage: imageRef)
-    }
-    catch let error as NSError
-    {
-      print("Image generation failed with error \(error)")
-      return nil
-    }
-  }
-
-  func setPreviewImage() {
-    print("setPreviewImage Called")
-    let videoPath = getVideoFilePath()
-    let videoURL = NSURL(string: videoPath)
-    previewImage.image = previewImageForLocalVideo(url: videoURL!)
-  }
+//  func setPreviewImage() {
+//    print("setPreviewImage Called")
+//    let videoPath = getVideoFilePath()
+//    let videoURL = NSURL(string: videoPath)
+//    previewImage.image = previewImageForLocalVideo(url: videoURL!)
+//  }
 
   @IBAction func recordButtonPressed(_ sender: AnyObject) {
 
@@ -314,7 +334,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 
   @IBAction func createStickerPressed(_ sender: UIButton) {
     print("Create Sticker Button Pressed")
-    setPreviewImage()
+//    setPreviewImage()
   }
   //Delegate methods
 
