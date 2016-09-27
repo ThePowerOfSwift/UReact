@@ -189,6 +189,7 @@ public struct Regift {
     }
 
     do {
+    
       return try createGIFForTimePoints(timePoints: timePoints, fileProperties: fileProperties, frameProperties: frameProperties, frameCount: frameCount)
 
     } catch {
