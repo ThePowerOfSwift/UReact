@@ -32,6 +32,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
   var videoOutputURLString: String?
   var videoOutputURL: URL?
 
+  var testVideoOutputURL: URL?
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,7 +88,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
       self.captureSession.addOutput(videoFileOutput)
 
       let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-      let filePath = documentsURL.appendingPathComponent("temp")
+      let filePath = documentsURL.appendingPathComponent("temp.mp4")
 
       // Do recording and save the output to the `filePath`
       videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
@@ -123,18 +125,20 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
   func createGIFFromVideo() {
 
     let path = getVideoFilePath()
-    let videoURL = NSURL(string: path)
+//    let videoURL = NSURL(string: path)
+    let videoURL = Foundation.URL(string: path)
 
     let frameCount = 15
     let delayTime: Float = 0.2
     let loopCount = 0
 
-    let regift = Regift(sourceFileURL: videoURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
+    let regift = Regift(sourceFileURL: testVideoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
+//    let regift = Regift(sourceFileURL: videoURL! as URL, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
 
-    let gif = Regift(sourceFileURL: videoURL!, destinationFileURL: videoURL!, startTime: 0.0, duration: 2.0, frameRate: 10, loopCount: 0)
+//    let regift = Regift(sourceFileURL: videoURL! as URL, destinationFileURL: videoURL! as URL, startTime: 0.0, duration: 2.0, frameRate: 10, loopCount: 0)
 
-    print("Regift - \(gif)")
-    print("Gif saved to \(gif.createGif())")
+    print("Regift - \(regift)")
+    print("Gif saved to \(regift.createGif())")
   }
 
 
@@ -148,11 +152,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
   func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
     recordButton.setTitle("START", for: .normal)
 
-    let videoData = NSData(contentsOf: outputFileURL)
+    testVideoOutputURL = outputFileURL
 
-    let dataPath = getVideoFilePath()
-    print("dataPath = \(dataPath)")
-    videoData?.write(toFile: dataPath, atomically: false)
+//    let videoData = NSData(contentsOf: outputFileURL)
+//
+//    let dataPath = getVideoFilePath()
+//    print("dataPath = \(dataPath)")
+//    videoData?.write(toFile: dataPath, atomically: false)
   }
 
   @IBAction func toggleFlash(_ sender: UIButton) {
