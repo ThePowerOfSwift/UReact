@@ -31,17 +31,48 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 
   }
 
+  //PNG Version
+//  func loadReactions() {
+//    createSticker("dwarf", localizedDescription: "Ninja image")
+//    createSticker("earthMage", localizedDescription: "Angel image")
+//    createSticker("samurai", localizedDescription: "Samurai image")
+//    createSticker("angel", localizedDescription: "Ninja image")
+//    createSticker("bandit", localizedDescription: "Angel image")
+//  }
+
+  //GIF Version
   func loadReactions() {
-    createSticker("dwarf", localizedDescription: "Ninja image")
-    createSticker("earthMage", localizedDescription: "Angel image")
-    createSticker("samurai", localizedDescription: "Samurai image")
-    createSticker("angel", localizedDescription: "Ninja image")
-    createSticker("bandit", localizedDescription: "Angel image")
+    createSticker("maze", localizedDescription: "Maze")
+    createSticker("yes", localizedDescription: "Yes")
+    createSticker("crab", localizedDescription: "crab")
   }
 
+
+// PNG Version
+
+//  func createSticker(_ assetName: String, localizedDescription: String) {
+//
+//    guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "png") else {
+//      print("Could not create sticker path for \(assetName)")
+//      return
+//    }
+//
+//    let stickerURL = URL(fileURLWithPath: stickerPath)
+//
+//    let sticker: MSSticker
+//    do {
+//      try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: localizedDescription)
+//      reactions.append(.reactionSticker(sticker))
+//    } catch {
+//      print(error)
+//      return
+//    }
+//  }
+
+  //GIF Version
   func createSticker(_ assetName: String, localizedDescription: String) {
 
-    guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "png") else {
+    guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
       print("Could not create sticker path for \(assetName)")
       return
     }
@@ -71,7 +102,6 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
 
     let reaction = self.reactions[indexPath.row]
 
