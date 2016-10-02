@@ -12,10 +12,10 @@
 		1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1492B91A1D73C27600C2F1EA /* CameraScreen.swift */; };
 		149C23E41DA09E8F0031BB8D /* maze.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E11DA09E8F0031BB8D /* maze.gif */; };
 		149C23E51DA09E8F0031BB8D /* yes.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E21DA09E8F0031BB8D /* yes.gif */; };
-		149C23E61DA09E8F0031BB8D /* crab.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E31DA09E8F0031BB8D /* crab.gif */; };
 		149F74861D851E86005BFBBA /* ReactionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F74851D851E86005BFBBA /* ReactionItem.swift */; };
 		14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */; };
 		14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95D1D84EADA00CF6495 /* Regift.swift */; };
+		14A870F61DA0ABF000B20BEF /* crab.gif in Resources */ = {isa = PBXBuildFile; fileRef = 14A870F51DA0ABF000B20BEF /* crab.gif */; };
 		14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */; };
 		14C2FA141D2222120065344B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA131D2222120065344B /* Assets.xcassets */; };
 		14C2FA1B1D2222120065344B /* MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14C2FA1A1D2222120065344B /* MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -65,10 +65,10 @@
 		1492B91A1D73C27600C2F1EA /* CameraScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		149C23E11DA09E8F0031BB8D /* maze.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = maze.gif; sourceTree = "<group>"; };
 		149C23E21DA09E8F0031BB8D /* yes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yes.gif; sourceTree = "<group>"; };
-		149C23E31DA09E8F0031BB8D /* crab.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = crab.gif; sourceTree = "<group>"; };
 		149F74851D851E86005BFBBA /* ReactionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionItem.swift; sourceTree = "<group>"; };
 		14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetImageGenerator.swift; sourceTree = "<group>"; };
 		14A2E95D1D84EADA00CF6495 /* Regift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regift.swift; sourceTree = "<group>"; };
+		14A870F51DA0ABF000B20BEF /* crab.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = crab.gif; sourceTree = "<group>"; };
 		14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionsPickerCollectionViewController.swift; sourceTree = "<group>"; };
 		14C2FA101D2222120065344B /* UReact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UReact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14C2FA131D2222120065344B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 			children = (
 				149C23E11DA09E8F0031BB8D /* maze.gif */,
 				149C23E21DA09E8F0031BB8D /* yes.gif */,
-				149C23E31DA09E8F0031BB8D /* crab.gif */,
+				14A870F51DA0ABF000B20BEF /* crab.gif */,
 				14C2FA491D22325A0065344B /* dwarf.png */,
 				14C2FA4A1D22325A0065344B /* earthMage.png */,
 				14C2FA4D1D22325A0065344B /* cleric.png */,
@@ -296,7 +296,7 @@
 				14C2FA281D2222120065344B /* Assets.xcassets in Resources */,
 				14C2FA531D22325A0065344B /* dwarf.png in Resources */,
 				149C23E51DA09E8F0031BB8D /* yes.gif in Resources */,
-				149C23E61DA09E8F0031BB8D /* crab.gif in Resources */,
+				14A870F61DA0ABF000B20BEF /* crab.gif in Resources */,
 				14C2FA541D22325A0065344B /* earthMage.png in Resources */,
 				14C2FA571D22325A0065344B /* cleric.png in Resources */,
 				14C2FA261D2222120065344B /* MainInterface.storyboard in Resources */,
