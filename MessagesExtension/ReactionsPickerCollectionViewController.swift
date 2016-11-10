@@ -42,9 +42,11 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 
   //GIF Version
   func loadReactions() {
-    createSticker("maze", localizedDescription: "Maze")
-    createSticker("yes", localizedDescription: "Yes")
-    createSticker("crab", localizedDescription: "crab")
+//    createSticker("maze", localizedDescription: "Maze")
+//    createSticker("yes", localizedDescription: "Yes")
+//    createSticker("crab", localizedDescription: "crab")
+
+    createCircleGif("maze", localizedDescription: "Maze")
   }
 
 
@@ -68,6 +70,49 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
 //      return
 //    }
 //  }
+
+
+  //GIF Cropping Test
+  func createCircleGif(_ assetName: String, localizedDescription: String) {
+
+    guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
+      print("Could not create sticker path for \(assetName)")
+      return
+    }
+
+
+    // Create Gif and crop to circle
+    let sampleGif = UIImage.gif(name: assetName)
+//    let sampleGif = UIImage(named: assetName)
+    let circleGif = sampleGif?.circle
+
+
+    // Save cropped GIF to Document Directory as data (not sure it works as JPEGRepresentation)
+    let fileManager = FileManager.default
+    let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("gifSticker.gif")
+
+    print(paths)
+
+//    let gifData = UIImageJPEGRepresentation(circleGif!, 0.5)
+    let gifData = UIImagePNGRepresentation(circleGif!)
+
+
+    fileManager.createFile(atPath: paths as String, contents: gifData, attributes: nil)
+
+    let gifURL = URL(fileURLWithPath: paths)
+
+
+    // Create Sticker from saved File Path
+    let sticker: MSSticker
+    do {
+      try sticker = MSSticker(contentsOfFileURL: gifURL, localizedDescription: localizedDescription)
+      reactions.append(.reactionSticker(sticker))
+    } catch {
+      print(error)
+      return
+    }
+
+  }
 
   //GIF Version
   func createSticker(_ assetName: String, localizedDescription: String) {

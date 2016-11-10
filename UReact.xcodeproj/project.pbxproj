@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F8C841D696F92005454F1 /* ReactionCell.swift */; };
 		140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140F8C861D6978B3005454F1 /* AddReactionCell.swift */; };
+		143A2EFD1DD4201600F41A2D /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143A2EFC1DD4201600F41A2D /* UIImageExtension.swift */; };
+		143A2EFF1DD4347F00F41A2D /* black-square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 143A2EFE1DD4347F00F41A2D /* black-square.jpg */; };
 		1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1492B91A1D73C27600C2F1EA /* CameraScreen.swift */; };
 		149C23E41DA09E8F0031BB8D /* maze.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E11DA09E8F0031BB8D /* maze.gif */; };
 		149C23E51DA09E8F0031BB8D /* yes.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E21DA09E8F0031BB8D /* yes.gif */; };
@@ -62,6 +64,8 @@
 /* Begin PBXFileReference section */
 		140F8C841D696F92005454F1 /* ReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		140F8C861D6978B3005454F1 /* AddReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReactionCell.swift; sourceTree = "<group>"; };
+		143A2EFC1DD4201600F41A2D /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		143A2EFE1DD4347F00F41A2D /* black-square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "black-square.jpg"; sourceTree = "<group>"; };
 		1492B91A1D73C27600C2F1EA /* CameraScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		149C23E11DA09E8F0031BB8D /* maze.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = maze.gif; sourceTree = "<group>"; };
 		149C23E21DA09E8F0031BB8D /* yes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yes.gif; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 				149C23E21DA09E8F0031BB8D /* yes.gif */,
 				14A870F51DA0ABF000B20BEF /* crab.gif */,
 				14C2FA491D22325A0065344B /* dwarf.png */,
+				143A2EFE1DD4347F00F41A2D /* black-square.jpg */,
 				14C2FA4A1D22325A0065344B /* earthMage.png */,
 				14C2FA4D1D22325A0065344B /* cleric.png */,
 				14C2FA4E1D22325A0065344B /* samurai.png */,
@@ -136,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */,
+				143A2EFC1DD4201600F41A2D /* UIImageExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				14A870F61DA0ABF000B20BEF /* crab.gif in Resources */,
 				14C2FA541D22325A0065344B /* earthMage.png in Resources */,
 				14C2FA571D22325A0065344B /* cleric.png in Resources */,
+				143A2EFF1DD4347F00F41A2D /* black-square.jpg in Resources */,
 				14C2FA261D2222120065344B /* MainInterface.storyboard in Resources */,
 				14C2FA561D22325A0065344B /* angel.png in Resources */,
 				14C2FA5C1D22325A0065344B /* archer.png in Resources */,
@@ -319,6 +326,7 @@
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,
+				143A2EFD1DD4201600F41A2D /* UIImageExtension.swift in Sources */,
 				14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */,
 				14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */,
 				14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */,

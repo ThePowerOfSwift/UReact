@@ -8,7 +8,6 @@
 
 import UIKit
 import Messages
-import QuartzCore
 
 class ReactionCell: UICollectionViewCell {
 

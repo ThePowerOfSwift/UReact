@@ -124,12 +124,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 
   func createGIFFromVideo() {
 
+    var gifData: Data?
+
     let path = getVideoFilePath()
 //    let videoURL = NSURL(string: path)
     let videoURL = Foundation.URL(string: path)
 
-    let frameCount = 15
-    let delayTime: Float = 0.2
+    let frameCount = 20
+    let delayTime: Float = 0.15
     let loopCount = 0
 
     let regift = Regift(sourceFileURL: testVideoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
@@ -137,9 +139,31 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 
 //    let regift = Regift(sourceFileURL: videoURL! as URL, destinationFileURL: videoURL! as URL, startTime: 0.0, duration: 2.0, frameRate: 10, loopCount: 0)
 
+    let gifFileUrl = regift.createGif()
+//    let gifData = String(contentsOf: gifFilePath!)
+
+    do {
+      
+      gifData = try Data(contentsOf: gifFileUrl!)
+    } catch {
+      print("No URL found at document picked")
+    }
+
+
+    let gif = UIImage.gif(data: gifData!)
+//    let circleGif = gif?.circle
+    previewImage.image = gif
+
+
+
     print("Regift - \(regift)")
     print("Gif saved to \(regift.createGif())")
   }
+
+//  func createGifFromMovie(completionHandler: @escaping (() -> ())) {
+//
+//
+//  }
 
 
   //Delegate methods
