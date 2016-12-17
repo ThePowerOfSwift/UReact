@@ -28,6 +28,8 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     reactions = [CollectionViewItem]()
     reactions.append(.addReaction)
     loadReactions()
+    
+    collectionView.backgroundColor = Colors.peach
 
   }
 

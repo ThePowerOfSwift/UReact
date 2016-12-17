@@ -43,7 +43,6 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afy-NQ-0PF">
                                     <size key="itemSize" width="65" height="65"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -75,7 +74,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="77.5" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="78" y="0.0" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -136,7 +135,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quw-M7-nCP">
-                                <rect key="frame" x="162.5" y="308.5" width="50" height="50"/>
+                                <rect key="frame" x="15" y="35" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="hbT-cF-tli"/>
                                     <constraint firstAttribute="height" constant="50" id="sh2-T1-I0K"/>
@@ -146,13 +145,13 @@
                                     <action selector="toggleFlash:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="J25-VA-lIe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-xm-Wwb">
-                                <rect key="frame" x="139" y="264" width="97" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-xm-Wwb" userLabel="Switch Camera Button">
+                                <rect key="frame" x="310" y="35" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="up1-tu-EJk"/>
-                                    <constraint firstAttribute="height" constant="30" id="x9A-y2-NEX"/>
+                                    <constraint firstAttribute="width" constant="50" id="up1-tu-EJk"/>
+                                    <constraint firstAttribute="height" constant="50" id="x9A-y2-NEX"/>
                                 </constraints>
-                                <state key="normal" title="Switch View"/>
+                                <state key="normal" image="switch-camera"/>
                                 <connections>
                                     <action selector="switchToFrontCamera:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="474-Ab-0N3"/>
                                 </connections>
@@ -193,14 +192,14 @@
                             <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
                             <constraint firstItem="cJe-Zr-38c" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="Fpa-hb-oZa"/>
                             <constraint firstItem="cJe-Zr-38c" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="60" id="IVq-KO-RUL"/>
-                            <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" constant="-54.5" id="Yzf-jP-TnK"/>
+                            <constraint firstItem="m5Q-xm-Wwb" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="KF6-Jf-mdm"/>
+                            <constraint firstAttribute="trailing" secondItem="m5Q-xm-Wwb" secondAttribute="trailing" constant="15" id="Sfg-Vk-hWi"/>
+                            <constraint firstItem="quw-M7-nCP" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" constant="15" id="aas-UW-6FP"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="vbO-9h-WiZ" secondAttribute="bottom" constant="12" id="b4D-rq-QGD"/>
-                            <constraint firstItem="quw-M7-nCP" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="cWg-in-u0e"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="iAo-hW-viL" secondAttribute="bottom" id="dbt-hT-KRx"/>
                             <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
-                            <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="erO-uL-MTa"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
-                            <constraint firstItem="quw-M7-nCP" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="o1f-jH-Cda"/>
+                            <constraint firstItem="quw-M7-nCP" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="sNp-81-cLD"/>
                             <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ"/>
                             <constraint firstItem="vbO-9h-WiZ" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="ufQ-iK-MGY"/>
                         </constraints>
@@ -219,5 +218,6 @@
     </scenes>
     <resources>
         <image name="flash-auto" width="100" height="100"/>
+        <image name="switch-camera" width="100" height="100"/>
     </resources>
 </document>

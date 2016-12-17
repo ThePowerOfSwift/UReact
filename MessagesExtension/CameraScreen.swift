@@ -13,9 +13,6 @@ import AVKit
 class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var cameraView: UIView!
-    @IBOutlet weak var tempImageView: UIImageView!
-    @IBOutlet weak var takePictureButton: UIButton!
-    @IBOutlet weak var switchToFrontCameraButton: UIButton!
     @IBOutlet weak var flashToggleButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewImage: UIImageView!
