@@ -48,8 +48,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         super.viewWillAppear(animated)
         
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        //Change this to a lower Preset if neccessary for file size. This may also effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
         
-        let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+//        let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         
         do {
             let input = try AVCaptureDeviceInput(device: camera)
@@ -235,11 +237,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         if activeInput.device.position == AVCaptureDevicePosition.back {
             newPosition = AVCaptureDevicePosition.front
-            flashToggleButton.isHidden = true
+            flashToggleButton.alpha = 0.0
         } else {
             newPosition = AVCaptureDevicePosition.back
-            flashToggleButton.isHidden = false
-            
+            flashToggleButton.alpha = 1.0
         }
         
         for device in (deviceList?.devices)! {
