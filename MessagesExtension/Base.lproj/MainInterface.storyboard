@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,7 +75,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="77.5" y="0.0" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -180,11 +180,11 @@
                                     <action selector="createStickerPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="qrF-2S-W2H"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Zr-38c">
-                                <rect key="frame" x="67.5" y="30" width="240" height="300"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Zr-38c">
+                                <rect key="frame" x="62.5" y="80" width="250" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="Ot5-LT-fSz"/>
-                                    <constraint firstAttribute="width" constant="240" id="xIN-Hd-LZH"/>
+                                    <constraint firstAttribute="height" constant="250" id="Ot5-LT-fSz"/>
+                                    <constraint firstAttribute="width" constant="250" id="xIN-Hd-LZH"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -192,7 +192,7 @@
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
                             <constraint firstItem="cJe-Zr-38c" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="Fpa-hb-oZa"/>
-                            <constraint firstItem="cJe-Zr-38c" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="10" id="IVq-KO-RUL"/>
+                            <constraint firstItem="cJe-Zr-38c" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="60" id="IVq-KO-RUL"/>
                             <constraint firstItem="m5Q-xm-Wwb" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" constant="-54.5" id="Yzf-jP-TnK"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="vbO-9h-WiZ" secondAttribute="bottom" constant="12" id="b4D-rq-QGD"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="cWg-in-u0e"/>

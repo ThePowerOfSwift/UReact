@@ -35,6 +35,7 @@
 		14C2FA5A1D22325A0065344B /* bandit.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA501D22325A0065344B /* bandit.png */; };
 		14C2FA5B1D22325A0065344B /* pirate.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA511D22325A0065344B /* pirate.png */; };
 		14C2FA5C1D22325A0065344B /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA521D22325A0065344B /* archer.png */; };
+		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		14C2FA501D22325A0065344B /* bandit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandit.png; sourceTree = "<group>"; };
 		14C2FA511D22325A0065344B /* pirate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirate.png; sourceTree = "<group>"; };
 		14C2FA521D22325A0065344B /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
+		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
 				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
 				149F74851D851E86005BFBBA /* ReactionItem.swift */,
+				ED9267DE1E04F40600937E53 /* Constants.swift */,
 				1492B91C1D73CFF700C2F1EA /* Cells */,
 				1492B91D1D73D01300C2F1EA /* Sample Images */,
 				14C2FA241D2222120065344B /* MainInterface.storyboard */,
@@ -326,6 +329,7 @@
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,
+				ED9267DF1E04F40600937E53 /* Constants.swift in Sources */,
 				143A2EFD1DD4201600F41A2D /* UIImageExtension.swift in Sources */,
 				14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */,
 				14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */,
