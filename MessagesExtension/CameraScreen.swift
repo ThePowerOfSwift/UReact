@@ -18,19 +18,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     @IBOutlet weak var previewImage: UIImageView!
     
     let captureSession = AVCaptureSession()
+    let videoFileOutput = AVCaptureMovieFileOutput()
     var photoOutput: AVCapturePhotoOutput?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var activeInput: AVCaptureDeviceInput!
+    var videoOutputURL: URL?
     
     var isRecording = false
     var isTorchOn = false
-    
-    let videoFileOutput = AVCaptureMovieFileOutput()
-    var videoOutputURLString: String?
-    var videoOutputURL: URL?
-    
-    var testVideoOutputURL: URL?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +40,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         super.viewWillAppear(animated)
         
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        //Change this to a lower Preset if neccessary for file size. This may also effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
+        //Change this to a lower Preset if neccessary for file size. This will effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
         
-//        let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         
         do {
@@ -103,47 +97,20 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         }
     }
     
-    func playVideo() {
-        
-        let dataPath = getVideoFilePath()
-        
-        let videoAsset = AVAsset(url: NSURL(fileURLWithPath: dataPath) as URL)
-        let playerItem = AVPlayerItem(asset: videoAsset)
-        
-        let player = AVPlayer(playerItem: playerItem)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        
-        self.present(playerViewController, animated: true) {
-            playerViewController.player!.play()
-        }
-    }
-    
     @IBAction func createStickerPressed(_ sender: UIButton) {
-        print("Create Sticker Button Pressed")
         createGIFFromVideo()
-        //    playVideo()
     }
     
     func createGIFFromVideo() {
         
         var gifData: Data?
         
-        let path = getVideoFilePath()
-        //    let videoURL = NSURL(string: path)
-        let videoURL = Foundation.URL(string: path)
-        
         let frameCount = 20
         let delayTime: Float = 0.15
         let loopCount = 0
         
-        let regift = Regift(sourceFileURL: testVideoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
-        //    let regift = Regift(sourceFileURL: videoURL! as URL, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
-        
-        //    let regift = Regift(sourceFileURL: videoURL! as URL, destinationFileURL: videoURL! as URL, startTime: 0.0, duration: 2.0, frameRate: 10, loopCount: 0)
-        
+        let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
         let gifFileUrl = regift.createGif()
-        //    let gifData = String(contentsOf: gifFilePath!)
         
         do {
             
@@ -154,20 +121,11 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         
         let gif = UIImage.gif(data: gifData!)
-        //    let circleGif = gif?.circle
         previewImage.image = gif
-        
-        
         
         print("Regift - \(regift)")
         print("Gif saved to \(regift.createGif())")
     }
-    
-    //  func createGifFromMovie(completionHandler: @escaping (() -> ())) {
-    //
-    //
-    //  }
-    
     
     //Delegate methods
     
@@ -179,13 +137,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         recordButton.setTitle("START", for: .normal)
         
-        testVideoOutputURL = outputFileURL
-        
-        //    let videoData = NSData(contentsOf: outputFileURL)
-        //
-        //    let dataPath = getVideoFilePath()
-        //    print("dataPath = \(dataPath)")
-        //    videoData?.write(toFile: dataPath, atomically: false)
+        videoOutputURL = outputFileURL
     }
     
     @IBAction func toggleFlash(_ sender: UIButton) {
