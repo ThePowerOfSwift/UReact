@@ -14,7 +14,6 @@
 		1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1492B91A1D73C27600C2F1EA /* CameraScreen.swift */; };
 		149C23E41DA09E8F0031BB8D /* maze.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E11DA09E8F0031BB8D /* maze.gif */; };
 		149C23E51DA09E8F0031BB8D /* yes.gif in Resources */ = {isa = PBXBuildFile; fileRef = 149C23E21DA09E8F0031BB8D /* yes.gif */; };
-		149F74861D851E86005BFBBA /* ReactionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F74851D851E86005BFBBA /* ReactionItem.swift */; };
 		14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */; };
 		14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A2E95D1D84EADA00CF6495 /* Regift.swift */; };
 		14A870F61DA0ABF000B20BEF /* crab.gif in Resources */ = {isa = PBXBuildFile; fileRef = 14A870F51DA0ABF000B20BEF /* crab.gif */; };
@@ -70,7 +69,6 @@
 		1492B91A1D73C27600C2F1EA /* CameraScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		149C23E11DA09E8F0031BB8D /* maze.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = maze.gif; sourceTree = "<group>"; };
 		149C23E21DA09E8F0031BB8D /* yes.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yes.gif; sourceTree = "<group>"; };
-		149F74851D851E86005BFBBA /* ReactionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionItem.swift; sourceTree = "<group>"; };
 		14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAssetImageGenerator.swift; sourceTree = "<group>"; };
 		14A2E95D1D84EADA00CF6495 /* Regift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regift.swift; sourceTree = "<group>"; };
 		14A870F51DA0ABF000B20BEF /* crab.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = crab.gif; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */,
 				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
 				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
-				149F74851D851E86005BFBBA /* ReactionItem.swift */,
 				ED9267DE1E04F40600937E53 /* Constants.swift */,
 				1492B91C1D73CFF700C2F1EA /* Cells */,
 				1492B91D1D73D01300C2F1EA /* Sample Images */,
@@ -247,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Sean Allen";
 				TargetAttributes = {
 					14C2FA0F1D2222120065344B = {
@@ -325,7 +322,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */,
-				149F74861D851E86005BFBBA /* ReactionItem.swift in Sources */,
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,
@@ -374,8 +370,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -421,8 +419,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -35,7 +35,6 @@ class MessagesViewController: MSMessagesAppViewController {
 
   func tappedAddNewReaction() {
     requestPresentationStyle(.expanded)
-    print("Observer Received - tappedAddNewReaction")
   }
 
   func addObservers() {
