@@ -12,202 +12,202 @@ import Messages
 import ImageIO
 
 extension UIImage {
-
-  var circle: UIImage? {
-
-    let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
-
-    let imageView = UIImageView(frame: CGRect(origin: .zero, size: square))
-    imageView.contentMode = .scaleAspectFill
-    imageView.image = self
-    imageView.layer.cornerRadius = square.width/2
-    imageView.layer.masksToBounds = true
-
-    UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
-
-    guard let context = UIGraphicsGetCurrentContext() else { return nil }
-    imageView.layer.render(in: context)
-
-    let result = UIGraphicsGetImageFromCurrentImageContext()
-
-    UIGraphicsEndImageContext()
     
-    return result
-  }
-
-
+    var circle: UIImage? {
+        
+        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
+        
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: square))
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = self
+        imageView.layer.cornerRadius = square.width/2
+        imageView.layer.masksToBounds = true
+        
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return result
+    }
+    
+    
     public class func gif(data: Data) -> UIImage? {
-      // Create source from data
-      guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
-        print("SwiftGif: Source for the image does not exist")
-        return nil
-      }
-
-      return UIImage.animatedImageWithSource(source)
+        // Create source from data
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
+            print("SwiftGif: Source for the image does not exist")
+            return nil
+        }
+        
+        return UIImage.animatedImageWithSource(source)
     }
-
+    
     public class func gif(url: String) -> UIImage? {
-      // Validate URL
-      guard let bundleURL = URL(string: url) else {
-        print("SwiftGif: This image named \"\(url)\" does not exist")
-        return nil
-      }
-
-      // Validate data
-      guard let imageData = try? Data(contentsOf: bundleURL) else {
-        print("SwiftGif: Cannot turn image named \"\(url)\" into NSData")
-        return nil
-      }
-
-      return gif(data: imageData)
+        // Validate URL
+        guard let bundleURL = URL(string: url) else {
+            print("SwiftGif: This image named \"\(url)\" does not exist")
+            return nil
+        }
+        
+        // Validate data
+        guard let imageData = try? Data(contentsOf: bundleURL) else {
+            print("SwiftGif: Cannot turn image named \"\(url)\" into NSData")
+            return nil
+        }
+        
+        return gif(data: imageData)
     }
-
+    
     public class func gif(name: String) -> UIImage? {
-      // Check for existance of gif
-      guard let bundleURL = Bundle.main
-        .url(forResource: name, withExtension: "gif") else {
-          print("SwiftGif: This image named \"\(name)\" does not exist")
-          return nil
-      }
-
-      // Validate data
-      guard let imageData = try? Data(contentsOf: bundleURL) else {
-        print("SwiftGif: Cannot turn image named \"\(name)\" into NSData")
-        return nil
-      }
-
-      return gif(data: imageData)
+        // Check for existance of gif
+        guard let bundleURL = Bundle.main
+            .url(forResource: name, withExtension: "gif") else {
+                print("SwiftGif: This image named \"\(name)\" does not exist")
+                return nil
+        }
+        
+        // Validate data
+        guard let imageData = try? Data(contentsOf: bundleURL) else {
+            print("SwiftGif: Cannot turn image named \"\(name)\" into NSData")
+            return nil
+        }
+        
+        return gif(data: imageData)
     }
-
+    
     internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
-      var delay = 0.1
-
-      // Get dictionaries
-      let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
-      let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
-      if CFDictionaryGetValueIfPresent(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(), gifPropertiesPointer) == false {
+        var delay = 0.1
+        
+        // Get dictionaries
+        let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
+        let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
+        if CFDictionaryGetValueIfPresent(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(), gifPropertiesPointer) == false {
+            return delay
+        }
+        
+        let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
+        
+        // Get delay time
+        var delayObject: AnyObject = unsafeBitCast(
+            CFDictionaryGetValue(gifProperties,
+                                 Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()),
+            to: AnyObject.self)
+        if delayObject.doubleValue == 0 {
+            delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
+                                                             Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+        }
+        
+        delay = delayObject as? Double ?? 0
+        
+        if delay < 0.1 {
+            delay = 0.1 // Make sure they're not too fast
+        }
+        
         return delay
-      }
-
-      let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
-
-      // Get delay time
-      var delayObject: AnyObject = unsafeBitCast(
-        CFDictionaryGetValue(gifProperties,
-                             Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()),
-        to: AnyObject.self)
-      if delayObject.doubleValue == 0 {
-        delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
-                                                         Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
-      }
-
-      delay = delayObject as? Double ?? 0
-
-      if delay < 0.1 {
-        delay = 0.1 // Make sure they're not too fast
-      }
-
-      return delay
     }
-
+    
     internal class func gcdForPair(_ a: Int?, _ b: Int?) -> Int {
-      var a = a
-      var b = b
-      // Check if one of them is nil
-      if b == nil || a == nil {
-        if b != nil {
-          return b!
-        } else if a != nil {
-          return a!
-        } else {
-          return 0
+        var a = a
+        var b = b
+        // Check if one of them is nil
+        if b == nil || a == nil {
+            if b != nil {
+                return b!
+            } else if a != nil {
+                return a!
+            } else {
+                return 0
+            }
         }
-      }
-
-      // Swap for modulo
-      if a! < b! {
-        let c = a
-        a = b
-        b = c
-      }
-
-      // Get greatest common divisor
-      var rest: Int
-      while true {
-        rest = a! % b!
-
-        if rest == 0 {
-          return b! // Found it
-        } else {
-          a = b
-          b = rest
+        
+        // Swap for modulo
+        if a! < b! {
+            let c = a
+            a = b
+            b = c
         }
-      }
+        
+        // Get greatest common divisor
+        var rest: Int
+        while true {
+            rest = a! % b!
+            
+            if rest == 0 {
+                return b! // Found it
+            } else {
+                a = b
+                b = rest
+            }
+        }
     }
-
+    
     internal class func gcdForArray(_ array: Array<Int>) -> Int {
-      if array.isEmpty {
-        return 1
-      }
-
-      var gcd = array[0]
-
-      for val in array {
-        gcd = UIImage.gcdForPair(val, gcd)
-      }
-
-      return gcd
+        if array.isEmpty {
+            return 1
+        }
+        
+        var gcd = array[0]
+        
+        for val in array {
+            gcd = UIImage.gcdForPair(val, gcd)
+        }
+        
+        return gcd
     }
-
+    
     internal class func animatedImageWithSource(_ source: CGImageSource) -> UIImage? {
-      let count = CGImageSourceGetCount(source)
-      var images = [CGImage]()
-      var delays = [Int]()
-
-      // Fill arrays
-      for i in 0..<count {
-        // Add image
-        if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
-          images.append(image)
+        let count = CGImageSourceGetCount(source)
+        var images = [CGImage]()
+        var delays = [Int]()
+        
+        // Fill arrays
+        for i in 0..<count {
+            // Add image
+            if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                images.append(image)
+            }
+            
+            // At it's delay in cs
+            let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
+                                                            source: source)
+            delays.append(Int(delaySeconds * 1000.0)) // Seconds to ms
         }
-
-        // At it's delay in cs
-        let delaySeconds = UIImage.delayForImageAtIndex(Int(i),
-                                                        source: source)
-        delays.append(Int(delaySeconds * 1000.0)) // Seconds to ms
-      }
-
-      // Calculate full duration
-      let duration: Int = {
-        var sum = 0
-
-        for val: Int in delays {
-          sum += val
+        
+        // Calculate full duration
+        let duration: Int = {
+            var sum = 0
+            
+            for val: Int in delays {
+                sum += val
+            }
+            
+            return sum
+        }()
+        
+        // Get frames
+        let gcd = gcdForArray(delays)
+        var frames = [UIImage]()
+        
+        var frame: UIImage
+        var frameCount: Int
+        for i in 0..<count {
+            frame = UIImage(cgImage: images[Int(i)])
+            frameCount = Int(delays[Int(i)] / gcd)
+            
+            for _ in 0..<frameCount {
+                frames.append(frame)
+            }
         }
-
-        return sum
-      }()
-
-      // Get frames
-      let gcd = gcdForArray(delays)
-      var frames = [UIImage]()
-
-      var frame: UIImage
-      var frameCount: Int
-      for i in 0..<count {
-        frame = UIImage(cgImage: images[Int(i)])
-        frameCount = Int(delays[Int(i)] / gcd)
-
-        for _ in 0..<frameCount {
-          frames.append(frame)
-        }
-      }
-
-      // Heyhey
-      let animation = UIImage.animatedImage(with: frames,
-                                            duration: Double(duration) / 1000.0)
-
-      return animation
+        
+        // Heyhey
+        let animation = UIImage.animatedImage(with: frames,
+                                              duration: Double(duration) / 1000.0)
+        
+        return animation
     }
 }
 

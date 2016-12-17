@@ -10,6 +10,6 @@ import UIKit
 
 class AddReactionCell: UICollectionViewCell {
     
-  @IBOutlet weak var addImage: UIImageView!
-  
+    @IBOutlet weak var addImage: UIImageView!
+    
 }

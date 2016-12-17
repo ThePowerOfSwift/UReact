@@ -10,13 +10,13 @@ import UIKit
 import Messages
 
 class ReactionCell: UICollectionViewCell {
-
-  @IBOutlet weak var reactionView: MSStickerView!
-
-  override func awakeFromNib() {
-    layoutIfNeeded()
-    reactionView.layer.cornerRadius = reactionView.frame.height/2
-  }
-  
+    
+    @IBOutlet weak var reactionView: MSStickerView!
+    
+    override func awakeFromNib() {
+        layoutIfNeeded()
+        reactionView.layer.cornerRadius = reactionView.frame.height/2
+    }
+    
     
 }
