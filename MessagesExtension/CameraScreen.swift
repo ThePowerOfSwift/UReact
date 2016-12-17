@@ -281,7 +281,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         overlayView.alpha = 0.85
         overlayView.backgroundColor = Colors.peach
         
-        // Create a path with the rectangle in it.
         let path = CGMutablePath()
         path.addArc(center: CGPoint(x: xOffset, y: yOffset), radius: radius, startAngle: 0.0, endAngle: 2 * 3.14, clockwise: false)
         path.addRect(CGRect(x: 0, y: 0, width: overlayView.frame.width, height: overlayView.frame.height))
