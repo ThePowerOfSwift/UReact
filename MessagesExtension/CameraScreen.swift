@@ -42,6 +42,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
         //Change this to a lower Preset if neccessary for file size. This will effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
         
+        //This is a comment to test commit
+        
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         
         do {
