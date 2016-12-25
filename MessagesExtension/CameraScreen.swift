@@ -16,6 +16,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     @IBOutlet weak var flashToggleButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewImage: UIImageView!
+    @IBOutlet weak var gifPreviewView: UIView!
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
@@ -23,12 +24,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var previewLayer: AVCaptureVideoPreviewLayer?
     var activeInput: AVCaptureDeviceInput!
     var videoOutputURL: URL?
+    var transparencyView: UIView!
     
     var isRecording = false
     var isTorchOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        transparencyView = createTransparencyView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,17 +86,16 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             
             isRecording = true
             
-            // Do record video stuff here
-            self.captureSession.addOutput(videoFileOutput)
+            if captureSession.canAddOutput(videoFileOutput) {
+                captureSession.addOutput(videoFileOutput)
+            }
             
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let filePath = documentsURL.appendingPathComponent("temp.mp4")
             
-            // Do recording and save the output to the `filePath`
             videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
             
         } else {
-            
             isRecording = false
             videoFileOutput.stopRecording()
         }
@@ -129,6 +131,27 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         print("Gif saved to \(regift.createGif())")
     }
     
+    @IBAction func retakeButtonPressed(_ sender: UIButton) {
+        showGifPreviewView(bool: false)
+    }
+    
+    @IBAction func keepButtonPressed(_ sender: UIButton) {
+        // Save GIF
+        // Transition back to collection View that now includes the newly taken GIF
+        
+    }
+    
+    func showGifPreviewView(bool: Bool) {
+        
+        view.bringSubview(toFront: gifPreviewView)
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.transparencyView.alpha = bool ? 0.75 : 0.0
+            self.gifPreviewView.alpha = bool ? 1.0 : 0.0
+        })
+    }
+    
+    
     //Delegate methods
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
@@ -140,6 +163,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         recordButton.setTitle("START", for: .normal)
         
         videoOutputURL = outputFileURL
+        createGIFFromVideo()
+        showGifPreviewView(bool: true)
     }
     
     @IBAction func toggleFlash(_ sender: UIButton) {

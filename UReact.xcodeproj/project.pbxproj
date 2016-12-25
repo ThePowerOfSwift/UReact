@@ -34,6 +34,7 @@
 		14C2FA5A1D22325A0065344B /* bandit.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA501D22325A0065344B /* bandit.png */; };
 		14C2FA5B1D22325A0065344B /* pirate.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA511D22325A0065344B /* pirate.png */; };
 		14C2FA5C1D22325A0065344B /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA521D22325A0065344B /* archer.png */; };
+		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		14C2FA501D22325A0065344B /* bandit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandit.png; sourceTree = "<group>"; };
 		14C2FA511D22325A0065344B /* pirate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirate.png; sourceTree = "<group>"; };
 		14C2FA521D22325A0065344B /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
+		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 			children = (
 				14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */,
 				143A2EFC1DD4201600F41A2D /* UIImageExtension.swift */,
+				ED24C5661E0F581600074130 /* ViewControllerExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				143A2EFD1DD4201600F41A2D /* UIImageExtension.swift in Sources */,
 				14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */,
 				14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */,
+				ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */,
 				14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
