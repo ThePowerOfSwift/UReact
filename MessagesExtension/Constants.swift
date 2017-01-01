@@ -31,7 +31,8 @@ struct Colors {
 }
 
 struct Keys {
-    static let gifDataArray         = "giDataArray"
+    static let gifURLArray          = "gifURLArray"
+    static let fileURLCounter       = "fileURLCounter"
 }
 
 struct ScreenSize {

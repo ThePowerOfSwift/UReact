@@ -35,6 +35,7 @@
 		14C2FA5B1D22325A0065344B /* pirate.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA511D22325A0065344B /* pirate.png */; };
 		14C2FA5C1D22325A0065344B /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA521D22325A0065344B /* archer.png */; };
 		ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0F30DB1E18C8B100E37C7C /* Persistence.swift */; };
+		ED0F30E11E18DB2800E37C7C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0F30E01E18DB2800E37C7C /* StringExtension.swift */; };
 		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		14C2FA511D22325A0065344B /* pirate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirate.png; sourceTree = "<group>"; };
 		14C2FA521D22325A0065344B /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
 		ED0F30DB1E18C8B100E37C7C /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		ED0F30E01E18DB2800E37C7C /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 				14A2E95B1D84EA2F00CF6495 /* AVAssetImageGenerator.swift */,
 				143A2EFC1DD4201600F41A2D /* UIImageExtension.swift */,
 				ED24C5661E0F581600074130 /* ViewControllerExtension.swift */,
+				ED0F30E01E18DB2800E37C7C /* StringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				ED9267DF1E04F40600937E53 /* Constants.swift in Sources */,
 				143A2EFD1DD4201600F41A2D /* UIImageExtension.swift in Sources */,
 				14A2E95E1D84EADA00CF6495 /* Regift.swift in Sources */,
+				ED0F30E11E18DB2800E37C7C /* StringExtension.swift in Sources */,
 				14AD3B541D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift in Sources */,
 				ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */,
 				14A2E95C1D84EA2F00CF6495 /* AVAssetImageGenerator.swift in Sources */,

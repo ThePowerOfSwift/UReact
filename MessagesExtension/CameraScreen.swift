@@ -6,6 +6,7 @@
 //  Copyright © 2016 Sean Allen. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import AVFoundation
 import AVKit
@@ -25,7 +26,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var activeInput: AVCaptureDeviceInput!
     var videoOutputURL: URL?
     var transparencyView: UIView!
-    var gifData: Data?
+    var gifURLString: String!
     
     var isRecording = false
     var isTorchOn = false
@@ -33,7 +34,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewDidLoad() {
         super.viewDidLoad()
         transparencyView = createTransparencyView()
-        Persistence.createGifDataArray()
+        Persistence.createGifPersistence()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,16 +108,21 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     func createGIFFromVideo() {
         
+        var gifData: Data?
+        
         let frameCount = 20
         let delayTime: Float = 0.15
         let loopCount = 0
         
         let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
-        let gifFileUrl = regift.createGif()
+        
+        // Need to set gifURL
+        let gifDataURL = regift.createGif()
+        gifURLString = gifDataURL?.path
         
         do {
             
-            gifData = try Data(contentsOf: gifFileUrl!)
+            gifData = try Data(contentsOf: gifDataURL!)
         } catch {
             print("No URL found at document picked")
         }
@@ -126,6 +132,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         print("Regift - \(regift)")
         print("Gif saved to \(regift.createGif())")
+        // Does .createGIF create the same url for all GIFs? If so, think about insituting a counter and adding a number to the end of each URL. Downside... all GIFs users EVER create will be saved. Figure out how to only do this for GIFs the user wants to save. Maybe itrate the URL in "keepButtonPressed"?
     }
     
     @IBAction func retakeButtonPressed(_ sender: UIButton) {
@@ -133,18 +140,38 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
-        // Save GIF
+                        // Save GIF
+        
+        
+        //Add next incrementation of filePath to URL
+        //Abstract this away
+        
+        // Pulling in current increment (Int)
+        let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
+        
+        // increment it
+        let incrementedURLCount: Int = urlCount + 1
+        Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
+        
+        
+        // Convert Int to String
+        let urlCountString = String(describing: incrementedURLCount)
+        
+        // Build URL String
+        let countedURLString = gifURLString.insert(string: urlCountString, ind: (gifURLString.characters.count - 4))
+        
+        
+        
         
         // Pull up saved array
-        var currentGifDataArray: [Data] = Persistence.defaults.array(forKey: Keys.gifDataArray) as! [Data]
+        var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         
         // add gifData to array
-        currentGifDataArray.append(gifData!)
+        // Handle posiblility of gifURL being nil (if .createGIF() doesn't work for some reason
+        gifURLArray.append(countedURLString)
         
         // save array
-        Persistence.defaults.set(currentGifDataArray, forKey: Keys.gifDataArray)
-        
-        print("Gif Data in array = \(currentGifDataArray.count)")
+        Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
         
         
         

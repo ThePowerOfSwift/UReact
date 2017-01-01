@@ -11,14 +11,16 @@ import Foundation
 class Persistence {
     
     static let defaults = UserDefaults.standard
-    static var dataArray = defaults.array(forKey: Keys.gifDataArray) as! [Data]
+    static var gifURLArray = defaults.array(forKey: Keys.gifURLArray) as! [String]
     
-    class func createGifDataArray() {
-        if defaults.array(forKey: Keys.gifDataArray) == nil {
-            let storeDataArray: [Data] = []
-            defaults.set(storeDataArray, forKey: Keys.gifDataArray)
+    class func createGifPersistence() {
+        if defaults.array(forKey: Keys.gifURLArray) == nil {
+            let emptyGIFArray: [String] = []
+            defaults.set(emptyGIFArray, forKey: Keys.gifURLArray)
+            defaults.set(0, forKey: Keys.fileURLCounter)
         }
     }
+   
     
     // try an update saved array funtion that combines a lot of steps
     
