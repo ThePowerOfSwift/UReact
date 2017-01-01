@@ -254,6 +254,9 @@ public struct Regift {
             throw RegiftError.SourceFormatInvalid
         }
         
+        
+        // Looks like this is where I need to edit the document directory
+        
         var fileURL:URL?
         if self.destinationFileURL != nil {
             fileURL = self.destinationFileURL

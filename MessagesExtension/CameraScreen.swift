@@ -115,13 +115,19 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let delayTime: Float = 0.15
         let loopCount = 0
         
-        let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
+//        let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
+        
+        
+        // Try this before editing Regift. Edit Regift as a last resort. Need destinationURL
+        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: <#T##URL?#>, startTime: 0.00, duration: 2.5, frameRate: frameCount, loopCount: loopCount)
         
         // Need to set gifURL
         
-        // Need to change the path that .createGIF() saves to. Gonna be tough. 
+        
         let gifDataURL = regift.createGif()
         gifURLString = gifDataURL?.path
+        // gifURLString *should* be the samee as destinationFileURL.... I think.
+        // If it is, then my array needs to be full of gifURLString
         
         do {
             
@@ -130,13 +136,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             print("No URL found at document picked")
         }
         
-        // Save gif here to documents directory.
         gif = UIImage.gif(data: gifData!)!
         previewImage.image = gif
         
         print("Regift - \(regift)")
         print("Gif saved to \(regift.createGif())")
-        // Does .createGIF create the same url for all GIFs? If so, think about insituting a counter and adding a number to the end of each URL. Downside... all GIFs users EVER create will be saved. Figure out how to only do this for GIFs the user wants to save. Maybe itrate the URL in "keepButtonPressed"?
+        
     }
     
     @IBAction func retakeButtonPressed(_ sender: UIButton) {
@@ -149,7 +154,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         // create a name for your image
         
-        // look into incrementing url here (that incrementation should be absracted away)
+        //This needs to be done earlier so I can set the desintation path of the gif being created.
         let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
         let incrementedURLCount: Int = urlCount + 1
         Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
