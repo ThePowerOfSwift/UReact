@@ -27,6 +27,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var videoOutputURL: URL?
     var transparencyView: UIView!
     var gifURLString: String!
+    var gif: UIImage?
     
     var isRecording = false
     var isTorchOn = false
@@ -127,7 +128,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             print("No URL found at document picked")
         }
         
-        let gif = UIImage.gif(data: gifData!)
+        // Save gif here to documents directory.
+        gif = UIImage.gif(data: gifData!)!
         previewImage.image = gif
         
         print("Regift - \(regift)")
@@ -140,38 +142,47 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
-                        // Save GIF
         
+        // Start of saving "gif"
+        let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        // create a name for your image
         
-        //Add next incrementation of filePath to URL
-        //Abstract this away
-        
-        // Pulling in current increment (Int)
+        // look into incrementing url here (that incrementation should be absracted away)
         let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
-        
-        // increment it
         let incrementedURLCount: Int = urlCount + 1
         Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
+        let urlCountString = String(incrementedURLCount)
         
         
-        // Convert Int to String
-        let urlCountString = String(describing: incrementedURLCount)
+        let incrementedPathComponent = "reactionGif\(urlCountString).gif"
+        let fileURL = documentsDirectoryURL.appendingPathComponent(incrementedPathComponent)
         
-        // Build URL String
-        let countedURLString = gifURLString.insert(string: urlCountString, ind: (gifURLString.characters.count - 4))
+        if !FileManager.default.fileExists(atPath: fileURL.path) {
+            do {
+                
+                // 1.0 Compression is highest quality. Might need to lower this to hit 500KB limit
+                try UIImageJPEGRepresentation(gif!, 1.0)?.write(to: fileURL)
+                    print("Image Added Successfully to \(fileURL.path)")
+            } catch {
+                print(error)
+            }
+        } else {
+            print("Image Not Added")
+        }
         
-        
-        
+        // end of saving "gif"
+    
         
         // Pull up saved array
         var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         
         // add gifData to array
-        // Handle posiblility of gifURL being nil (if .createGIF() doesn't work for some reason
-        gifURLArray.append(countedURLString)
+//         Handle posiblility of gifURL being nil (if .createGIF() doesn't work for some reason
+        gifURLArray.append(fileURL.path)
         
         // save array
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
+        
         
         
         

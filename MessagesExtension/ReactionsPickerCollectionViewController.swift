@@ -74,6 +74,28 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     //  }
     
     
+    //Pull in GIFs from Document Directory
+    func createGIFArray() -> [UIImage] {
+        
+        let imageArray: [UIImage] = []
+        
+        var urlStringArray = Persistence.defaults.array(forKey: Keys.gifURLArray)
+        
+        
+        // Regeift used the Temporary Directory... I'm not confident pulling from document directory will work all the time (temp file gets wiped?). I think the better option might be to save the gif (UIImage) created for the preview window to documents directory myself.
+        
+        
+        
+        
+        
+        
+        return imageArray
+    }
+    
+    
+    
+    
+    
     //GIF Cropping Test
     func createCircleGif(_ assetName: String, localizedDescription: String) {
         
