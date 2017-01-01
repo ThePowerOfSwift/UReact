@@ -118,6 +118,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
         
         // Need to set gifURL
+        
+        // Need to change the path that .createGIF() saves to. Gonna be tough. 
         let gifDataURL = regift.createGif()
         gifURLString = gifDataURL?.path
         

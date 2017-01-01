@@ -14,6 +14,7 @@ import ImageIO
 class ReactionsPickerViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var testGIFView: UIImageView!
     
     enum CollectionViewItem {
         case reactionSticker(MSSticker)
@@ -49,6 +50,9 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
         //    createSticker("crab", localizedDescription: "crab")
         
         createCircleGif("maze", localizedDescription: "Maze")
+        
+        
+        createGIFArray()
     }
     
     
@@ -75,21 +79,36 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     
     
     //Pull in GIFs from Document Directory
-    func createGIFArray() -> [UIImage] {
+    func createGIFArray() {
+        
+  
+//        var urlStringArray = Persistence.defaults.array(forKey: Keys.gifURLArray)
+//        let test1 = urlStringArray?[0]
+//        
+//        print("test 1 url String = \(test1) ")
+        
+        // change path component
+        
+        let fileManager = FileManager.default
+        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent("reactionGif3.gif")
+        if fileManager.fileExists(atPath: imagePath){
+            self.testGIFView.image = UIImage(contentsOfFile: imagePath)
+        }else{
+            print("No Image")
+        }
+        
+        
+
         
         let imageArray: [UIImage] = []
         
-        var urlStringArray = Persistence.defaults.array(forKey: Keys.gifURLArray)
-        
-        
-        // Regeift used the Temporary Directory... I'm not confident pulling from document directory will work all the time (temp file gets wiped?). I think the better option might be to save the gif (UIImage) created for the preview window to documents directory myself.
-        
-        
-        
-        
-        
-        
-        return imageArray
+    }
+    
+
+    func getDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     
