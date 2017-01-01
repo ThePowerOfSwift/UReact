@@ -25,6 +25,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var activeInput: AVCaptureDeviceInput!
     var videoOutputURL: URL?
     var transparencyView: UIView!
+    var gifData: Data?
     
     var isRecording = false
     var isTorchOn = false
@@ -32,6 +33,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewDidLoad() {
         super.viewDidLoad()
         transparencyView = createTransparencyView()
+        Persistence.createGifDataArray()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,8 +46,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
         //Change this to a lower Preset if neccessary for file size. This will effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
-        
-        //This is a comment to test commit
         
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         
@@ -107,8 +107,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     func createGIFFromVideo() {
         
-        var gifData: Data?
-        
         let frameCount = 20
         let delayTime: Float = 0.15
         let loopCount = 0
@@ -123,7 +121,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             print("No URL found at document picked")
         }
         
-        
         let gif = UIImage.gif(data: gifData!)
         previewImage.image = gif
         
@@ -137,6 +134,20 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
         // Save GIF
+        
+        // Pull up saved array
+        var currentGifDataArray: [Data] = Persistence.defaults.array(forKey: Keys.gifDataArray) as! [Data]
+        
+        // add gifData to array
+        currentGifDataArray.append(gifData!)
+        
+        // save array
+        Persistence.defaults.set(currentGifDataArray, forKey: Keys.gifDataArray)
+        
+        print("Gif Data in array = \(currentGifDataArray.count)")
+        
+        
+        
         // Transition back to collection View that now includes the newly taken GIF
         
     }

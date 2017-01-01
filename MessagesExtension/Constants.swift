@@ -30,6 +30,10 @@ struct Colors {
     static let black        = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
 }
 
+struct Keys {
+    static let gifDataArray         = "giDataArray"
+}
+
 struct ScreenSize {
     static let SCREEN_WIDTH         = UIScreen.main.bounds.size.width
     static let SCREEN_HEIGHT        = UIScreen.main.bounds.size.height

@@ -34,6 +34,7 @@
 		14C2FA5A1D22325A0065344B /* bandit.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA501D22325A0065344B /* bandit.png */; };
 		14C2FA5B1D22325A0065344B /* pirate.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA511D22325A0065344B /* pirate.png */; };
 		14C2FA5C1D22325A0065344B /* archer.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA521D22325A0065344B /* archer.png */; };
+		ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0F30DB1E18C8B100E37C7C /* Persistence.swift */; };
 		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 /* End PBXBuildFile section */
@@ -93,6 +94,7 @@
 		14C2FA501D22325A0065344B /* bandit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bandit.png; sourceTree = "<group>"; };
 		14C2FA511D22325A0065344B /* pirate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pirate.png; sourceTree = "<group>"; };
 		14C2FA521D22325A0065344B /* archer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archer.png; sourceTree = "<group>"; };
+		ED0F30DB1E18C8B100E37C7C /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,12 +190,12 @@
 		14C2FA211D2222120065344B /* MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				ED0F30DF1E18C8D900E37C7C /* Abstractions */,
 				14A2E95A1D84EA1000CF6495 /* Extensions */,
 				14C2FA221D2222120065344B /* MessagesViewController.swift */,
 				14AD3B531D696BDC00DD6FF8 /* ReactionsPickerCollectionViewController.swift */,
 				1492B91A1D73C27600C2F1EA /* CameraScreen.swift */,
 				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
-				ED9267DE1E04F40600937E53 /* Constants.swift */,
 				1492B91C1D73CFF700C2F1EA /* Cells */,
 				1492B91D1D73D01300C2F1EA /* Sample Images */,
 				14C2FA241D2222120065344B /* MainInterface.storyboard */,
@@ -201,6 +203,15 @@
 				14C2FA291D2222120065344B /* Info.plist */,
 			);
 			path = MessagesExtension;
+			sourceTree = "<group>";
+		};
+		ED0F30DF1E18C8D900E37C7C /* Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+				ED9267DE1E04F40600937E53 /* Constants.swift */,
+				ED0F30DB1E18C8B100E37C7C /* Persistence.swift */,
+			);
+			name = Abstractions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */,
 				140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */,
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
