@@ -37,8 +37,14 @@ class MessagesViewController: MSMessagesAppViewController {
         requestPresentationStyle(.expanded)
     }
     
+    func tappedKeepReaction() {
+        requestPresentationStyle(.compact)
+    }
+    
     func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedAddNewReaction), name:NSNotification.Name(rawValue: "AddReactionTapped"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedKeepReaction), name:NSNotification.Name(rawValue: "KeepReactionTapped"), object: nil)
     }
 }
 

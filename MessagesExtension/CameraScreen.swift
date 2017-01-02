@@ -12,7 +12,7 @@ import AVFoundation
 import AVKit
 
 //global Var for testing.
-var destinationURL: URL?
+//var destinationURL: URL?
 
 class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate {
     
@@ -31,7 +31,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var transparencyView: UIView!
     var gifURLString: String!
     var gif: UIImage?
-//    var destinationURL: URL?
+    var destinationURL: URL?
     
     var isRecording = false
     var isTorchOn = false
@@ -120,13 +120,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let loopCount = 0
         destinationURL = createGifFilePath()
         
-//        let regift = Regift(sourceFileURL: videoOutputURL!, frameCount: frameCount, delayTime: delayTime, loopCount: loopCount)
-        
-        
-        // Try this before editing Regift. Edit Regift as a last resort. Need destinationURL
-        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.00, duration: 2.5, frameRate: frameCount, loopCount: loopCount)
-        
-        // Need to set gifURL
+        // In current settings and 2.5 sec duration, output file is 10MB. At 1 sec duration it's 3.7MB. Need to adjust the quality/framerate and size
+        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.00, duration: 1.0, frameRate: frameCount, loopCount: loopCount)
         
         //If duration of video is less than the stated 2.5 seconds, it crashes. Figure out how to handle short GIFs.
         let gifDataURL = regift.createGif()
@@ -134,8 +129,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         print("Destination URL = \(destinationURL?.path)")
         print("gifURLString = \(gifURLString)")
-        // gifURLString *should* be the samee as destinationFileURL.... I think.
+        // gifURLString *should* be the samee as destinationFileURL
         // If it is, then my array needs to be full of gifURLString
+        // Current issue is when I try to retrieve file at this URL, there is no file there
         
         do {
             
@@ -173,20 +169,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
         
-//        // Start of saving "gif"
-//        let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-//        // create a name for your image
-//        
-//        //This needs to be done earlier so I can set the desintation path of the gif being created.
-//        let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
-//        let incrementedURLCount: Int = urlCount + 1
-//        Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
-//        let urlCountString = String(incrementedURLCount)
-//        
-//        
-//        let incrementedPathComponent = "reactionGif\(urlCountString).gif"
-//        let fileURL = documentsDirectoryURL.appendingPathComponent(incrementedPathComponent)
-        
 //        if !FileManager.default.fileExists(atPath: (destinationURL?.path)!) {
 //            do {
 //                
@@ -200,27 +182,22 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 //            print("Image Not Added")
 //        }
         
-        // end of saving "gif"
-    
         
         // Pull up saved array
         var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         
-        // add gifData to array
+        // add gifURL String to array
 //         Handle posiblility of gifURL being nil (if .createGIF() doesn't work for some reason
         gifURLArray.append((destinationURL?.path)!)
         print("URL String for GIF saved to persisted array - \(destinationURL?.path)")
         
         // save array
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
-        
-        
-        
+    
         
         // Transition back to collection View that now includes the newly taken GIF
-        
-        // Try passing the destinationURL to ReacionsVC and reloading the imageView to see if the gif works.
-        
+        //Reqeusts presentation style .compact
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "KeepReactionTapped"), object: nil)
         
     }
     
