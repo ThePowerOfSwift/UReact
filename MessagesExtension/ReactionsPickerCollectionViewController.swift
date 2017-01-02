@@ -199,7 +199,7 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     fileprivate func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddReactionCell", for: indexPath) as! AddReactionCell
         
-        cell.addImage.image = UIImage(named: "Plus-500")
+        cell.addImage.image = #imageLiteral(resourceName: "Plus-500")
         
         return cell
         
