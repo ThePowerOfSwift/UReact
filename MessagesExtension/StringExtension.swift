@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    func insert(string: String,ind: Int) -> String {
+    func insert(string: String, ind: Int) -> String {
         return  String(self.characters.prefix(ind)) + string + String(self.characters.suffix(self.characters.count-ind))
     }
 }

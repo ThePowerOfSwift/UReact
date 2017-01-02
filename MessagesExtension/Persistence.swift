@@ -20,12 +20,37 @@ class Persistence {
             defaults.set(0, forKey: Keys.fileURLCounter)
         }
     }
-   
     
-    // try an update saved array funtion that combines a lot of steps
+
+    
+    class func retrieveSavedURLs() -> [String] {
+        let array: [String] = defaults.array(forKey: Keys.gifURLArray) as! [String]
+        return array
+    }
     
     
-    
-    
+    // Temp debugging function
+    class func printFileSize(url: String) {
         
+        let fileManager = FileManager.default
+        var gifData: Data?
+        
+        let appendString = fileManager.displayName(atPath: url)
+        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(appendString)
+        gifData = fileManager.contents(atPath: imagePath)
+        print("gif Data = \(gifData!)")
+        
+    }
+    
+    class func getDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        
+        return documentsDirectory
+    }
+    
+    
+    
+    
+    
 }

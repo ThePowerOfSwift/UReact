@@ -186,7 +186,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         // Transition back to collection View that now includes the newly taken GIF
         //Reqeusts presentation style .compact
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "KeepReactionTapped"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.keepReaction), object: nil)
         
     }
     

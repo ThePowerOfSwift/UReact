@@ -74,10 +74,10 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="77.5" y="0.0" width="65" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="66" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-FF-qEp">
@@ -101,27 +101,17 @@
                                     <outlet property="delegate" destination="H5A-JQ-CUs" id="eoO-wX-nDY"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Te-dr-xAy">
-                                <rect key="frame" x="155" y="20" width="65" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="5Dp-uz-4me"/>
-                                    <constraint firstAttribute="width" constant="65" id="Yhz-h4-vFr"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
-                            <constraint firstItem="1Te-dr-xAy" firstAttribute="top" secondItem="ZUi-cs-rUv" secondAttribute="bottom" id="MG4-zi-YWN"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" id="MUO-uk-aZ0"/>
                             <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" id="NM9-CR-VmY"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" id="h0q-hw-OKS"/>
-                            <constraint firstItem="1Te-dr-xAy" firstAttribute="centerX" secondItem="B7x-VQ-E6B" secondAttribute="centerX" id="tfC-NN-WoA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="bVW-ng-Ahz" id="LGb-YI-1Fa"/>
-                        <outlet property="testGIFView" destination="1Te-dr-xAy" id="vIx-qH-uQt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXJ-pI-VyY" userLabel="First Responder" sceneMemberID="firstResponder"/>

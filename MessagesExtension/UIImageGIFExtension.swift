@@ -13,28 +13,6 @@ import ImageIO
 
 extension UIImage {
     
-    var circle: UIImage? {
-        
-        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
-        
-        let imageView = UIImageView(frame: CGRect(origin: .zero, size: square))
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = self
-        imageView.layer.cornerRadius = square.width/2
-        imageView.layer.masksToBounds = true
-        
-        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
-        
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        imageView.layer.render(in: context)
-        
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        return result
-    }
-    
     
     public class func gif(data: Data) -> UIImage? {
         // Create source from data
@@ -203,7 +181,6 @@ extension UIImage {
             }
         }
         
-        // Heyhey
         let animation = UIImage.animatedImage(with: frames,
                                               duration: Double(duration) / 1000.0)
         

@@ -33,6 +33,19 @@ struct Colors {
 struct Keys {
     static let gifURLArray          = "gifURLArray"
     static let fileURLCounter       = "fileURLCounter"
+    
+    static let createReaction       = "createReaction"
+    static let keepReaction         = "keepReaction"
+}
+
+struct StoryboardIDs {
+    static let camera               = "CameraScreen"
+    static let reactions            = "ReactionsPickerViewController"
+}
+
+struct Cells {
+    static let reaction             = "ReactionCell"
+    static let addReaction          = "AddReactionCell"
 }
 
 struct ScreenSize {
