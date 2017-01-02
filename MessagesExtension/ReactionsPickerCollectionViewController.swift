@@ -34,6 +34,12 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createGIFArray()
+    }
+    
     //PNG Version
     //  func loadReactions() {
     //    createSticker("dwarf", localizedDescription: "Ninja image")
@@ -49,10 +55,10 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
         //    createSticker("yes", localizedDescription: "Yes")
         //    createSticker("crab", localizedDescription: "crab")
         
-        createCircleGif("maze", localizedDescription: "Maze")
+//        createCircleGif("maze", localizedDescription: "Maze")
         
         
-        createGIFArray()
+//        createGIFArray()
     }
     
     
@@ -81,21 +87,59 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     //Pull in GIFs from Document Directory
     func createGIFArray() {
         
+        var gifData: Data?
+        
   
 //        var urlStringArray = Persistence.defaults.array(forKey: Keys.gifURLArray)
 //        let test1 = urlStringArray?[0]
 //        
 //        print("test 1 url String = \(test1) ")
         
-        // change path component
         
-        let fileManager = FileManager.default
-        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent("reactionGif3.gif")
-        if fileManager.fileExists(atPath: imagePath){
-            self.testGIFView.image = UIImage(contentsOfFile: imagePath)
-        }else{
-            print("No Image")
+        
+        // Handle if nothing exists in FilePath (either new user or deletion)
+        
+        
+//        
+        
+        if destinationURL != nil {
+            
+            let fileManager = FileManager.default
+            let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent("reactionGif1.gif")
+            print("imagePath = \(imagePath)")
+            
+            //convert string to URL for gif creation
+            let gifURL = URL(string: imagePath)
+            print("gifURL = \(gifURL)")
+            
+            
+            do {
+                gifData = try Data(contentsOf: destinationURL!)
+//                gifData = try Data(contentsOf: gifURL!)
+            } catch {
+                print("No URL found at document picked")
+            }
+            
+            DispatchQueue.main.async {
+                self.testGIFView.layoutIfNeeded()
+                let gif = UIImage.gif(data: gifData!)!
+                self.testGIFView.image = gif
+            }
+            
+            
+            
+            
+            
+//            if fileManager.fileExists(atPath: imagePath){
+//                let gif = UIImage.gif(data: gifData!)
+//                self.testGIFView.image = gif
+//            }else{
+//                print("No Image")
+//            }
+            
         }
+        
+
         
         
 
@@ -116,46 +160,46 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     
     
     //GIF Cropping Test
-    func createCircleGif(_ assetName: String, localizedDescription: String) {
-        
-        guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
-            print("Could not create sticker path for \(assetName)")
-            return
-        }
-        
-        
-        // Create Gif and crop to circle
-        let sampleGif = UIImage.gif(name: assetName)
-        //    let sampleGif = UIImage(named: assetName)
-        let circleGif = sampleGif?.circle
-        
-        
-        // Save cropped GIF to Document Directory as data (not sure it works as JPEGRepresentation)
-        let fileManager = FileManager.default
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("gifSticker.gif")
-        
-        print(paths)
-        
-        //    let gifData = UIImageJPEGRepresentation(circleGif!, 0.5)
-        let gifData = UIImagePNGRepresentation(circleGif!)
-        
-        
-        fileManager.createFile(atPath: paths as String, contents: gifData, attributes: nil)
-        
-        let gifURL = URL(fileURLWithPath: paths)
-        
-        
-        // Create Sticker from saved File Path
-        let sticker: MSSticker
-        do {
-            try sticker = MSSticker(contentsOfFileURL: gifURL, localizedDescription: localizedDescription)
-            reactions.append(.reactionSticker(sticker))
-        } catch {
-            print(error)
-            return
-        }
-        
-    }
+//    func createCircleGif(_ assetName: String, localizedDescription: String) {
+//        
+//        guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
+//            print("Could not create sticker path for \(assetName)")
+//            return
+//        }
+//        
+//        
+//        // Create Gif and crop to circle
+//        let sampleGif = UIImage.gif(name: assetName)
+//        //    let sampleGif = UIImage(named: assetName)
+//        let circleGif = sampleGif?.circle
+//        
+//        
+//        // Save cropped GIF to Document Directory as data (not sure it works as JPEGRepresentation)
+//        let fileManager = FileManager.default
+//        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("gifSticker.gif")
+//        
+//        print(paths)
+//        
+//        //    let gifData = UIImageJPEGRepresentation(circleGif!, 0.5)
+//        let gifData = UIImagePNGRepresentation(circleGif!)
+//        
+//        
+//        fileManager.createFile(atPath: paths as String, contents: gifData, attributes: nil)
+//        
+//        let gifURL = URL(fileURLWithPath: paths)
+//        
+//        
+//        // Create Sticker from saved File Path
+//        let sticker: MSSticker
+//        do {
+//            try sticker = MSSticker(contentsOfFileURL: gifURL, localizedDescription: localizedDescription)
+//            reactions.append(.reactionSticker(sticker))
+//        } catch {
+//            print(error)
+//            return
+//        }
+//        
+//    }
     
     //GIF Version
     func createSticker(_ assetName: String, localizedDescription: String) {
