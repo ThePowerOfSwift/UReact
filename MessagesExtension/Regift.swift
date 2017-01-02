@@ -254,9 +254,6 @@ public struct Regift {
             throw RegiftError.SourceFormatInvalid
         }
         
-        
-        // Looks like this is where I need to edit the document directory
-        
         var fileURL:URL?
         if self.destinationFileURL != nil {
             fileURL = self.destinationFileURL
@@ -298,8 +295,9 @@ public struct Regift {
                 return
             }
             
-            let croppedWidth = 800
-            let croppedHeight = 800
+            // Starting to tweak the cropping - original was 800x800
+            let croppedWidth = 215
+            let croppedHeight = 215
             let centerX = (imageRef.width/2) - (croppedWidth/2)
             let centerY = (imageRef.height/2) - (croppedHeight/2)
             
