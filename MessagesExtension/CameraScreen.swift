@@ -39,7 +39,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewDidLoad() {
         super.viewDidLoad()
         transparencyView = createTransparencyView()
-        Persistence.createGifPersistence()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -168,21 +167,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
-        
-//        if !FileManager.default.fileExists(atPath: (destinationURL?.path)!) {
-//            do {
-//                
-//                // 1.0 Compression is highest quality. Might need to lower this to hit 500KB limit
-//                try UIImageJPEGRepresentation(gif!, 1.0)?.write(to: destinationURL!)
-//                    print("Image Added Successfully to \(destinationURL?.path)")
-//            } catch {
-//                print(error)
-//            }
-//        } else {
-//            print("Image Not Added")
-//        }
-        
-        
+    
         // Pull up saved array
         var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         

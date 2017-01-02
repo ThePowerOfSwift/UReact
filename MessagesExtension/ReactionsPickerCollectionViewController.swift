@@ -30,6 +30,7 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
         reactions.append(.addReaction)
         
         collectionView.backgroundColor = Colors.peach
+        Persistence.createGifPersistence()
         
     }
     
@@ -42,49 +43,79 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
     //Pull in GIFs from Document Directory
     func createGIFArray() {
         
+        let fileManager = FileManager.default
+        
         var gifData: Data?
         
+        // Pull up saved array
+        let gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
+        print("gifURLArray count = \(gifURLArray.count)")
         
-        //        var urlStringArray = Persistence.defaults.array(forKey: Keys.gifURLArray)
-        //        let test1 = urlStringArray?[0]
-        //
-        //        print("test 1 url String = \(test1) ")
-        
-        
-        
-        // Handle if nothing exists in FilePath (either new user or deletion)
-        
-        
-        let fileManager = FileManager.default
-        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent("reactionGif4.gif")
-        print("imagePath = \(imagePath)")
-        
-        //convert string to URL for gif creation
-        let gifURL = URL(string: imagePath)
-        print("gifURL = \(gifURL)")
-        
-        
-        if fileManager.fileExists(atPath: imagePath){
+        //Iterarate through array and create sticker
+        if gifURLArray.count != 0 {
+    
+            reactions.removeAll()
+            reactions.append(.addReaction)
             
-//            do {
-//                gifData = try Data(contentsOf: gifURL!)
-//            } catch {
-//                print("No URL found at document picked")
-//            }
-            
-            gifData = fileManager.contents(atPath: imagePath)
-            
-            
-            DispatchQueue.main.async {
-                self.testGIFView.layoutIfNeeded()
-                let gif = UIImage.gif(data: gifData!)!
-                self.testGIFView.image = gif
+            // Iterate through array and create GIFs from URLs
+            for urlString in gifURLArray {
+                
+                let appendString = fileManager.displayName(atPath: urlString)
+                print("AppendedString = \(appendString)")
+                
+                let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(appendString)
+                print("imagePat = \(imagePath)")
+                
+                
+                gifData = fileManager.contents(atPath: imagePath)
+                print("gif Data = \(gifData!)")
+                
+                createSticker(urlString)
             }
-        }else{
-            print("No Image")
+            
+            // 
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
         
-        let imageArray: [UIImage] = []
+        
+//        
+//        
+//        
+//        
+//        // Handle if nothing exists in FilePath (either new user or deletion)
+//        
+//        
+//        let fileManager = FileManager.default
+//        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent("reactionGif4.gif")
+//        print("imagePath = \(imagePath)")
+//        
+//        //convert string to URL for gif creation
+//        let gifURL = URL(string: imagePath)
+//        print("gifURL = \(gifURL)")
+//        
+//        
+//        if fileManager.fileExists(atPath: imagePath){
+//            
+////            do {
+////                gifData = try Data(contentsOf: gifURL!)
+////            } catch {
+////                print("No URL found at document picked")
+////            }
+//            
+//            gifData = fileManager.contents(atPath: imagePath)
+//            
+//            
+//            DispatchQueue.main.async {
+//                self.testGIFView.layoutIfNeeded()
+//                let gif = UIImage.gif(data: gifData!)!
+//                self.testGIFView.image = gif
+//            }
+//            
+//        }else{
+//            print("No Image")
+//        }
         
     }
     
@@ -95,25 +126,40 @@ class ReactionsPickerViewController: UIViewController, UICollectionViewDataSourc
         return documentsDirectory
     }
     
-    //GIF Version
-    func createSticker(_ assetName: String, localizedDescription: String) {
+    func createSticker(_ gifPath: String) {
         
-        guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
-            print("Could not create sticker path for \(assetName)")
-            return
-        }
-        
-        let stickerURL = URL(fileURLWithPath: stickerPath)
+        let stickerURL = URL(fileURLWithPath: gifPath)
         
         let sticker: MSSticker
         do {
-            try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: localizedDescription)
+            try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: "Reaction GIF")
             reactions.append(.reactionSticker(sticker))
+            print("Sticker created - \(sticker.debugDescription)")
         } catch {
-            print(error)
+            print("Error creating sticker = \(error)")
             return
         }
     }
+    
+    //GIF Version
+//    func createSticker(_ assetName: String, localizedDescription: String) {
+//        
+//        guard let stickerPath = Bundle.main.path(forResource: assetName, ofType: "gif") else {
+//            print("Could not create sticker path for \(assetName)")
+//            return
+//        }
+//        
+//        let stickerURL = URL(fileURLWithPath: stickerPath)
+//        
+//        let sticker: MSSticker
+//        do {
+//            try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: localizedDescription)
+//            reactions.append(.reactionSticker(sticker))
+//        } catch {
+//            print(error)
+//            return
+//        }
+//    }
     
     
     // MARK: UICollectionViewDataSource

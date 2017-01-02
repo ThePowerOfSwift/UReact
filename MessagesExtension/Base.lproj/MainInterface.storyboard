@@ -101,11 +101,11 @@
                                     <outlet property="delegate" destination="H5A-JQ-CUs" id="eoO-wX-nDY"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Te-dr-xAy">
-                                <rect key="frame" x="97.5" y="20" width="180" height="180"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Te-dr-xAy">
+                                <rect key="frame" x="155" y="20" width="65" height="65"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="5Dp-uz-4me"/>
-                                    <constraint firstAttribute="width" constant="180" id="Yhz-h4-vFr"/>
+                                    <constraint firstAttribute="height" constant="65" id="5Dp-uz-4me"/>
+                                    <constraint firstAttribute="width" constant="65" id="Yhz-h4-vFr"/>
                                 </constraints>
                             </imageView>
                         </subviews>
