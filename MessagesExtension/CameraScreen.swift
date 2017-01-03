@@ -21,12 +21,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
-    var photoOutput: AVCapturePhotoOutput?
     var previewLayer: AVCaptureVideoPreviewLayer?
     var activeInput: AVCaptureDeviceInput!
     var videoOutputURL: URL?
     var transparencyView: UIView!
-    var gifURLString: String!
     var gif: UIImage?
     var destinationURL: URL?
     
@@ -36,10 +34,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewDidLoad() {
         super.viewDidLoad()
         transparencyView = createTransparencyView()
-        
-        if captureSession.canAddOutput(videoFileOutput) {
-            captureSession.addOutput(videoFileOutput)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +43,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        createVideoCaptureSession()
+    }
+    
+    func createVideoCaptureSession() {
         
         captureSession.sessionPreset = AVCaptureSessionPresetMedium
         
@@ -61,11 +59,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
                 
                 captureSession.addInput(input)
                 activeInput = input
-                photoOutput = AVCapturePhotoOutput()
                 
-                if captureSession.canAddOutput(photoOutput) {
-                    
-                    captureSession.addOutput(photoOutput)
+                if captureSession.canAddOutput(videoFileOutput) {
+                    captureSession.addOutput(videoFileOutput)
                     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
                     previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect
                     previewLayer?.connection.videoOrientation = .portrait
@@ -79,6 +75,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         } catch {
             
         }
+        
     }
     
     func createCameraTransparency() {
@@ -121,7 +118,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         //If duration of video is less than the stated 2.5 seconds, it crashes.
         let gifDataURL = regift.createGif()
-        gifURLString = gifDataURL?.path
         
         do {
             gifData = try Data(contentsOf: gifDataURL!)
