@@ -49,6 +49,31 @@ class Persistence {
         return documentsDirectory
     }
     
+    class func createTempFilePath() -> URL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let filePath = documentsURL.appendingPathComponent("temp.mp4")
+        
+        return filePath
+    }
+    
+    class func createGifFilePath() -> URL {
+        let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = documentsDirectoryURL.appendingPathComponent(incrementURL())
+        
+        return fileURL
+    }
+    
+    class func incrementURL() -> String {
+        let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
+        let incrementedURLCount: Int = urlCount + 1
+        Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
+        
+        let urlCountString = String(incrementedURLCount)
+        let incrementedPathComponent = "reactionGif\(urlCountString).gif"
+        
+        return incrementedPathComponent
+    }
+    
     
     
     

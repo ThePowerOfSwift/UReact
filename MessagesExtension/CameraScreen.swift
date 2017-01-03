@@ -11,9 +11,6 @@ import UIKit
 import AVFoundation
 import AVKit
 
-//global Var for testing.
-//var destinationURL: URL?
-
 class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureFileOutputRecordingDelegate, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet weak var cameraView: UIView!
@@ -53,10 +50,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        //Change this to a lower Preset if neccessary for file size. This will effect the cropped height/width of CGimage (on High its 1920x1080, with a cropped square of 800x800)
-        
-        // Start of me attempting to tweak the file size
         captureSession.sessionPreset = AVCaptureSessionPresetMedium
         
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
@@ -97,15 +90,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         if isRecording == false {
             
             isRecording = true
-            
-//            if captureSession.canAddOutput(videoFileOutput) {
-//                captureSession.addOutput(videoFileOutput)
-//            }
-            
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let filePath = documentsURL.appendingPathComponent("temp.mp4")
-            
-            videoFileOutput.startRecording(toOutputFileURL: filePath, recordingDelegate: recordingDelegate)
+            videoFileOutput.startRecording(toOutputFileURL: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate)
             
         } else {
             isRecording = false
@@ -122,11 +107,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         var gifData: Data?
         
         let frameCount = 7
-        let delayTime: Float = 0.07
         let loopCount = 0
-        destinationURL = createGifFilePath()
+        destinationURL = Persistence.createGifFilePath()
         
-        // In current settings and 2.5 sec duration, output file is 10MB. At 1 sec duration it's 3.7MB. Need to adjust the quality/framerate and size
         let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: 3.0, frameRate: frameCount, loopCount: loopCount)
         
         //If duration of video is less than the stated 2.5 seconds, it crashes. Figure out how to handle short GIFs. This might not be true. Test this.
@@ -155,20 +138,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         showGifPreviewView(bool: false)
     }
     
-    func createGifFilePath() -> URL {
-        
-        let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        
-        let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
-        let incrementedURLCount: Int = urlCount + 1
-        Persistence.defaults.set(incrementedURLCount, forKey: Keys.fileURLCounter)
-        let urlCountString = String(incrementedURLCount)
-        
-        let incrementedPathComponent = "reactionGif\(urlCountString).gif"
-        let fileURL = documentsDirectoryURL.appendingPathComponent(incrementedPathComponent)
-        
-        return fileURL
-    }
     
     @IBAction func keepButtonPressed(_ sender: UIButton) {
     
