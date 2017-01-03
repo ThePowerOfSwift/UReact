@@ -74,6 +74,13 @@ class Persistence {
         return incrementedPathComponent
     }
     
+    class func persistURL(url: String) {
+        var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
+        gifURLArray.append(url)
+        Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
+        // Need to handle error if URL not generated from .createGIF() in Camera Screen
+    }
+    
     
     
     
