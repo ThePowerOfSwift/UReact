@@ -17,6 +17,4 @@ class ReactionCell: UICollectionViewCell {
         layoutIfNeeded()
         reactionView.layer.cornerRadius = reactionView.frame.height/2
     }
-    
-    
 }

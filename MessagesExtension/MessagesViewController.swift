@@ -20,37 +20,42 @@ class MessagesViewController: MSMessagesAppViewController {
         AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: nil)
     }
     
+    
     override func willBecomeActive(with conversation: MSConversation) {
         presentViewController(withPresentationStyle: presentationStyle)
     }
+    
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.didTransition(to: presentationStyle)
     }
     
+    
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         presentViewController(withPresentationStyle: presentationStyle)
-        
     }
+    
     
     func tappedAddNewReaction() {
         requestPresentationStyle(.expanded)
     }
     
+    
     func tappedKeepReaction() {
         requestPresentationStyle(.compact)
     }
     
+    
     func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedAddNewReaction), name:NSNotification.Name(rawValue: "AddReactionTapped"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedKeepReaction), name:NSNotification.Name(rawValue: "KeepReactionTapped"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedAddNewReaction), name:NSNotification.Name(rawValue: Keys.createReaction), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MessagesViewController.tappedKeepReaction), name:NSNotification.Name(rawValue: Keys.keepReaction), object: nil)
     }
 }
 
 extension MSMessagesAppViewController {
     
     func presentViewController(withPresentationStyle style: MSMessagesAppPresentationStyle) {
+        
         let controller: UIViewController
         
         if style == .compact {
@@ -80,14 +85,16 @@ extension MSMessagesAppViewController {
         controller.didMove(toParentViewController: self)
     }
     
+    
     func instantiateCameraViewController() -> UIViewController {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: "CameraScreen") as? CameraScreen else { fatalError("Unable to instantiate a camera screen") }
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: StoryboardIDs.camera) as? CameraScreen else { fatalError("Unable to instantiate a camera screen") }
         
         return controller
     }
     
+    
     func instantiateReactionsPickerViewController() -> UIViewController {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: "ReactionsPickerViewController") as? ReactionsPickerViewController else { fatalError("Unable to instantiate a camera screen") }
+        guard let controller = storyboard?.instantiateViewController(withIdentifier: StoryboardIDs.reactions) as? ReactionsPickerViewController else { fatalError("Unable to instantiate a camera screen") }
         
         return controller
     }
