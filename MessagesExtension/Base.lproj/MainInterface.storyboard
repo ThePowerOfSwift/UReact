@@ -194,7 +194,7 @@
                                 </constraints>
                                 <state key="normal" image="switch-camera"/>
                                 <connections>
-                                    <action selector="switchToFrontCamera:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="474-Ab-0N3"/>
+                                    <action selector="flipCamera:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="Xt2-fE-6Zv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei">
@@ -209,17 +209,6 @@
                                     <action selector="recordButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7ED-KL-Uag"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbO-9h-WiZ">
-                                <rect key="frame" x="112" y="625" width="151" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="151" id="0xb-3z-Z8g"/>
-                                    <constraint firstAttribute="height" constant="30" id="brX-oK-pIz"/>
-                                </constraints>
-                                <state key="normal" title="Create Sticker"/>
-                                <connections>
-                                    <action selector="createStickerPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="qrF-2S-W2H"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB"/>
@@ -227,7 +216,6 @@
                             <constraint firstItem="m5Q-xm-Wwb" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="KF6-Jf-mdm"/>
                             <constraint firstAttribute="trailing" secondItem="m5Q-xm-Wwb" secondAttribute="trailing" constant="15" id="Sfg-Vk-hWi"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" constant="15" id="aas-UW-6FP"/>
-                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="vbO-9h-WiZ" secondAttribute="bottom" constant="12" id="b4D-rq-QGD"/>
                             <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="iAo-hW-viL" secondAttribute="bottom" id="dbt-hT-KRx"/>
                             <constraint firstItem="Zo3-FR-lL9" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="dsv-iS-EdS"/>
                             <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
@@ -235,7 +223,6 @@
                             <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="sNp-81-cLD"/>
                             <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ"/>
-                            <constraint firstItem="vbO-9h-WiZ" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="ufQ-iK-MGY"/>
                         </constraints>
                     </view>
                     <connections>

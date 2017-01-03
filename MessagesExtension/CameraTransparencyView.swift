@@ -15,9 +15,11 @@ class CameraTransparency: UIView {
         super.init(frame: frame)
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         super.init( coder: aDecoder )
     }
+    
     
     func createOverlay(frame: CGRect, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat) -> UIView {
         

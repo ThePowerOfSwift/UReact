@@ -28,11 +28,13 @@ class ReactionsPickerViewController: UIViewController {
         reactions.append(.addReaction)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // find out why this gets called twice when laoding the app or switching to this screen
         createGIFArray()
     }
+    
     
     func createGIFArray() {
         
@@ -50,6 +52,7 @@ class ReactionsPickerViewController: UIViewController {
         }
         collectionView.reloadDataOnMainThread()
     }
+    
     
     func createSticker(_ gifPath: String) {
         
@@ -73,9 +76,11 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return reactions.count
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -97,11 +102,13 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         return cell
     }
     
+    
     fileprivate func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.addReaction, for: indexPath) as! AddReactionCell
         cell.addImage.image = #imageLiteral(resourceName: "Plus-500")
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reaction = reactions[indexPath.row]
@@ -115,15 +122,14 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         }
     }
     
+    
     fileprivate func stickerCanAnimate(_ sticker: MSSticker) -> Bool {
-        guard let stickerImageSource = CGImageSourceCreateWithURL(sticker.imageFileURL as CFURL, nil) else {
-            return false
-        }
-        
+        guard let stickerImageSource = CGImageSourceCreateWithURL(sticker.imageFileURL as CFURL, nil) else { return false }
         let stickerImageFrameCount = CGImageSourceGetCount(stickerImageSource)
         
         return stickerImageFrameCount > 1
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if (cell.reuseIdentifier == Cells.reaction) {
@@ -135,6 +141,7 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if (cell.reuseIdentifier == Cells.reaction) {
             let reactionCell = cell as! ReactionCell
@@ -144,6 +151,5 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
             }
         }
     }
-    
 }
 

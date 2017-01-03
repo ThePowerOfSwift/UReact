@@ -21,90 +21,61 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    var activeInput: AVCaptureDeviceInput!
+    var previewLayer = AVCaptureVideoPreviewLayer()
+    var activeInput = AVCaptureDeviceInput()
     var videoOutputURL: URL?
     var transparencyView: UIView!
-    var gif: UIImage?
     var destinationURL: URL?
     
     var isRecording = false
     var isTorchOn = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         transparencyView = createTransparencyView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        previewLayer?.frame = cameraView.bounds
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        createVideoCaptureSession()
+        Camera.createVideoCaptureSession(captureSession: captureSession, activeInput: &activeInput, fileOutPut: videoFileOutput, previewLayer: &previewLayer, cameraView: cameraView)
     }
     
-    func createVideoCaptureSession() {
-        
-        captureSession.sessionPreset = AVCaptureSessionPresetMedium
-        
-        let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: camera)
-            
-            if captureSession.canAddInput(input) {
-                
-                captureSession.addInput(input)
-                activeInput = input
-                
-                if captureSession.canAddOutput(videoFileOutput) {
-                    captureSession.addOutput(videoFileOutput)
-                    previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect
-                    previewLayer?.connection.videoOrientation = .portrait
-                    cameraView.layer.addSublayer(previewLayer!)
-                    captureSession.startRunning()
-                }
-            }
-            
-            createCameraTransparency()
-            
-        } catch {
-            
-        }
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        previewLayer.frame = cameraView.bounds
     }
     
-    func createCameraTransparency() {
+    
+    @IBAction func toggleFlash(_ sender: UIButton) {
+        isTorchOn = isTorchOn ? false : true
+        Camera.toggleTorch(on: isTorchOn)
         
-        let cameraTransparency = CameraTransparency()
-        
-        let view = cameraTransparency.createOverlay(frame: cameraView.frame, xOffset: cameraView.frame.size.width/2, yOffset: cameraView.frame.size.height/2, radius: 140)
-        cameraView.addSubview(view)
-        cameraView.bringSubview(toFront: view)
+        let image = isTorchOn ? #imageLiteral(resourceName: "flash-off") : #imageLiteral(resourceName: "flash-on")
+        flashToggleButton.setImage(image, for: .normal)
     }
+
+    
+    @IBAction func flipCamera(_ sender: UIButton) {
+        Camera.flipCamera(activeInput: &activeInput, session: captureSession, button: flashToggleButton)
+    }
+
     
     @IBAction func recordButtonPressed(_ sender: AnyObject) {
         
         let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
         
         if isRecording == false {
-            
-            isRecording = true
             videoFileOutput.startRecording(toOutputFileURL: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate)
-            
         } else {
-            isRecording = false
             videoFileOutput.stopRecording()
         }
+        
+        isRecording = isRecording ? false : true
     }
     
-    @IBAction func createStickerPressed(_ sender: UIButton) {
-        createGIFFromVideo()
-    }
     
     func createGIFFromVideo() {
         
@@ -112,11 +83,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         let frameCount = 7
         let loopCount = 0
+        let duration: Float = 3.0
         destinationURL = Persistence.createGifFilePath()
         
-        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: 3.0, frameRate: frameCount, loopCount: loopCount)
+        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: duration, frameRate: frameCount, loopCount: loopCount)
         
-        //If duration of video is less than the stated 2.5 seconds, it crashes.
+        //If duration of video is less than the stated 2.5 seconds, it crashes. Maybe conditionally set duration? If < 3.0, then set duration to actual video duration time?
         let gifDataURL = regift.createGif()
         
         do {
@@ -125,9 +97,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             print("No URL found at document picked")
         }
         
-        gif = UIImage.gif(data: gifData!)!
+        let gif = UIImage.gif(data: gifData!)!
         previewImage.image = gif
     }
+    
     
     @IBAction func retakeButtonPressed(_ sender: UIButton) {
         showGifPreviewView(bool: false)
@@ -139,12 +112,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         returnToPickerView()
     }
     
+    
     func returnToPickerView() {
         NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.keepReaction), object: nil)
     }
     
+    
     func showGifPreviewView(bool: Bool) {
-        
         view.bringSubview(toFront: gifPreviewView)
         
         UIView.animate(withDuration: 0.4, animations: {
@@ -154,95 +128,17 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
-    //Delegate methods
-    
+    // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
         recordButton.setTitle("STOP", for: .normal)
-        print("Video Started Recording")
     }
+    
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         recordButton.setTitle("START", for: .normal)
-        
         videoOutputURL = outputFileURL
         createGIFFromVideo()
         showGifPreviewView(bool: true)
     }
-    
-    @IBAction func toggleFlash(_ sender: UIButton) {
-        
-        let image = isTorchOn ? #imageLiteral(resourceName: "flash-off") : #imageLiteral(resourceName: "flash-on")
-        
-        isTorchOn = isTorchOn ? false : true
-        toggleTorch(on: isTorchOn)
-        flashToggleButton.setImage(image, for: .normal)
-    }
-    
-    func toggleTorch(on: Bool) {
-        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
-        
-        if device.hasTorch {
-            do {
-                try device.lockForConfiguration()
-                
-                if on == true {
-                    device.torchMode = .on
-                } else {
-                    device.torchMode = .off
-                }
-                
-                device.unlockForConfiguration()
-                
-            } catch {
-                print("Torch could not be used")
-            }
-        } else {
-            print("Torch is not available")
-        }
-    }
-    
-    
-    @IBAction func switchToFrontCamera(_ sender: UIButton) {
-        
-        var newPosition: AVCaptureDevicePosition!
-        var newCamera: AVCaptureDevice!
-        
-        let deviceList = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .unspecified)
-        
-        if activeInput.device.position == AVCaptureDevicePosition.back {
-            newPosition = AVCaptureDevicePosition.front
-            flashToggleButton.alpha = 0.0
-        } else {
-            newPosition = AVCaptureDevicePosition.back
-            flashToggleButton.alpha = 1.0
-        }
-        
-        for device in (deviceList?.devices)! {
-            
-            if (device as AnyObject).position == newPosition {
-                newCamera = device
-            }
-        }
-        
-        do {
-            
-            let input = try AVCaptureDeviceInput(device: newCamera)
-            captureSession.beginConfiguration()
-            captureSession.removeInput(activeInput)
-            
-            if captureSession.canAddInput(input) {
-                captureSession.addInput(input)
-                activeInput = input
-                
-            } else {
-                captureSession.addInput(activeInput)
-            }
-            captureSession.commitConfiguration()
-            
-        } catch {
-            print("Error switching cameras: \(error)")
-        }
-    }
-    
 }
 
