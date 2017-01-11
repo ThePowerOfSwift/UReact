@@ -24,6 +24,8 @@
 		ED1EFA6E1E1B4E9C00DE9F4D /* CameraTransparencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EFA6D1E1B4E9C00DE9F4D /* CameraTransparencyView.swift */; };
 		ED1EFA701E1B534F00DE9F4D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */; };
 		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
+		ED7C90121E25D236001DAB33 /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90111E25D236001DAB33 /* CGImageExtension.swift */; };
+		ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90131E25E867001DAB33 /* GifEditor.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 		EDF2595D1E1AD9720034C821 /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		ED1EFA6D1E1B4E9C00DE9F4D /* CameraTransparencyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraTransparencyView.swift; sourceTree = "<group>"; };
 		ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		ED7C90111E25D236001DAB33 /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
+		ED7C90131E25E867001DAB33 /* GifEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifEditor.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,7 @@
 				143A2EFC1DD4201600F41A2D /* UIImageGIFExtension.swift */,
 				ED24C5661E0F581600074130 /* ViewControllerExtension.swift */,
 				EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */,
+				ED7C90111E25D236001DAB33 /* CGImageExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				ED0F30DB1E18C8B100E37C7C /* Persistence.swift */,
 				ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */,
 				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
+				ED7C90131E25E867001DAB33 /* GifEditor.swift */,
 			);
 			name = Abstractions;
 			sourceTree = "<group>";
@@ -297,6 +303,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */,
+				ED7C90121E25D236001DAB33 /* CGImageExtension.swift in Sources */,
+				ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */,
 				EDF2595D1E1AD9720034C821 /* CollectionViewExtension.swift in Sources */,
 				140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */,
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,

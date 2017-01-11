@@ -294,15 +294,13 @@ public struct Regift {
                 gifGroup.leave()
                 return
             }
+    
             
-            // Starting to tweak the cropping - original was 800x800
-            let croppedWidth = 215
-            let croppedHeight = 215
-            let centerX = (imageRef.width/2) - (croppedWidth/2)
-            let centerY = (imageRef.height/2) - (croppedHeight/2)
             
-            let croppedImage = imageRef.cropping(to: CGRect(x: centerX, y: centerY, width: croppedWidth, height: croppedHeight))
-            CGImageDestinationAddImage(destination, croppedImage!, frameProperties as CFDictionary)
+            let croppedImage = GifEditor.crop(imageRef: imageRef)
+            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "Oval").cgImage!)
+            
+            CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
             
             if requestedTime == times.last?.timeValue {
                 gifGroup.leave()
