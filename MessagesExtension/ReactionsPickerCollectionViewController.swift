@@ -23,7 +23,6 @@ class ReactionsPickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = Colors.peach
         Persistence.createGifPersistence()
         reactions.append(.addReaction)
     }

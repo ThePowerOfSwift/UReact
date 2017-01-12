@@ -43,53 +43,58 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afy-NQ-0PF">
-                                    <size key="itemSize" width="65" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="afy-NQ-0PF">
+                                    <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReactionCell" id="XDW-l7-HXp" customClass="ReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8w-gU-1Jb" customClass="MSStickerView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="350-4K-aTm"/>
+                                                        <constraint firstAttribute="width" constant="60" id="f3g-up-0Ns"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="n8w-gU-1Jb" secondAttribute="bottom" id="1P5-VO-VPd"/>
-                                            <constraint firstAttribute="trailing" secondItem="n8w-gU-1Jb" secondAttribute="trailing" id="C4C-ch-mNR"/>
-                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="top" secondItem="XDW-l7-HXp" secondAttribute="top" id="KiA-DR-kEl"/>
-                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="leading" secondItem="XDW-l7-HXp" secondAttribute="leading" id="U2D-jL-wO0"/>
+                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="centerY" secondItem="XDW-l7-HXp" secondAttribute="centerY" id="MqV-9L-vsE"/>
+                                            <constraint firstItem="n8w-gU-1Jb" firstAttribute="centerX" secondItem="XDW-l7-HXp" secondAttribute="centerX" id="Ww7-D2-6YP"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="reactionView" destination="n8w-gU-1Jb" id="Tdd-aZ-P8a"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="77.5" y="0.0" width="65" height="65"/>
+                                        <rect key="frame" x="98" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-FF-qEp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="UYO-w8-icS"/>
+                                                        <constraint firstAttribute="width" constant="60" id="VvT-rY-awo"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Mvh-FF-qEp" secondAttribute="bottom" id="AZB-Sm-ngv"/>
-                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="leading" secondItem="dhD-mb-GrO" secondAttribute="leading" id="GkH-mC-PWW"/>
-                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="top" secondItem="dhD-mb-GrO" secondAttribute="top" id="grZ-do-FSE"/>
-                                            <constraint firstAttribute="trailing" secondItem="Mvh-FF-qEp" secondAttribute="trailing" id="y6Y-mL-po2"/>
+                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="centerY" secondItem="dhD-mb-GrO" secondAttribute="centerY" id="egu-6B-LlV"/>
+                                            <constraint firstItem="Mvh-FF-qEp" firstAttribute="centerX" secondItem="dhD-mb-GrO" secondAttribute="centerX" id="xuf-lI-hbU"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="addImage" destination="Mvh-FF-qEp" id="v2m-CF-4aO"/>
