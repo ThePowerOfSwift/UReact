@@ -199,6 +199,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei">
                                 <rect key="frame" x="132" y="559" width="111" height="68"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="111" id="5xv-zG-IfJ"/>
                                     <constraint firstAttribute="height" constant="68" id="O1i-DI-Mtq"/>
@@ -206,7 +207,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                 <state key="normal" title="START"/>
                                 <connections>
-                                    <action selector="recordButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7ED-KL-Uag"/>
+                                    <outletCollection property="gestureRecognizers" destination="Qc7-gb-Bnp" appends="YES" id="YBt-ew-ci4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -234,6 +235,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Qc7-gb-Bnp">
+                    <connections>
+                        <action selector="recordButtonHeld:" destination="Bqy-3n-0gQ" id="Lnv-a9-eQt"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1500" y="36.431784107946029"/>
         </scene>

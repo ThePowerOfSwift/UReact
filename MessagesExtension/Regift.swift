@@ -295,10 +295,8 @@ public struct Regift {
                 return
             }
     
-            
-            
             let croppedImage = GifEditor.crop(imageRef: imageRef)
-            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "Oval").cgImage!)
+//            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "Oval").cgImage!)
             
             CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
             

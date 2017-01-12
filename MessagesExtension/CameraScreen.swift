@@ -26,8 +26,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var videoOutputURL: URL?
     var transparencyView: UIView!
     var destinationURL: URL?
+    var gestureStartTime: TimeInterval = 0.0
+    var gestureDuration: TimeInterval = 0.0
     
-    var isRecording = false
     var isTorchOn = false
     
     
@@ -63,17 +64,22 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
 
     
-    @IBAction func recordButtonPressed(_ sender: AnyObject) {
+    @IBAction func recordButtonHeld(_ sender: UILongPressGestureRecognizer) {
         
         let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
         
-        if isRecording == false {
+        switch sender.state {
+        case .began:
             videoFileOutput.startRecording(toOutputFileURL: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate)
-        } else {
+            gestureStartTime = Date.timeIntervalSinceReferenceDate
+            
+        case .ended:
             videoFileOutput.stopRecording()
+            gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
+            
+        default:
+            break
         }
-        
-        isRecording = isRecording ? false : true
     }
     
     
@@ -83,12 +89,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         let frameCount = 7
         let loopCount = 0
-        let duration: Float = 3.0
+        let gifDuration = gestureDuration < 3.0 ? gestureDuration : 3.0
+        
         destinationURL = Persistence.createGifFilePath()
         
-        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: duration, frameRate: frameCount, loopCount: loopCount)
-        
-        //If duration of video is less than the stated 2.5 seconds, it crashes. Maybe conditionally set duration? If < 3.0, then set duration to actual video duration time?
+        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration), frameRate: frameCount, loopCount: loopCount)
+
         let gifDataURL = regift.createGif()
         
         do {
@@ -130,12 +136,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        recordButton.setTitle("STOP", for: .normal)
+        // Update Button Visuals accordingly
+        recordButton.setTitle("RECORDING", for: .normal)
     }
     
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        recordButton.setTitle("START", for: .normal)
+        // Update Button Visuals accordingly
+        recordButton.setTitle("FINISHED", for: .normal)
         videoOutputURL = outputFileURL
         createGIFFromVideo()
         showGifPreviewView(bool: true)
