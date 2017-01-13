@@ -24,8 +24,8 @@ class CameraTransparency: UIView {
     func createOverlay(frame: CGRect, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat) -> UIView {
         
         let overlayView = UIView(frame: frame)
-        overlayView.alpha = 0.85
-        overlayView.backgroundColor = Colors.peach
+        overlayView.alpha = 1.0
+        overlayView.backgroundColor = Colors.white
         
         let path = CGMutablePath()
         path.addArc(center: CGPoint(x: xOffset, y: yOffset), radius: radius, startAngle: 0.0, endAngle: 2 * 3.14, clockwise: false)
