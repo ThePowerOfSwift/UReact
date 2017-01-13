@@ -17,6 +17,7 @@ class ReactionsPickerViewController: UIViewController {
     enum CollectionViewItem {
         case reactionSticker(MSSticker)
         case addReaction
+        case removeReaction
     }
     
     var reactions: [CollectionViewItem] = []
@@ -25,6 +26,7 @@ class ReactionsPickerViewController: UIViewController {
         super.viewDidLoad()
         Persistence.createGifPersistence()
         reactions.append(.addReaction)
+        reactions.append(.removeReaction)
     }
     
     
@@ -43,6 +45,7 @@ class ReactionsPickerViewController: UIViewController {
     
             reactions.removeAll()
             reactions.append(.addReaction)
+            reactions.append(.removeReaction)
             
             for urlString in gifURLArray {
                 createSticker(urlString)
@@ -91,6 +94,9 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
             
         case .addReaction:
             return dequeueAddStickerCell(at: indexPath)
+            
+        case .removeReaction:
+            return dequeueRemoveStickerCell(at: indexPath)
         }
     }
     
@@ -109,12 +115,23 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
     }
     
     
+    fileprivate func dequeueRemoveStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.removeReaction, for: indexPath) as! RemoveReactionCell
+        cell.removeImage.image = #imageLiteral(resourceName: "Oval")
+        return cell
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reaction = reactions[indexPath.row]
         
         switch reaction {
         case .addReaction:
             NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.createReaction), object: nil)
+            
+        case .removeReaction:
+            // Do what's needed to pull up the delete selector that's typical of Collection Views.
+            print("Remove Pressed")
             
         default:
             break

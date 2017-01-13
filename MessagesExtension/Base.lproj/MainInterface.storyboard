@@ -100,6 +100,30 @@
                                             <outlet property="addImage" destination="Mvh-FF-qEp" id="v2m-CF-4aO"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RemoveReactionCell" id="c7V-S3-u5s" customClass="RemoveReactionCell" customModule="MessagesExtension" customModuleProvider="target">
+                                        <rect key="frame" x="197" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YJr-nV-f5M">
+                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="EJc-cl-bge"/>
+                                                        <constraint firstAttribute="width" constant="60" id="K4d-hv-Nh3"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="YJr-nV-f5M" firstAttribute="centerY" secondItem="c7V-S3-u5s" secondAttribute="centerY" id="GJx-Kf-E85"/>
+                                            <constraint firstItem="YJr-nV-f5M" firstAttribute="centerX" secondItem="c7V-S3-u5s" secondAttribute="centerX" id="KA9-8x-9UW"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="removeImage" destination="YJr-nV-f5M" id="w8d-Ep-9t7"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="H5A-JQ-CUs" id="qcz-EM-L0U"/>

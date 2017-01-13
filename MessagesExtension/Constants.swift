@@ -35,6 +35,7 @@ struct StoryboardIDs {
 struct Cells {
     static let reaction             = "ReactionCell"
     static let addReaction          = "AddReactionCell"
+    static let removeReaction       = "RemoveReactionCell"
 }
 
 
