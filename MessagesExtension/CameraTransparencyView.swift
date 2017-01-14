@@ -23,6 +23,8 @@ class CameraTransparency: UIView {
     
     func createOverlay(frame: CGRect, xOffset: CGFloat, yOffset: CGFloat, radius: CGFloat) -> UIView {
         
+        // Figure out why the frame is off for larger screen sizes. The origins at 0,0 on iphone 6, but way off on bigger screens.
+        
         let overlayView = UIView(frame: frame)
         overlayView.alpha = 1.0
         overlayView.backgroundColor = Colors.white

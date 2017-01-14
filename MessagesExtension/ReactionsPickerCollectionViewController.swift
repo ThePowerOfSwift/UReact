@@ -128,11 +128,32 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         switch reaction {
         case .addReaction:
             NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.createReaction), object: nil)
+            print(collectionView.indexPathsForSelectedItems!)
             
         case .removeReaction:
-            // Do what's needed to pull up the delete selector that's typical of Collection Views.
-            print("Remove Pressed")
+            isEditing = isEditing ? false : true // Likely need to move this
+//            setEditing(isEditing, animated: true)
+            print("IsEditing = \(isEditing)")
+        
             
+            
+            // "X" pressed - isEditing is TRUE
+            // in didSelectItemAt - add contion for IF isEditing
+                // If isEditing == true
+                    // disable (adjust image accordingly) Add Reaction button
+                    // Unhide image view of red X on the reaction cells
+                    // Present pop up to delete cell at selected index path (be sure this can only be a reaction)
+                    // Delete Cell if "Yes" Selected
+                    // Reload collectionView on main thread
+                    // Switch back arrow image back to trash
+            
+                    // Watch were you switch the isEditing flag back and forth. Likely the end of each case
+            
+                // ELSE 
+                    // For .addReaction and .reactionSticker - normal functionality
+                    // For .removeAction cell, switch trash button to back arrow and change isEditing to TRUE
+            
+    
         default:
             break
         }

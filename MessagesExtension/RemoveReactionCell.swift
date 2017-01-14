@@ -15,7 +15,6 @@ class RemoveReactionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         layoutIfNeeded()
-        backgroundColor = Colors.lightGrey
     }
     
 }

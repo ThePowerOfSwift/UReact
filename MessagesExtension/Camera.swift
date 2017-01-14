@@ -34,7 +34,6 @@ class Camera: NSObject {
                     captureSession.startRunning()
                 }
             }
-            
             createCameraTransparency(cameraView: cameraView)
             
         } catch {

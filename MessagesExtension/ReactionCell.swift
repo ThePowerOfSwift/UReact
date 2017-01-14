@@ -17,6 +17,5 @@ class ReactionCell: UICollectionViewCell {
         layoutIfNeeded()
         reactionView.setShadow()
         reactionView.layer.cornerRadius = reactionView.frame.height/2
-        backgroundColor = Colors.lightGrey
     }
 }
