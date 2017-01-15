@@ -25,8 +25,8 @@ class ReactionsPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Persistence.createGifPersistence()
-        reactions.append(.addReaction)
         reactions.append(.removeReaction)
+        reactions.append(.addReaction)
     }
     
     
@@ -44,8 +44,8 @@ class ReactionsPickerViewController: UIViewController {
         if gifURLArray.count != 0 {
     
             reactions.removeAll()
-            reactions.append(.addReaction)
             reactions.append(.removeReaction)
+            reactions.append(.addReaction)
             
             for urlString in gifURLArray {
                 createSticker(urlString)
@@ -124,38 +124,56 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reaction = reactions[indexPath.row]
-        
+
         switch reaction {
         case .addReaction:
             NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.createReaction), object: nil)
-            print(collectionView.indexPathsForSelectedItems!)
             
         case .removeReaction:
-            isEditing = isEditing ? false : true // Likely need to move this
-//            setEditing(isEditing, animated: true)
-            print("IsEditing = \(isEditing)")
-        
             
+            isEditing = isEditing ? false : true
             
-            // "X" pressed - isEditing is TRUE
-            // in didSelectItemAt - add contion for IF isEditing
-                // If isEditing == true
-                    // disable (adjust image accordingly) Add Reaction button
-                    // Unhide image view of red X on the reaction cells
-                    // Present pop up to delete cell at selected index path (be sure this can only be a reaction)
-                    // Delete Cell if "Yes" Selected
-                    // Reload collectionView on main thread
-                    // Switch back arrow image back to trash
+            let addReactionKey      = isEditing ? Keys.disableAddButton : Keys.enableAddButton
+            let removeReactionKey   = isEditing ? Keys.showBackArrow : Keys.showDeleteButton
+            let reactionKey         = isEditing ? Keys.showRedXs : Keys.hideRedXs
             
-                    // Watch were you switch the isEditing flag back and forth. Likely the end of each case
-            
-                // ELSE 
-                    // For .addReaction and .reactionSticker - normal functionality
-                    // For .removeAction cell, switch trash button to back arrow and change isEditing to TRUE
-            
+            for reaction in reactions {
+                
+                switch reaction {
+                case .addReaction:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: addReactionKey), object: nil)
+                case .removeReaction:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: removeReactionKey), object: nil)
+                case .reactionSticker(_):
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: reactionKey), object: nil)
+                }
+            }
     
-        default:
-            break
+            print("IsEditing = \(isEditing)")
+            
+        case.reactionSticker(_):
+            
+            if isEditing {
+                
+                // Abstract this away eventually. 
+                
+                let alertController = UIAlertController(title: "Delete Reaction", message: "Are you sure you want to permanently delete this reaction?", preferredStyle: .alert)
+                let DestructiveAction = UIAlertAction(title: "Bye, Felicia", style: .destructive) {
+                    (result : UIAlertAction) -> Void in
+                    print("This is where we would delete the reacion and reload")
+                    // Add code to delete here
+                }
+                
+                let okAction = UIAlertAction(title: "Keep it", style: .default) {
+                    (result : UIAlertAction) -> Void in
+                    print("Keep Reaction")
+                }
+                
+                alertController.addAction(DestructiveAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                
+            }
         }
     }
     

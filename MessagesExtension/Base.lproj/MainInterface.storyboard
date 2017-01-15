@@ -66,18 +66,28 @@
                                                         <constraint firstAttribute="width" constant="60" id="f3g-up-0Ns"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red-x" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-hs-OIZ">
+                                                    <rect key="frame" x="20" y="20" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="EkP-NG-cp3"/>
+                                                        <constraint firstAttribute="width" constant="40" id="O40-pH-vm7"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="5vL-hs-OIZ" firstAttribute="centerY" secondItem="XDW-l7-HXp" secondAttribute="centerY" id="8Rb-AQ-3U4"/>
                                             <constraint firstItem="n8w-gU-1Jb" firstAttribute="centerY" secondItem="XDW-l7-HXp" secondAttribute="centerY" id="MqV-9L-vsE"/>
                                             <constraint firstItem="n8w-gU-1Jb" firstAttribute="centerX" secondItem="XDW-l7-HXp" secondAttribute="centerX" id="Ww7-D2-6YP"/>
+                                            <constraint firstItem="5vL-hs-OIZ" firstAttribute="centerX" secondItem="XDW-l7-HXp" secondAttribute="centerX" id="Xv0-xu-3Ya"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="deleteImage" destination="5vL-hs-OIZ" id="Gov-w2-fFH"/>
                                             <outlet property="reactionView" destination="n8w-gU-1Jb" id="Tdd-aZ-P8a"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="98.5" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -101,7 +111,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RemoveReactionCell" id="c7V-S3-u5s" customClass="RemoveReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="197" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="196.5" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -275,6 +285,7 @@
     </scenes>
     <resources>
         <image name="flash-off" width="100" height="100"/>
+        <image name="red-x" width="252" height="299"/>
         <image name="switch-camera" width="100" height="100"/>
     </resources>
 </document>

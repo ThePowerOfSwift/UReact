@@ -24,6 +24,12 @@ struct Keys {
     static let fileURLCounter       = "fileURLCounter"
     static let createReaction       = "createReaction"
     static let keepReaction         = "keepReaction"
+    static let showRedXs            = "showRedX"
+    static let hideRedXs            = "hideRedX"
+    static let showBackArrow        = "showBackArrow"
+    static let showDeleteButton     = "showDeleteButton"
+    static let disableAddButton     = "disableAddButton"
+    static let enableAddButton      = "enableAddButton"
 }
 
 
