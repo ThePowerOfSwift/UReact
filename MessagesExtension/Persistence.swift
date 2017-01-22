@@ -85,4 +85,11 @@ class Persistence {
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
         // Need to handle error if URL not generated from .createGIF() in Camera Screen
     }
+    
+    class func removeURL(at: IndexPath) {
+        var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
+        gifURLArray.remove(at: at.row - 2)
+        Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
+        // Need to handle error if URL not generated from .createGIF() in Camera Screen
+    }
 }

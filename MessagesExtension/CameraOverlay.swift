@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CameraTransparency: UIView {
+class CameraOverlay: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

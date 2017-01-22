@@ -43,8 +43,8 @@ class Camera: NSObject {
     
     
     class func createCameraTransparency(cameraView: UIView) {
-        let cameraTransparency = CameraTransparency()
-        let view = cameraTransparency.createOverlay(frame: cameraView.frame, xOffset: cameraView.frame.size.width/2, yOffset: cameraView.frame.size.height/2, radius: 140)
+        let cameraOverlay = CameraOverlay()
+        let view = cameraOverlay.createOverlay(frame: cameraView.frame, xOffset: cameraView.frame.size.width/2, yOffset: cameraView.frame.size.height/2, radius: 140)
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)
     }

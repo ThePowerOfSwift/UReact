@@ -30,6 +30,7 @@ struct Keys {
     static let showDeleteButton     = "showDeleteButton"
     static let disableAddButton     = "disableAddButton"
     static let enableAddButton      = "enableAddButton"
+    static let deleteReaction       = "deleteReaction"
 }
 
 

@@ -27,6 +27,7 @@ class ReactionsPickerViewController: UIViewController {
         Persistence.createGifPersistence()
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
+        addObservers()
     }
     
     
@@ -68,6 +69,10 @@ class ReactionsPickerViewController: UIViewController {
             print("Error creating sticker = \(error)")
             return
         }
+    }
+    
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ReactionsPickerViewController.deleteReaction), name:NSNotification.Name(rawValue: Keys.deleteReaction), object: nil)
     }
 }
 
@@ -160,8 +165,12 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
                 let alertController = UIAlertController(title: "Delete Reaction", message: "Are you sure you want to permanently delete this reaction?", preferredStyle: .alert)
                 let DestructiveAction = UIAlertAction(title: "Bye, Felicia", style: .destructive) {
                     (result : UIAlertAction) -> Void in
-                    print("This is where we would delete the reacion and reload")
-                    // Add code to delete here
+                    self.reactions.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        collectionView.reloadData()
+                    }
+                    
+                    Persistence.removeURL(at: indexPath)
                 }
                 
                 let okAction = UIAlertAction(title: "Keep it", style: .default) {
@@ -171,10 +180,14 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
                 
                 alertController.addAction(DestructiveAction)
                 alertController.addAction(okAction)
+//                let alertController = AlertView.deleteReaction()
                 self.present(alertController, animated: true, completion: nil)
-                
             }
         }
+    }
+    
+    func deleteReaction(indexPath: IndexPath) {
+        
     }
     
     

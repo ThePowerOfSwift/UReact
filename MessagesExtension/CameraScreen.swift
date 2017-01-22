@@ -40,7 +40,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(cameraView.frame)
         cameraView.layoutIfNeeded()
+        print(cameraView.frame)
         Camera.createVideoCaptureSession(captureSession: captureSession, activeInput: &activeInput, fileOutPut: videoFileOutput, previewLayer: &previewLayer, cameraView: cameraView)
     }
     
