@@ -34,7 +34,7 @@ class Camera: NSObject {
                     captureSession.startRunning()
                 }
             }
-            createCameraTransparency(cameraView: cameraView)
+            createCameraOverlay(cameraView: cameraView)
             
         } catch {
             
@@ -42,9 +42,20 @@ class Camera: NSObject {
     }
     
     
-    class func createCameraTransparency(cameraView: UIView) {
+    class func createCameraOverlay(cameraView: UIView) {
         let cameraOverlay = CameraOverlay()
-        let view = cameraOverlay.createOverlay(frame: cameraView.frame, xOffset: cameraView.frame.size.width/2, yOffset: cameraView.frame.size.height/2, radius: 140)
+        
+        var radius: CGFloat = 120
+        
+        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
+            radius = 100
+        } else if DeviceTypes.iPhone7PlusStandard {
+            radius = 130
+        } else if DeviceTypes.iPad {
+            radius = 240
+        }
+        
+        let view = cameraOverlay.createOverlay(frame: cameraView.bounds, xOffset: cameraView.bounds.size.width/2, yOffset: cameraView.bounds.size.height/2, radius: radius)
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)
     }
