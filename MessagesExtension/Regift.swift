@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import ImageIO
 import AVFoundation
+import QuartzCore
 
 public typealias TimePoint = CMTime
 
@@ -296,9 +297,9 @@ public struct Regift {
             }
     
             let croppedImage = GifEditor.crop(imageRef: imageRef)
-//            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "Oval").cgImage!)
+            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "circle-mask").cgImage!)
             
-            CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
+            CGImageDestinationAddImage(destination, maskedImage, frameProperties as CFDictionary)
             
             if requestedTime == times.last?.timeValue {
                 gifGroup.leave()
