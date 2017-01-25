@@ -101,6 +101,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         do {
             gifData = try Data(contentsOf: gifDataURL!)
         } catch {
+            
+            // show error pop up here
             print("No URL found at document picked")
         }
         

@@ -71,9 +71,11 @@ class Camera: NSObject {
                 device.torchMode = on ? .on : .off
                 device.unlockForConfiguration()
             } catch {
+                // Show error pop up
                 print("Torch could not be used")
             }
         } else {
+            // Show error pop up
             print("Torch is not available")
         }
     }
@@ -109,6 +111,7 @@ class Camera: NSObject {
             session.commitConfiguration()
             
         } catch {
+            // Show error pop up
             print("Error switching cameras: \(error)")
         }
     }

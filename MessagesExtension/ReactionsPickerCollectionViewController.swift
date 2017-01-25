@@ -66,6 +66,7 @@ class ReactionsPickerViewController: UIViewController {
             try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: "Reaction GIF")
             reactions.append(.reactionSticker(sticker))
         } catch {
+            // Show an error pop up
             print("Error creating sticker = \(error)")
             return
         }
