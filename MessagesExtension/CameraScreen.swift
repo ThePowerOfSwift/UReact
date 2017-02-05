@@ -90,6 +90,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             
         case .ended:
             videoFileOutput.stopRecording()
+            print("Fired when Long Press ended")
             gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
             
         default:
@@ -119,7 +120,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         if progress >= 1 {
             progressTimer.invalidate()
-            // Potentially put createGif Here
+            videoFileOutput.stopRecording()
+            recordButton.buttonState = .idle
+            print("Fired when Progress = 1")
         }
     }
     
@@ -203,10 +206,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+    
         videoOutputURL = outputFileURL
         createGIFFromVideo()
         showGifPreview(bool: true)
         stop()
+        print("Did Finish Recording fired.")
     }
 }
 

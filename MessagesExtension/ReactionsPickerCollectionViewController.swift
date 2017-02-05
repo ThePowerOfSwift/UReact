@@ -116,14 +116,14 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
     
     fileprivate func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.addReaction, for: indexPath) as! AddReactionCell
-        cell.addImage.image = #imageLiteral(resourceName: "Plus-500")
+        cell.addImage.image = #imageLiteral(resourceName: "add-button")
         return cell
     }
     
     
     fileprivate func dequeueRemoveStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.removeReaction, for: indexPath) as! RemoveReactionCell
-        cell.removeImage.image = #imageLiteral(resourceName: "Oval")
+        cell.removeImage.image = #imageLiteral(resourceName: "delete-button")
         return cell
     }
     

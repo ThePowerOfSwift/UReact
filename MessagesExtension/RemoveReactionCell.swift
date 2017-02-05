@@ -24,10 +24,10 @@ class RemoveReactionCell: UICollectionViewCell {
     }
     
     func showDeletionUI() {
-        removeImage.image = #imageLiteral(resourceName: "red-x")
+        removeImage.image = #imageLiteral(resourceName: "back-arrow")
     }
     
     func hideDeletionUI() {
-        removeImage.image = #imageLiteral(resourceName: "Oval")
+        removeImage.image = #imageLiteral(resourceName: "delete-button")
     }
 }

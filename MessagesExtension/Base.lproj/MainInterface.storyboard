@@ -43,7 +43,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="afy-NQ-0PF">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -59,11 +59,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n8w-gU-1Jb" customClass="MSStickerView">
-                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                    <rect key="frame" x="5.5" y="5.5" width="70" height="70"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="350-4K-aTm"/>
-                                                        <constraint firstAttribute="width" constant="60" id="f3g-up-0Ns"/>
+                                                        <constraint firstAttribute="height" constant="70" id="350-4K-aTm"/>
+                                                        <constraint firstAttribute="width" constant="70" id="f3g-up-0Ns"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red-x" translatesAutoresizingMaskIntoConstraints="NO" id="5vL-hs-OIZ">
@@ -94,10 +94,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mvh-FF-qEp">
-                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                    <rect key="frame" x="5" y="5" width="70" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="UYO-w8-icS"/>
-                                                        <constraint firstAttribute="width" constant="60" id="VvT-rY-awo"/>
+                                                        <constraint firstAttribute="height" constant="70" id="UYO-w8-icS"/>
+                                                        <constraint firstAttribute="width" constant="70" id="VvT-rY-awo"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -118,10 +118,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YJr-nV-f5M">
-                                                    <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                                    <rect key="frame" x="5" y="5" width="70" height="70"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="EJc-cl-bge"/>
-                                                        <constraint firstAttribute="width" constant="60" id="K4d-hv-Nh3"/>
+                                                        <constraint firstAttribute="height" constant="70" id="EJc-cl-bge"/>
+                                                        <constraint firstAttribute="width" constant="70" id="K4d-hv-Nh3"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -292,7 +292,7 @@
     </scenes>
     <resources>
         <image name="flash-off" width="100" height="100"/>
-        <image name="red-x" width="252" height="299"/>
+        <image name="red-x" width="92" height="92"/>
         <image name="switch-camera" width="100" height="100"/>
     </resources>
 </document>
