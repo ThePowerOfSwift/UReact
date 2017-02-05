@@ -17,14 +17,20 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     @IBOutlet weak var flashToggleButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewImage: UIImageView!
-    @IBOutlet weak var gifPreviewView: UIView!
+    @IBOutlet weak var retakeButton: UIButton!
+    @IBOutlet weak var keepButton: UIButton!
+    
+    @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previewWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var previewViews: [UIView]!
+    @IBOutlet var recordViews: [UIView]!
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     var activeInput = AVCaptureDeviceInput()
     var videoOutputURL: URL?
-    var transparencyView: UIView!
     var destinationURL: URL?
     var gestureStartTime: TimeInterval = 0.0
     var gestureDuration: TimeInterval = 0.0
@@ -34,7 +40,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        transparencyView = createTransparencyView()
     }
     
     
@@ -42,6 +47,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
         Camera.createVideoCaptureSession(captureSession: captureSession, activeInput: &activeInput, fileOutPut: videoFileOutput, previewLayer: &previewLayer, cameraView: cameraView)
+        
+        retakeButton.layer.borderWidth = 2.0
+        retakeButton.layer.borderColor = Colors.uReactRed.cgColor
+        previewImage.setPreviewShadow()
+        adjustPreview()
+        showGifPreview(bool: false)
     }
     
     
@@ -112,7 +123,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     
     @IBAction func retakeButtonPressed(_ sender: UIButton) {
-        showGifPreviewView(bool: false)
+        showGifPreview(bool: false)
     }
     
     
@@ -127,13 +138,26 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
-    func showGifPreviewView(bool: Bool) {
-        view.bringSubview(toFront: gifPreviewView)
+    func showGifPreview(bool: Bool) {
         
-        UIView.animate(withDuration: 0.4, animations: {
-            self.transparencyView.alpha = bool ? 0.75 : 0.0
-            self.gifPreviewView.alpha = bool ? 1.0 : 0.0
-        })
+        for item in previewViews {
+            view.bringSubview(toFront: item)
+            UIView.animate(withDuration: 0.4, animations: {
+                item.alpha = bool ? 1.0 : 0.0
+            })
+        }
+        
+        for item in recordViews {
+            UIView.animate(withDuration: 0.4, animations: {
+                item.alpha = bool ? 0.0 : 1.0
+            })
+        }
+    }
+    
+    
+    func adjustPreview() {
+        previewImage.layoutIfNeeded()
+        GifEditor.adjustPreviewForScreenSize(width: previewWidthConstraint, height: previewHeightConstraint)
     }
     
     
@@ -149,7 +173,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         recordButton.setTitle("FINISHED", for: .normal)
         videoOutputURL = outputFileURL
         createGIFFromVideo()
-        showGifPreviewView(bool: true)
+        showGifPreview(bool: true)
     }
 }
 

@@ -32,4 +32,18 @@ class GifEditor: NSObject {
         
         return maskedImage!
     }
+    
+    class func adjustPreviewForScreenSize(width: NSLayoutConstraint, height: NSLayoutConstraint) {
+        
+        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
+            width.constant = 190
+            height.constant = 190
+        } else if DeviceTypes.iPhone7PlusStandard {
+            width.constant = 240
+            height.constant = 240
+        } else if DeviceTypes.iPad {
+            width.constant = 460
+            height.constant = 460
+        }
+    }
 }

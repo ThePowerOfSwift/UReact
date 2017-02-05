@@ -12,7 +12,6 @@ import AVKit
 
 class Camera: NSObject {
     
-    
     class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
         
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)

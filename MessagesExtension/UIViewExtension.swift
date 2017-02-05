@@ -19,4 +19,13 @@ extension UIView {
         clipsToBounds = true
         layer.masksToBounds = false
     }
+    
+    func setPreviewShadow() {
+        layer.shadowColor = Colors.uReactRed.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        layer.shadowRadius = 50
+        layer.shadowOpacity = 0.8
+        clipsToBounds = true
+        layer.masksToBounds = false
+    }
 }
