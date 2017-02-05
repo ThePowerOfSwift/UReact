@@ -216,15 +216,14 @@
                                     <action selector="flipCamera:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="Xt2-fE-6Zv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei">
-                                <rect key="frame" x="132" y="559" width="111" height="68"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei" customClass="RecordButton" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="137.5" y="527" width="100" height="100"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="111" id="5xv-zG-IfJ"/>
-                                    <constraint firstAttribute="height" constant="68" id="O1i-DI-Mtq"/>
+                                    <constraint firstAttribute="width" constant="100" id="5xv-zG-IfJ"/>
+                                    <constraint firstAttribute="height" constant="100" id="O1i-DI-Mtq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                                <state key="normal" title="START"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Qc7-gb-Bnp" appends="YES" id="YBt-ew-ci4"/>
                                 </connections>
@@ -271,14 +270,14 @@
                         <outlet property="previewHeightConstraint" destination="Ot5-LT-fSz" id="LZ2-S1-Qws"/>
                         <outlet property="previewImage" destination="cJe-Zr-38c" id="OWg-8U-Vzq"/>
                         <outlet property="previewWidthConstraint" destination="xIN-Hd-LZH" id="Fte-KS-5Yn"/>
-                        <outlet property="recordButton" destination="a7Z-fa-iei" id="4mx-pY-PPU"/>
+                        <outlet property="recordButton" destination="a7Z-fa-iei" id="4X4-7P-J98"/>
                         <outlet property="retakeButton" destination="wNs-ze-18S" id="qQH-m8-3d7"/>
                         <outletCollection property="previewViews" destination="cJe-Zr-38c" collectionClass="NSMutableArray" id="dGX-Ay-mo9"/>
                         <outletCollection property="recordViews" destination="m5Q-xm-Wwb" collectionClass="NSMutableArray" id="Mod-Bf-WgQ"/>
                         <outletCollection property="recordViews" destination="quw-M7-nCP" collectionClass="NSMutableArray" id="XAg-t8-4aN"/>
                         <outletCollection property="previewViews" destination="wNs-ze-18S" collectionClass="NSMutableArray" id="6OZ-wj-2oo"/>
                         <outletCollection property="previewViews" destination="MzI-hR-xB8" collectionClass="NSMutableArray" id="uY4-bF-YaO"/>
-                        <outletCollection property="recordViews" destination="a7Z-fa-iei" id="IMx-Lf-hYj"/>
+                        <outletCollection property="recordViews" destination="a7Z-fa-iei" collectionClass="NSMutableArray" id="LDv-4J-YCq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>

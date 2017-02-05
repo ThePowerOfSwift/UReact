@@ -20,6 +20,7 @@
 		14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C2FA221D2222120065344B /* MessagesViewController.swift */; };
 		14C2FA261D2222120065344B /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA241D2222120065344B /* MainInterface.storyboard */; };
 		14C2FA281D2222120065344B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C2FA271D2222120065344B /* Assets.xcassets */; };
+		ED04A8831E46BFF4005E782E /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED04A8821E46BFF4005E782E /* RecordButton.swift */; };
 		ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0F30DB1E18C8B100E37C7C /* Persistence.swift */; };
 		ED1EFA6E1E1B4E9C00DE9F4D /* CameraOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EFA6D1E1B4E9C00DE9F4D /* CameraOverlay.swift */; };
 		ED1EFA701E1B534F00DE9F4D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */; };
@@ -74,6 +75,7 @@
 		14C2FA251D2222120065344B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		14C2FA271D2222120065344B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C2FA291D2222120065344B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED04A8821E46BFF4005E782E /* RecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		ED0F30DB1E18C8B100E37C7C /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		ED1EFA6D1E1B4E9C00DE9F4D /* CameraOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraOverlay.swift; sourceTree = "<group>"; };
 		ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				ED1EFA6D1E1B4E9C00DE9F4D /* CameraOverlay.swift */,
+				ED04A8821E46BFF4005E782E /* RecordButton.swift */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				EDBEEAED1E30565D00A086AF /* AlertView.swift in Sources */,
 				ED21DB9C1E28662500A82834 /* RemoveReactionCell.swift in Sources */,
 				ED7C90121E25D236001DAB33 /* CGImageExtension.swift in Sources */,
+				ED04A8831E46BFF4005E782E /* RecordButton.swift in Sources */,
 				ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */,
 				EDF2595D1E1AD9720034C821 /* CollectionViewExtension.swift in Sources */,
 				140F8C871D6978B3005454F1 /* AddReactionCell.swift in Sources */,

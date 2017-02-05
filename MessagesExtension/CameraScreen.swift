@@ -15,8 +15,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var flashToggleButton: UIButton!
-    @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var previewImage: UIImageView!
+    @IBOutlet weak var recordButton: RecordButton!
     @IBOutlet weak var retakeButton: UIButton!
     @IBOutlet weak var keepButton: UIButton!
     
@@ -36,10 +36,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var gestureDuration: TimeInterval = 0.0
     
     var isTorchOn = false
+    var progressTimer: Timer!
+    var progress: CGFloat! = 0.0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addRecordButtonTargets()
     }
     
     
@@ -95,6 +98,37 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
+    // Record Button functions
+    func addRecordButtonTargets() {
+        recordButton.addTarget(self, action: #selector(CameraScreen.record), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(CameraScreen.stop), for: UIControlEvents.touchUpInside)
+    }
+    
+    
+    func record() {
+        progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CameraScreen.updateProgress), userInfo: nil, repeats: true)
+    }
+    
+    
+    func updateProgress() {
+        
+        let maxDuration: CGFloat = 3.0 // max duration of the recordButton
+        
+        progress = progress + (CGFloat(0.05) / maxDuration)
+        recordButton.setProgress(progress)
+        
+        if progress >= 1 {
+            progressTimer.invalidate()
+            // Potentially put createGif Here
+        }
+    }
+    
+    
+    func stop() {
+        self.progressTimer.invalidate()
+    }
+    
+    
     func createGIFFromVideo() {
         
         var gifData: Data?
@@ -124,6 +158,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBAction func retakeButtonPressed(_ sender: UIButton) {
         showGifPreview(bool: false)
+        recordButton.buttonState = .idle
+        progress = 0.0
     }
     
     
@@ -148,7 +184,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         }
         
         for item in recordViews {
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 item.alpha = bool ? 0.0 : 1.0
             })
         }
@@ -163,17 +199,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        // Update Button Visuals accordingly
-        recordButton.setTitle("RECORDING", for: .normal)
     }
     
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        // Update Button Visuals accordingly
-        recordButton.setTitle("FINISHED", for: .normal)
         videoOutputURL = outputFileURL
         createGIFFromVideo()
         showGifPreview(bool: true)
+        stop()
     }
 }
 
