@@ -217,8 +217,6 @@ import UIKit
      - parameter newProgress: the relative lenght, a percentage as float.
      */
     open func setProgress(_ newProgress: CGFloat) {
-        print(progressLayer.strokeEnd)
-        print(newProgress)
         progressLayer.strokeEnd = newProgress
     }
     

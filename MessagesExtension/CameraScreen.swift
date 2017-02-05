@@ -33,7 +33,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var videoOutputURL: URL?
     var destinationURL: URL?
     var gestureStartTime: TimeInterval = 0.0
-    var gestureDuration: TimeInterval = 0.0
+    var gestureDuration: TimeInterval!
     
     var isTorchOn = false
     var progressTimer: Timer!
@@ -84,15 +84,15 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let recordingDelegate: AVCaptureFileOutputRecordingDelegate? = self
         
         switch sender.state {
+            
         case .began:
             videoFileOutput.startRecording(toOutputFileURL: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate)
             gestureStartTime = Date.timeIntervalSinceReferenceDate
             
         case .ended:
             videoFileOutput.stopRecording()
-            print("Fired when Long Press ended")
             gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
-            
+        
         default:
             break
         }
@@ -120,9 +120,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         if progress >= 1 {
             progressTimer.invalidate()
-            videoFileOutput.stopRecording()
+            recordButton.sendActions(for: .touchCancel)
             recordButton.buttonState = .idle
-            print("Fired when Progress = 1")
         }
     }
     
@@ -135,16 +134,26 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     func createGIFFromVideo() {
         
         var gifData: Data?
+        var gifDuration: TimeInterval?
         
         let frameCount = 7
         let loopCount = 0
-        let gifDuration = gestureDuration < 3.0 ? gestureDuration : 3.0
+        
+        if gestureDuration != nil {
+            gifDuration = gestureDuration < 3.0 ? gestureDuration : 3.0
+        } else {
+            gifDuration = 3.0
+        }
+        
+        print("GIF Duration = \(gifDuration)")
         
         destinationURL = Persistence.createGifFilePath()
         
-        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration), frameRate: frameCount, loopCount: loopCount)
-
+        let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration!), frameRate: frameCount, loopCount: loopCount)
+        
         let gifDataURL = regift.createGif()
+        
+        gestureDuration = nil
         
         do {
             gifData = try Data(contentsOf: gifDataURL!)
@@ -202,16 +211,17 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+        print("Did Start Recording Fired")
     }
     
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-    
+        print("Did Finish Recording fired.")
         videoOutputURL = outputFileURL
+        print(outputFileURL)
         createGIFFromVideo()
         showGifPreview(bool: true)
         stop()
-        print("Did Finish Recording fired.")
     }
 }
 

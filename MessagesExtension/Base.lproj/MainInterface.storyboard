@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="16" y="8" width="343" height="659"/>
                                 <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="afy-NQ-0PF">
                                     <size key="itemSize" width="80" height="80"/>
@@ -87,7 +87,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="88" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -111,7 +111,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RemoveReactionCell" id="c7V-S3-u5s" customClass="RemoveReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="197" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="175" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -141,12 +141,12 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
-                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" id="MUO-uk-aZ0"/>
-                            <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" id="NM9-CR-VmY"/>
-                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" id="h0q-hw-OKS"/>
+                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" constant="8" id="MUO-uk-aZ0"/>
+                            <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" constant="16" id="NM9-CR-VmY"/>
+                            <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" constant="16" id="h0q-hw-OKS"/>
                         </constraints>
                     </view>
                     <connections>
