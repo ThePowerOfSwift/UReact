@@ -18,6 +18,5 @@ extension UIView {
         layer.shadowOpacity = 0.35
         clipsToBounds = true
         layer.masksToBounds = false
-        
     }
 }

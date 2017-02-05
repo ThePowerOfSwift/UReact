@@ -34,15 +34,43 @@ class Camera: NSObject {
                     captureSession.startRunning()
                 }
             }
-            createCameraOverlay(cameraView: cameraView)
+            createCameraSqureOverlay(cameraView: cameraView)
             
         } catch {
             
         }
     }
     
+    class func createCameraSqureOverlay(cameraView: UIView) {
+        
+        var width: CGFloat = 215
+        var height: CGFloat = 215
+        
+        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
+            width = 190
+            height = 190
+        } else if DeviceTypes.iPhone7PlusStandard {
+            width = 240
+            height = 240
+        } else if DeviceTypes.iPad {
+            width = 460
+            height = 460
+        }
+        
+        let cameraOverlay = CameraOverlay()
+        let frame = cameraView.bounds
+        let xOffset = (cameraView.bounds.size.width/2) - (width/2)
+        let yOffset = (cameraView.bounds.size.height/2) - (height/2)
+        
+        
+        let view = cameraOverlay.createSquareOverlay(frame: frame, xOffset: xOffset, yOffset: yOffset, visibleWidth: width, visibleHeight: height)
+        
+        cameraView.addSubview(view)
+        cameraView.bringSubview(toFront: view)
+    }
     
-    class func createCameraOverlay(cameraView: UIView) {
+    
+    class func createCircleCameraOverlay(cameraView: UIView) {
         let cameraOverlay = CameraOverlay()
         
         var radius: CGFloat = 120
@@ -54,8 +82,9 @@ class Camera: NSObject {
         } else if DeviceTypes.iPad {
             radius = 240
         }
+      
+        let view = cameraOverlay.createCircleOverlay(frame: cameraView.bounds, xOffset: cameraView.bounds.size.width/2, yOffset: cameraView.bounds.size.height/2, radius: radius)
         
-        let view = cameraOverlay.createOverlay(frame: cameraView.bounds, xOffset: cameraView.bounds.size.width/2, yOffset: cameraView.bounds.size.height/2, radius: radius)
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)
     }

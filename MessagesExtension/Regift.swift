@@ -297,9 +297,9 @@ public struct Regift {
             }
     
             let croppedImage = GifEditor.crop(imageRef: imageRef)
-            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "circle-mask").cgImage!)
+//            let maskedImage = GifEditor.mask(image: croppedImage, mask: #imageLiteral(resourceName: "circle-mask").cgImage!)
             
-            CGImageDestinationAddImage(destination, maskedImage, frameProperties as CFDictionary)
+            CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
             
             if requestedTime == times.last?.timeValue {
                 gifGroup.leave()

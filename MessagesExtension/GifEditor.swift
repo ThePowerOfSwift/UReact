@@ -22,7 +22,6 @@ class GifEditor: NSObject {
         let croppedImage = imageRef.cropping(to: CGRect(x: centerX, y: centerY, width: croppedWidth, height: croppedHeight))
         
         return croppedImage!
-        
     }
     
     class func mask(image: CGImage, mask: CGImage) -> CGImage {
