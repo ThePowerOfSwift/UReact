@@ -296,6 +296,8 @@ public struct Regift {
                 gifGroup.leave()
                 return
             }
+            
+            print("There is an image")
     
             let croppedImage = GifEditor.crop(imageRef: imageRef)
             

@@ -25,6 +25,7 @@ class Camera: NSObject {
                 activeInput = input
                 
                 if captureSession.canAddOutput(fileOutPut) {
+                    
                     captureSession.addOutput(fileOutPut)
                     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
                     previewLayer.videoGravity = AVLayerVideoGravityResizeAspect

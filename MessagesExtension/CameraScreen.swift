@@ -36,6 +36,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     var gestureDuration: TimeInterval!
     
     var isTorchOn = false
+    var isBackCamera = false
     var progressTimer: Timer!
     var progress: CGFloat! = 0.0
     
@@ -49,8 +50,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
-        Camera.createVideoCaptureSession(captureSession: captureSession, activeInput: &activeInput, fileOutPut: videoFileOutput, previewLayer: &previewLayer, cameraView: cameraView)
         
+        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
+        
+
         retakeButton.layer.borderWidth = 2.0
         retakeButton.layer.borderColor = Colors.uReactRed.cgColor
         previewImage.setPreviewShadow()
@@ -75,6 +78,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBAction func flipCamera(_ sender: UIButton) {
         Camera.flipCamera(activeInput: &activeInput, session: captureSession, button: flashToggleButton)
+        isBackCamera = isBackCamera ? false : true
     }
 
     
@@ -92,6 +96,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             videoFileOutput.stopRecording()
             gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
             print(".ended called. Gesture Duration = \(gestureDuration)")
+            recordButton.buttonState = .idle
         
         default:
             break
@@ -107,7 +112,9 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     
     func record() {
-        progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CameraScreen.updateProgress), userInfo: nil, repeats: true)
+        dispatchDelayedOnMainThread(seconds: 0.2, action: {
+            self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CameraScreen.updateProgress), userInfo: nil, repeats: true)
+        })
     }
     
     
@@ -140,17 +147,18 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let loopCount = 0
         
         if gestureDuration != nil {
-            gifDuration = gestureDuration < 3.0 ? gestureDuration - 0.1 : 3.0
+            gifDuration = gestureDuration < 2.7 ? gestureDuration : 2.7
         } else {
-            gifDuration = 3.0
+            gifDuration = 2.7
         }
-        
+
         print("GIF Duration = \(gifDuration)")
         
         destinationURL = Persistence.createGifFilePath()
         
         let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration!), frameRate: frameCount, loopCount: loopCount)
         
+        print(regift)
         let gifDataURL = regift.createGif()
         
         gestureDuration = nil
@@ -198,6 +206,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         for item in recordViews {
             UIView.animate(withDuration: 0.1, animations: {
                 item.alpha = bool ? 0.0 : 1.0
+            })
+        }
+        
+        if isBackCamera {
+            UIView.animate(withDuration: 0.4, animations: {
+                self.flashToggleButton.alpha = bool ? 0.0 : 1.0
             })
         }
     }

@@ -27,7 +27,6 @@ class ReactionsPickerViewController: UIViewController {
         Persistence.createGifPersistence()
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
-//        addObservers()
     }
     
     
@@ -71,10 +70,6 @@ class ReactionsPickerViewController: UIViewController {
             return
         }
     }
-    
-//    func addObservers() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(ReactionsPickerViewController.deleteReaction), name:NSNotification.Name(rawValue: Keys.deleteReaction), object: nil)
-//    }
 }
 
     

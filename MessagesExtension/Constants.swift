@@ -64,3 +64,15 @@ struct DeviceTypes {
     static let iPad                 = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
     // Add iPad Pro 12inch, and iPad Mini
 }
+
+
+func dispatchDelayedOnMainThread(seconds: Double, action:(() -> ())!) {
+    
+    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64( seconds * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+        action()
+    })
+    
+    let queue = DispatchQueue(label: "com.test.myqueue")
+    queue.async {}
+}
