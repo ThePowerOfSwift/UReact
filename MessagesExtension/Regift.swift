@@ -298,8 +298,11 @@ public struct Regift {
             }
             
             print("There is an image")
+            
+            let newImage = GifEditor.rotateForLandscape(imageRef: imageRef)
     
-            let croppedImage = GifEditor.crop(imageRef: imageRef)
+//            let croppedImage = GifEditor.crop(imageRef: imageRef)
+            let croppedImage = GifEditor.crop(imageRef: newImage)
             
             CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
             
