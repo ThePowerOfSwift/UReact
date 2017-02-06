@@ -27,7 +27,7 @@ class ReactionsPickerViewController: UIViewController {
         Persistence.createGifPersistence()
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
-        addObservers()
+//        addObservers()
     }
     
     
@@ -72,9 +72,9 @@ class ReactionsPickerViewController: UIViewController {
         }
     }
     
-    func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ReactionsPickerViewController.deleteReaction), name:NSNotification.Name(rawValue: Keys.deleteReaction), object: nil)
-    }
+//    func addObservers() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(ReactionsPickerViewController.deleteReaction), name:NSNotification.Name(rawValue: Keys.deleteReaction), object: nil)
+//    }
 }
 
     
@@ -123,7 +123,10 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
     
     fileprivate func dequeueRemoveStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.removeReaction, for: indexPath) as! RemoveReactionCell
-        cell.removeImage.image = #imageLiteral(resourceName: "delete-button")
+        
+        let image: UIImage = isEditing ? #imageLiteral(resourceName: "back-arrow") : #imageLiteral(resourceName: "delete-button")
+        cell.removeImage.image = image
+        
         return cell
     }
     
@@ -185,10 +188,6 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-    }
-    
-    func deleteReaction(indexPath: IndexPath) {
-        
     }
     
     

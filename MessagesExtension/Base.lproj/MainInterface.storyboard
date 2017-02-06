@@ -180,7 +180,7 @@
                                     <constraint firstAttribute="width" constant="215" id="xIN-Hd-LZH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S">
                                 <rect key="frame" x="78" y="517.5" width="100" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EOr-9m-SGQ"/>
@@ -228,7 +228,7 @@
                                     <outletCollection property="gestureRecognizers" destination="Qc7-gb-Bnp" appends="YES" id="YBt-ew-ci4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
                                 <rect key="frame" x="197" y="517.5" width="100" height="44"/>
                                 <color key="backgroundColor" red="0.91768467426300049" green="0.27094784379005432" blue="0.26793843507766724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

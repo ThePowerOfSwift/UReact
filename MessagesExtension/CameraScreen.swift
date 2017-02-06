@@ -55,7 +55,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         retakeButton.layer.borderColor = Colors.uReactRed.cgColor
         previewImage.setPreviewShadow()
         adjustPreview()
-        showGifPreview(bool: false)
     }
     
     
@@ -92,6 +91,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         case .ended:
             videoFileOutput.stopRecording()
             gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
+            print(".ended called. Gesture Duration = \(gestureDuration)")
         
         default:
             break
@@ -140,7 +140,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         let loopCount = 0
         
         if gestureDuration != nil {
-            gifDuration = gestureDuration < 3.0 ? gestureDuration : 3.0
+            gifDuration = gestureDuration < 3.0 ? gestureDuration - 0.1 : 3.0
         } else {
             gifDuration = 3.0
         }
