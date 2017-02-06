@@ -28,6 +28,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
+    let portraitOverlay = CameraOverlay()
+    let landscapeOverlay = CameraOverlay()
     var previewLayer = AVCaptureVideoPreviewLayer()
     var activeInput = AVCaptureDeviceInput()
     var videoOutputURL: URL?
@@ -51,9 +53,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
         
-        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
+//        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
         
-
+        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView, cameraOverlay: portraitOverlay)
+        
         retakeButton.layer.borderWidth = 2.0
         retakeButton.layer.borderColor = Colors.uReactRed.cgColor
         previewImage.setPreviewShadow()
@@ -66,6 +69,32 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         previewLayer.frame = cameraView.bounds
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let size: CGSize = UIScreen.main.bounds.size
+        
+        if (size.width / size.height > 1) {
+            
+            previewLayer.connection.videoOrientation = .landscapeRight
+            previewLayer.frame = self.view.bounds
+            cameraView.frame = self.view.bounds
+//            Camera.drawCameraSqureOverlay(cameraView: cameraView, cameraOverlay: landscapeOverlay)
+            
+            print("landscape")
+            
+        } else {
+            
+            previewLayer.connection.videoOrientation = .portrait
+            previewLayer.frame = self.view.bounds
+            cameraView.frame = self.view.bounds
+//            Camera.drawCameraSqureOverlay(cameraView: cameraView, cameraOverlay: portraitOverlay)
+            
+            print("portrait")
+        }
+    }
+
     
     @IBAction func toggleFlash(_ sender: UIButton) {
         isTorchOn = isTorchOn ? false : true
