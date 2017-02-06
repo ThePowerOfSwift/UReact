@@ -23,13 +23,14 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewWidthConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var retakeButtonTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var retakeButtonTrailingSpace: NSLayoutConstraint!
+    
     @IBOutlet var previewViews: [UIView]!
     @IBOutlet var recordViews: [UIView]!
     
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
-    let portraitOverlay = CameraOverlay()
-    let landscapeOverlay = CameraOverlay()
     var previewLayer = AVCaptureVideoPreviewLayer()
     var activeInput = AVCaptureDeviceInput()
     var videoOutputURL: URL?
@@ -53,9 +54,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
         
-//        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
-        
-        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView, cameraOverlay: portraitOverlay)
+        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
         
         retakeButton.layer.borderWidth = 2.0
         retakeButton.layer.borderColor = Colors.uReactRed.cgColor
@@ -77,11 +76,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         if (size.width / size.height > 1) {
             
+            adjustForiPhone5()
+            
             previewLayer.connection.videoOrientation = .landscapeRight
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
-//            Camera.drawCameraSqureOverlay(cameraView: cameraView, cameraOverlay: landscapeOverlay)
-            
+            Camera.drawCameraSqureOverlay(cameraView: cameraView)
+//            previewImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
             print("landscape")
             
         } else {
@@ -89,7 +90,8 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             previewLayer.connection.videoOrientation = .portrait
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
-//            Camera.drawCameraSqureOverlay(cameraView: cameraView, cameraOverlay: portraitOverlay)
+            Camera.drawCameraSqureOverlay(cameraView: cameraView)
+//            previewImage.transform = .identity
             
             print("portrait")
         }
@@ -249,6 +251,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     func adjustPreview() {
         previewImage.layoutIfNeeded()
         GifEditor.adjustPreviewForScreenSize(width: previewWidthConstraint, height: previewHeightConstraint)
+    }
+    
+    func adjustForiPhone5() {
+        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
+            retakeButtonTopSpace.constant = -150
+            retakeButtonTrailingSpace.constant = 60
+        }
     }
     
     

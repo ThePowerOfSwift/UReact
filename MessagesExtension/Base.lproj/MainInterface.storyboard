@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -38,11 +38,11 @@
                         <viewControllerLayoutGuide type="bottom" id="1Ra-N7-kVL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B7x-VQ-E6B">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
-                                <rect key="frame" x="16" y="8" width="635" height="367"/>
+                                <rect key="frame" x="16" y="8" width="536" height="312"/>
                                 <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="afy-NQ-0PF">
                                     <size key="itemSize" width="80" height="80"/>
@@ -87,7 +87,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="93" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="91" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -111,7 +111,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RemoveReactionCell" id="c7V-S3-u5s" customClass="RemoveReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="185" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="182" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -166,22 +166,22 @@
                         <viewControllerLayoutGuide type="bottom" id="Ii7-hu-aXb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AwX-KV-nVp">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-hW-viL">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Zr-38c">
-                                <rect key="frame" x="226" y="80" width="215" height="215"/>
+                                <rect key="frame" x="176.5" y="52.5" width="215" height="215"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="215" id="Ot5-LT-fSz"/>
                                     <constraint firstAttribute="width" constant="215" id="xIN-Hd-LZH"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S">
-                                <rect key="frame" x="224.5" y="372" width="100" height="44"/>
+                                <rect key="frame" x="-3.5" y="97.5" width="100" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EOr-9m-SGQ"/>
                                     <constraint firstAttribute="height" constant="44" id="uhk-1X-MtU"/>
@@ -192,6 +192,21 @@
                                 </state>
                                 <connections>
                                     <action selector="retakeButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7T4-NJ-tzR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
+                                <rect key="frame" x="-3.5" y="171.5" width="100" height="44"/>
+                                <color key="backgroundColor" red="0.91768467426300049" green="0.27094784379005432" blue="0.26793843507766724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="L0a-zF-ruj"/>
+                                    <constraint firstAttribute="height" constant="44" id="S8y-QL-11e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="KEEP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="keepButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="G6i-pv-mtJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quw-M7-nCP">
@@ -206,7 +221,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-xm-Wwb" userLabel="Switch Camera Button">
-                                <rect key="frame" x="602" y="35" width="50" height="50"/>
+                                <rect key="frame" x="503" y="35" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="up1-tu-EJk"/>
                                     <constraint firstAttribute="height" constant="50" id="x9A-y2-NEX"/>
@@ -217,50 +232,55 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei" customClass="RecordButton" customModule="MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="283.5" y="235" width="100" height="100"/>
+                                <rect key="frame" x="479" y="210" width="90" height="90"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="5xv-zG-IfJ"/>
-                                    <constraint firstAttribute="height" constant="100" id="O1i-DI-Mtq"/>
+                                    <constraint firstAttribute="width" constant="90" id="5xv-zG-IfJ"/>
+                                    <constraint firstAttribute="height" constant="90" id="O1i-DI-Mtq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Qc7-gb-Bnp" appends="YES" id="YBt-ew-ci4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
-                                <rect key="frame" x="343.5" y="372" width="100" height="44"/>
-                                <color key="backgroundColor" red="0.91768467426300049" green="0.27094784379005432" blue="0.26793843507766724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="L0a-zF-ruj"/>
-                                    <constraint firstAttribute="height" constant="44" id="S8y-QL-11e"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="KEEP">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="keepButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="G6i-pv-mtJ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="MzI-hR-xB8" firstAttribute="centerY" secondItem="wNs-ze-18S" secondAttribute="centerY" id="2WH-RA-DXE"/>
-                            <constraint firstItem="wNs-ze-18S" firstAttribute="centerX" secondItem="cJe-Zr-38c" secondAttribute="centerX" constant="-59" id="3y1-en-aPU"/>
-                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB"/>
+                            <constraint firstItem="Ii7-hu-aXb" firstAttribute="top" secondItem="a7Z-fa-iei" secondAttribute="bottom" constant="40" id="6gj-gc-XoB">
+                                <variation key="heightClass=compact-widthClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstItem="cJe-Zr-38c" firstAttribute="centerY" secondItem="AwX-KV-nVp" secondAttribute="centerY" id="6qo-CK-Ymg"/>
                             <constraint firstAttribute="bottom" secondItem="iAo-hW-viL" secondAttribute="bottom" id="8At-1s-Toj"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" id="9sA-4u-s8N"/>
-                            <constraint firstItem="wNs-ze-18S" firstAttribute="top" secondItem="cJe-Zr-38c" secondAttribute="bottom" constant="77" id="IHl-B4-nqZ"/>
+                            <constraint firstItem="wNs-ze-18S" firstAttribute="top" secondItem="cJe-Zr-38c" secondAttribute="bottom" constant="77" id="IHl-B4-nqZ">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-170"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="-170"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                            </constraint>
                             <constraint firstItem="m5Q-xm-Wwb" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="KF6-Jf-mdm"/>
+                            <constraint firstItem="MzI-hR-xB8" firstAttribute="top" secondItem="wNs-ze-18S" secondAttribute="bottom" constant="-44" id="M0q-4t-yGo">
+                                <variation key="heightClass=compact-widthClass=compact" constant="30"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="cJe-Zr-38c" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="Pd6-6l-dd5"/>
                             <constraint firstAttribute="trailing" secondItem="m5Q-xm-Wwb" secondAttribute="trailing" constant="15" id="Sfg-Vk-hWi"/>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="leading" secondItem="AwX-KV-nVp" secondAttribute="leading" constant="15" id="aas-UW-6FP"/>
                             <constraint firstAttribute="trailing" secondItem="iAo-hW-viL" secondAttribute="trailing" id="eGz-oM-NKL"/>
                             <constraint firstItem="iAo-hW-viL" firstAttribute="top" secondItem="AwX-KV-nVp" secondAttribute="top" id="gmw-Hv-Zxf"/>
-                            <constraint firstItem="MzI-hR-xB8" firstAttribute="leading" secondItem="wNs-ze-18S" secondAttribute="trailing" constant="19" id="sLk-sh-oqW"/>
+                            <constraint firstItem="MzI-hR-xB8" firstAttribute="leading" secondItem="wNs-ze-18S" secondAttribute="trailing" constant="19" id="sLk-sh-oqW">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-100"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="-100"/>
+                            </constraint>
                             <constraint firstItem="quw-M7-nCP" firstAttribute="top" secondItem="Jvj-zG-Zmf" secondAttribute="bottom" constant="15" id="sNp-81-cLD"/>
-                            <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ"/>
+                            <constraint firstItem="a7Z-fa-iei" firstAttribute="centerX" secondItem="AwX-KV-nVp" secondAttribute="centerX" id="soj-sh-raJ">
+                                <variation key="heightClass=compact-widthClass=compact" constant="240"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="300"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="cJe-Zr-38c" firstAttribute="leading" secondItem="wNs-ze-18S" secondAttribute="trailing" constant="-98.5" id="zIx-ZY-MLm">
+                                <variation key="heightClass=compact-widthClass=compact" constant="80"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="80"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="-230"/>
+                            </constraint>
                         </constraints>
                     </view>
                     <connections>
@@ -272,6 +292,8 @@
                         <outlet property="previewWidthConstraint" destination="xIN-Hd-LZH" id="Fte-KS-5Yn"/>
                         <outlet property="recordButton" destination="a7Z-fa-iei" id="4X4-7P-J98"/>
                         <outlet property="retakeButton" destination="wNs-ze-18S" id="qQH-m8-3d7"/>
+                        <outlet property="retakeButtonTopSpace" destination="IHl-B4-nqZ" id="qQp-aI-Hx1"/>
+                        <outlet property="retakeButtonTrailingSpace" destination="zIx-ZY-MLm" id="LqA-RW-2vM"/>
                         <outletCollection property="previewViews" destination="cJe-Zr-38c" collectionClass="NSMutableArray" id="dGX-Ay-mo9"/>
                         <outletCollection property="recordViews" destination="m5Q-xm-Wwb" collectionClass="NSMutableArray" id="Mod-Bf-WgQ"/>
                         <outletCollection property="previewViews" destination="wNs-ze-18S" collectionClass="NSMutableArray" id="6OZ-wj-2oo"/>

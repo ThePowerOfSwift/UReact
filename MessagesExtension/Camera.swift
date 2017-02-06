@@ -12,7 +12,7 @@ import AVKit
 
 class Camera: NSObject {
     
-    class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView, cameraOverlay: CameraOverlay) {
+    class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
         
         let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         captureSession.sessionPreset = AVCaptureSessionPresetMedium
@@ -34,15 +34,19 @@ class Camera: NSObject {
                     captureSession.startRunning()
                 }
             }
-            
-            drawCameraSqureOverlay(cameraView: cameraView, cameraOverlay: cameraOverlay)
+            drawCameraSqureOverlay(cameraView: cameraView)
             
         } catch {
             
         }
     }
     
-    class func drawCameraSqureOverlay(cameraView: UIView, cameraOverlay: CameraOverlay) {
+    class func drawCameraSqureOverlay(cameraView: UIView) {
+        
+        for view in cameraView.subviews {
+            view.removeFromSuperview()
+            print("View removed from Camera View")
+        }
         
         var width: CGFloat = 215
         var height: CGFloat = 215
@@ -58,6 +62,7 @@ class Camera: NSObject {
             height = 460
         }
         
+        let cameraOverlay = CameraOverlay()
         let frame = cameraView.bounds
         let xOffset = (cameraView.bounds.size.width/2) - (width/2)
         let yOffset = (cameraView.bounds.size.height/2) - (height/2)
@@ -68,63 +73,6 @@ class Camera: NSObject {
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)
     }
-    
-//    class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
-//        
-//        let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
-//        captureSession.sessionPreset = AVCaptureSessionPresetMedium
-//        
-//        do {
-//            let input = try AVCaptureDeviceInput(device: camera)
-//            
-//            if captureSession.canAddInput(input) {
-//                captureSession.addInput(input)
-//                activeInput = input
-//                
-//                if captureSession.canAddOutput(fileOutPut) {
-//                    
-//                    captureSession.addOutput(fileOutPut)
-//                    previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-//                    previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
-//                    previewLayer.connection.videoOrientation = .portrait
-//                    cameraView.layer.addSublayer(previewLayer)
-//                    captureSession.startRunning()
-//                }
-//            }
-//            createCameraSqureOverlay(cameraView: cameraView)
-//            
-//        } catch {
-//            
-//        }
-//    }
-//    
-//    class func createCameraSqureOverlay(cameraView: UIView) {
-//        
-//        var width: CGFloat = 215
-//        var height: CGFloat = 215
-//        
-//        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
-//            width = 190
-//            height = 190
-//        } else if DeviceTypes.iPhone7PlusStandard {
-//            width = 240
-//            height = 240
-//        } else if DeviceTypes.iPad {
-//            width = 460
-//            height = 460
-//        }
-//        
-//        let cameraOverlay = CameraOverlay()
-//        let frame = cameraView.bounds
-//        let xOffset = (cameraView.bounds.size.width/2) - (width/2)
-//        let yOffset = (cameraView.bounds.size.height/2) - (height/2)
-//        
-//        
-//        let view = cameraOverlay.createSquareOverlay(frame: frame, xOffset: xOffset, yOffset: yOffset, visibleWidth: width, visibleHeight: height)
-//        
-//        cameraView.addSubview(view)
-//        cameraView.bringSubview(toFront: view)
-//    }
 
     
     class func createCircleCameraOverlay(cameraView: UIView) {
