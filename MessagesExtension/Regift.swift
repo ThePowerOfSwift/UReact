@@ -297,10 +297,11 @@ public struct Regift {
                 return
             }
             
+            var isLandscape: Bool!
+            let size: CGSize = UIScreen.main.bounds.size
+            isLandscape = (size.width / size.height) > 1 ? true : false
             
-            let newImage = GifEditor.rotate90Degree(imageRef)
-    
-//            let croppedImage = GifEditor.crop(imageRef: imageRef)
+            let newImage = isLandscape! ? GifEditor.rotate90Degree(imageRef) : imageRef
             let croppedImage = GifEditor.crop(imageRef: newImage)
             
             CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)

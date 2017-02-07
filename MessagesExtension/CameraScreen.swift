@@ -82,14 +82,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
             Camera.drawCameraSqureOverlay(cameraView: cameraView)
-            previewImage.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
             
         } else {
             previewLayer.connection.videoOrientation = .portrait
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
             Camera.drawCameraSqureOverlay(cameraView: cameraView)
-            previewImage.transform = .identity
         }
     }
 
