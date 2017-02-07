@@ -27,7 +27,6 @@
 		ED21DB9C1E28662500A82834 /* RemoveReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED21DB9B1E28662500A82834 /* RemoveReactionCell.swift */; };
 		ED21DB9E1E29B24A00A82834 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED21DB9D1E29B24A00A82834 /* UIViewExtension.swift */; };
 		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
-		ED7C90121E25D236001DAB33 /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90111E25D236001DAB33 /* CGImageExtension.swift */; };
 		ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90131E25E867001DAB33 /* GifEditor.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
 		EDBEEAED1E30565D00A086AF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBEEAEC1E30565D00A086AF /* AlertView.swift */; };
@@ -82,7 +81,6 @@
 		ED21DB9B1E28662500A82834 /* RemoveReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveReactionCell.swift; sourceTree = "<group>"; };
 		ED21DB9D1E29B24A00A82834 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
-		ED7C90111E25D236001DAB33 /* CGImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
 		ED7C90131E25E867001DAB33 /* GifEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifEditor.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EDBEEAEC1E30565D00A086AF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				143A2EFC1DD4201600F41A2D /* UIImageGIFExtension.swift */,
 				ED24C5661E0F581600074130 /* ViewControllerExtension.swift */,
 				EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */,
-				ED7C90111E25D236001DAB33 /* CGImageExtension.swift */,
 				ED21DB9D1E29B24A00A82834 /* UIViewExtension.swift */,
 			);
 			name = Extensions;
@@ -317,7 +314,6 @@
 				ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */,
 				EDBEEAED1E30565D00A086AF /* AlertView.swift in Sources */,
 				ED21DB9C1E28662500A82834 /* RemoveReactionCell.swift in Sources */,
-				ED7C90121E25D236001DAB33 /* CGImageExtension.swift in Sources */,
 				ED04A8831E46BFF4005E782E /* RecordButton.swift in Sources */,
 				ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */,
 				EDF2595D1E1AD9720034C821 /* CollectionViewExtension.swift in Sources */,

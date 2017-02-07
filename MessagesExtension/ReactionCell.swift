@@ -16,7 +16,6 @@ class ReactionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         layoutIfNeeded()
-//        reactionView.setShadow()
         deleteImage.layer.cornerRadius = deleteImage.frame.height/2
         addObservers()
     }
