@@ -45,7 +45,6 @@ class Camera: NSObject {
         
         for view in cameraView.subviews {
             view.removeFromSuperview()
-            print("View removed from Camera View")
         }
         
         var width: CGFloat = 215
@@ -69,6 +68,8 @@ class Camera: NSObject {
         
         
         let view = cameraOverlay.createSquareOverlay(frame: frame, xOffset: xOffset, yOffset: yOffset, visibleWidth: width, visibleHeight: height)
+        
+        view.setGradientBackground(top: Colors.veryDarkGrey, bottom: Colors.lightGrey)
         
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)

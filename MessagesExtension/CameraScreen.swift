@@ -56,6 +56,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         
         Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
         
+        
         retakeButton.layer.borderWidth = 2.0
         retakeButton.layer.borderColor = Colors.uReactRed.cgColor
         previewImage.setPreviewShadow()
@@ -120,7 +121,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         case .ended:
             videoFileOutput.stopRecording()
             gestureDuration = Date.timeIntervalSinceReferenceDate - gestureStartTime
-            print(".ended called. Gesture Duration = \(gestureDuration)")
             recordButton.buttonState = .idle
         
         default:
@@ -176,14 +176,11 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         } else {
             gifDuration = 2.7
         }
-
-        print("GIF Duration = \(gifDuration)")
         
         destinationURL = Persistence.createGifFilePath()
         
         let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration!), frameRate: frameCount, loopCount: loopCount)
         
-        print(regift)
         let gifDataURL = regift.createGif()
         
         gestureDuration = nil
@@ -257,14 +254,11 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
-        print("Did Start Recording Fired")
     }
     
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
-        print("Did Finish Recording fired.")
         videoOutputURL = outputFileURL
-        print(outputFileURL)
         createGIFFromVideo()
         showGifPreview(bool: true)
         stop()

@@ -27,6 +27,7 @@ class ReactionsPickerViewController: UIViewController {
         Persistence.createGifPersistence()
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
+        view.setGradientBackground(top: Colors.lightGrey, bottom: Colors.veryDarkGrey)
     }
     
     
@@ -49,7 +50,7 @@ class ReactionsPickerViewController: UIViewController {
             
             for urlString in gifURLArray {
                 createSticker(urlString)
-                Persistence.printFileSize(url: urlString) // Temp for debugging
+//                Persistence.printFileSize(url: urlString) // Temp for debugging
             }
         }
         collectionView.reloadDataOnMainThread()

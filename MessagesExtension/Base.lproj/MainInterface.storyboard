@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
-    <device id="retina4_0" orientation="landscape">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -38,12 +38,12 @@
                         <viewControllerLayoutGuide type="bottom" id="1Ra-N7-kVL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B7x-VQ-E6B">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bVW-ng-Ahz">
-                                <rect key="frame" x="16" y="8" width="536" height="312"/>
-                                <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="16" y="8" width="288" height="560"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="afy-NQ-0PF">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -87,7 +87,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddReactionCell" id="dhD-mb-GrO" customClass="AddReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="91" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="104" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -111,7 +111,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RemoveReactionCell" id="c7V-S3-u5s" customClass="RemoveReactionCell" customModule="MessagesExtension" customModuleProvider="target">
-                                        <rect key="frame" x="182" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="208" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -141,7 +141,6 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" constant="8" id="MUO-uk-aZ0"/>
@@ -166,22 +165,22 @@
                         <viewControllerLayoutGuide type="bottom" id="Ii7-hu-aXb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AwX-KV-nVp">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAo-hW-viL">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJe-Zr-38c">
-                                <rect key="frame" x="176.5" y="52.5" width="215" height="215"/>
+                                <rect key="frame" x="52.5" y="176.5" width="215" height="215"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="215" id="Ot5-LT-fSz"/>
                                     <constraint firstAttribute="width" constant="215" id="xIN-Hd-LZH"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S">
-                                <rect key="frame" x="-3.5" y="97.5" width="100" height="44"/>
+                                <rect key="frame" x="51" y="468.5" width="100" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EOr-9m-SGQ"/>
                                     <constraint firstAttribute="height" constant="44" id="uhk-1X-MtU"/>
@@ -195,7 +194,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
-                                <rect key="frame" x="-3.5" y="171.5" width="100" height="44"/>
+                                <rect key="frame" x="170" y="468.5" width="100" height="44"/>
                                 <color key="backgroundColor" red="0.91768467426300049" green="0.27094784379005432" blue="0.26793843507766724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="L0a-zF-ruj"/>
@@ -221,7 +220,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5Q-xm-Wwb" userLabel="Switch Camera Button">
-                                <rect key="frame" x="503" y="35" width="50" height="50"/>
+                                <rect key="frame" x="255" y="35" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="up1-tu-EJk"/>
                                     <constraint firstAttribute="height" constant="50" id="x9A-y2-NEX"/>
@@ -232,7 +231,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7Z-fa-iei" customClass="RecordButton" customModule="MessagesExtension" customModuleProvider="target">
-                                <rect key="frame" x="479" y="210" width="90" height="90"/>
+                                <rect key="frame" x="115" y="438" width="90" height="90"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="5xv-zG-IfJ"/>
