@@ -34,114 +34,29 @@ class GifEditor: NSObject {
         return maskedImage!
     }
     
-    class func rotateForLandscape(imageRef: CGImage) -> CGImage {
+    
+    class func rotate90Degree(_ cgImage: CGImage) -> CGImage {
         
-        let rotatedImage = createMatchingBackingDataWithImage(imageRef: imageRef, orientation: .right)
+        let width = Int(cgImage.width)
+        let height = Int(cgImage.height)
+        let newWidth: Int = height
+        let newHeight: Int = width
+        
+        let colorSpace: CGColorSpace? = CGColorSpaceCreateDeviceRGB()
+        let bytesPerPixel: Int = 4
+        let bytesPerRow: Int = bytesPerPixel * newWidth
+        let bitsPerComponent: Int = 8
+        let bitmapInfo: UInt32 = cgImage.bitmapInfo.rawValue
+
+        let context = CGContext(data: nil, width: newWidth, height: newHeight, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo)
+        
+        context?.rotate(by: -(CGFloat)(M_PI_2))
+        context?.translateBy(x: -(CGFloat)(Int(newHeight)), y: 0)
+        context?.draw(cgImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
+        
+        let rotatedImage = context?.makeImage()
         
         return rotatedImage!
-    }
-    
-    class func createMatchingBackingDataWithImage(imageRef: CGImage?, orientation: UIImageOrientation) -> CGImage? {
-        
-        var orientedImage: CGImage?
-        
-        if let imageRef = imageRef {
-            
-            
-            print("imageRef = \(imageRef)")
-            
-            let originalWidth = imageRef.width
-            let originalHeight = imageRef.height
-            let bitsPerComponent = imageRef.bitsPerComponent
-            let bytesPerRow = imageRef.bytesPerRow
-            
-            let colorSpace = imageRef.colorSpace
-            let bitmapInfo = imageRef.bitmapInfo
-            
-            var degreesToRotate: Double
-            var swapWidthHeight: Bool
-            var mirrored: Bool
-            
-            switch orientation {
-                
-            case .up:
-                degreesToRotate = 0.0
-                swapWidthHeight = false
-                mirrored = false
-                break
-            case .upMirrored:
-                degreesToRotate = 0.0
-                swapWidthHeight = false
-                mirrored = true
-                break
-            case .right:
-                degreesToRotate = 90.0
-                swapWidthHeight = true
-                mirrored = false
-                break
-            case .rightMirrored:
-                degreesToRotate = 90.0
-                swapWidthHeight = true
-                mirrored = true
-                break
-            case .down:
-                degreesToRotate = 180.0
-                swapWidthHeight = false
-                mirrored = false
-                break
-            case .downMirrored:
-                degreesToRotate = 180.0
-                swapWidthHeight = false
-                mirrored = true
-                break
-            case .left:
-                degreesToRotate = -90.0
-                swapWidthHeight = true
-                mirrored = false
-                break
-            case .leftMirrored:
-                degreesToRotate = -90.0
-                swapWidthHeight = true
-                mirrored = true
-                break
-            }
-            
-            let radians = (degreesToRotate * .pi / 180)
-            
-            var width: Int
-            var height: Int
-            
-            if swapWidthHeight {
-                width = originalHeight
-                height = originalWidth
-            } else {
-                width = originalWidth
-                height = originalHeight
-            }
-            
-            
-            let contextRef = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue)
-            
-            contextRef!.translateBy(x: CGFloat(width) / 2.0, y: CGFloat(height) / 2.0)
-            
-            
-            if mirrored {
-                contextRef!.scaleBy(x: -1.0, y: 1.0)
-            }
-            contextRef!.rotate(by: CGFloat(radians))
-            if swapWidthHeight {
-                contextRef!.translateBy(x: -CGFloat(height) / 2.0, y: -CGFloat(width) / 2.0)
-            } else {
-                contextRef!.translateBy(x: -CGFloat(width) / 2.0, y: -CGFloat(height) / 2.0)
-            }
-//            CGContextDrawImage(contextRef, CGRect(0.0, 0.0, CGFloat(originalWidth), CGFloat(originalHeight)), imageRef)
-            
-            contextRef?.draw(imageRef, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(originalWidth), height: CGFloat(originalHeight)))
-
-            orientedImage = contextRef!.makeImage()
-        }
-        
-        return orientedImage
     }
     
     class func adjustPreviewForScreenSize(width: NSLayoutConstraint, height: NSLayoutConstraint) {

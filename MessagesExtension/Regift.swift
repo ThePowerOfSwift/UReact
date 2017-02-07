@@ -297,9 +297,8 @@ public struct Regift {
                 return
             }
             
-            print("There is an image")
             
-            let newImage = GifEditor.rotateForLandscape(imageRef: imageRef)
+            let newImage = GifEditor.rotate90Degree(imageRef)
     
 //            let croppedImage = GifEditor.crop(imageRef: imageRef)
             let croppedImage = GifEditor.crop(imageRef: newImage)
