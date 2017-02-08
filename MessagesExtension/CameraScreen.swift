@@ -17,7 +17,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     @IBOutlet weak var flashToggleButton: UIButton!
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var recordButton: RecordButton!
-    @IBOutlet weak var retakeButton: UIButton!
+    @IBOutlet weak var retakeButton: URGhostButton!
     @IBOutlet weak var keepButton: UIButton!
     
     @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
@@ -55,10 +55,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         cameraView.layoutIfNeeded()
         
         Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
-        
-        
-        retakeButton.layer.borderWidth = 2.0
-        retakeButton.layer.borderColor = Colors.uReactRed.cgColor
         previewImage.setPreviewShadow()
         adjustPreview()
     }
@@ -198,7 +194,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
-    @IBAction func retakeButtonPressed(_ sender: UIButton) {
+    @IBAction func retakeButtonPressed(_ sender: URGhostButton) {
         showGifPreview(bool: false)
         recordButton.buttonState = .idle
         progress = 0.0

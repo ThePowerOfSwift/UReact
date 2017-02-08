@@ -140,16 +140,53 @@
                                     <outlet property="delegate" destination="H5A-JQ-CUs" id="eoO-wX-nDY"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXD-BP-zf4" customClass="URGhostButton" customModule="MessagesExtension" customModuleProvider="target">
+                                <rect key="frame" x="60" y="239" width="90" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="444-Ii-Ub4"/>
+                                    <constraint firstAttribute="width" constant="90" id="zXG-q1-DjB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" red="0.9176846743" green="0.27094784379999998" blue="0.26793843509999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="H5A-JQ-CUs" eventType="touchUpInside" id="e3b-kJ-pO0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKz-Ez-JBd">
+                                <rect key="frame" x="170" y="239" width="90" height="40"/>
+                                <color key="backgroundColor" red="0.9176846743" green="0.27094784379999998" blue="0.26793843509999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="TUR-x8-Mh5"/>
+                                    <constraint firstAttribute="height" constant="40" id="jWD-CJ-L9g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="KEEP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="keepButtonPressed:" destination="H5A-JQ-CUs" eventType="touchUpInside" id="CIF-rg-aOr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="qKz-Ez-JBd" firstAttribute="centerY" secondItem="DXD-BP-zf4" secondAttribute="centerY" id="3DY-2f-v5W"/>
                             <constraint firstItem="1Ra-N7-kVL" firstAttribute="top" secondItem="bVW-ng-Ahz" secondAttribute="bottom" id="KuV-0L-yWa"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="top" secondItem="B7x-VQ-E6B" secondAttribute="top" constant="8" id="MUO-uk-aZ0"/>
                             <constraint firstAttribute="trailing" secondItem="bVW-ng-Ahz" secondAttribute="trailing" constant="16" id="NM9-CR-VmY"/>
+                            <constraint firstItem="DXD-BP-zf4" firstAttribute="centerY" secondItem="B7x-VQ-E6B" secondAttribute="centerY" constant="-25" id="Sda-bj-hSA"/>
                             <constraint firstItem="bVW-ng-Ahz" firstAttribute="leading" secondItem="B7x-VQ-E6B" secondAttribute="leading" constant="16" id="h0q-hw-OKS"/>
+                            <constraint firstItem="qKz-Ez-JBd" firstAttribute="leading" secondItem="DXD-BP-zf4" secondAttribute="trailing" constant="20" id="pfw-4r-XuC"/>
+                            <constraint firstItem="DXD-BP-zf4" firstAttribute="centerX" secondItem="B7x-VQ-E6B" secondAttribute="centerX" constant="-55" id="vTO-j2-1Ni"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="bVW-ng-Ahz" id="LGb-YI-1Fa"/>
+                        <outlet property="deleteButton" destination="DXD-BP-zf4" id="gUi-6H-fgY"/>
+                        <outlet property="keepButton" destination="qKz-Ez-JBd" id="RAp-EE-fWc"/>
+                        <outletCollection property="confirmationViews" destination="DXD-BP-zf4" collectionClass="NSMutableArray" id="7Db-Tp-Tga"/>
+                        <outletCollection property="confirmationViews" destination="qKz-Ez-JBd" collectionClass="NSMutableArray" id="yYE-ZV-FWi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXJ-pI-VyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,7 +216,7 @@
                                     <constraint firstAttribute="width" constant="215" id="xIN-Hd-LZH"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-ze-18S" customClass="URGhostButton" customModule="MessagesExtension" customModuleProvider="target">
                                 <rect key="frame" x="51" y="468.5" width="100" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="EOr-9m-SGQ"/>
@@ -190,7 +227,7 @@
                                     <color key="titleColor" red="0.9176846743" green="0.27094784379999998" blue="0.26793843509999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="retakeButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="7T4-NJ-tzR"/>
+                                    <action selector="retakeButtonPressed:" destination="Bqy-3n-0gQ" eventType="touchUpInside" id="bdN-gL-8lH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-hR-xB8">
@@ -290,14 +327,14 @@
                         <outlet property="previewImage" destination="cJe-Zr-38c" id="OWg-8U-Vzq"/>
                         <outlet property="previewWidthConstraint" destination="xIN-Hd-LZH" id="Fte-KS-5Yn"/>
                         <outlet property="recordButton" destination="a7Z-fa-iei" id="4X4-7P-J98"/>
-                        <outlet property="retakeButton" destination="wNs-ze-18S" id="qQH-m8-3d7"/>
+                        <outlet property="retakeButton" destination="wNs-ze-18S" id="zJY-7M-nNF"/>
                         <outlet property="retakeButtonTopSpace" destination="IHl-B4-nqZ" id="qQp-aI-Hx1"/>
                         <outlet property="retakeButtonTrailingSpace" destination="zIx-ZY-MLm" id="LqA-RW-2vM"/>
                         <outletCollection property="previewViews" destination="cJe-Zr-38c" collectionClass="NSMutableArray" id="dGX-Ay-mo9"/>
                         <outletCollection property="recordViews" destination="m5Q-xm-Wwb" collectionClass="NSMutableArray" id="Mod-Bf-WgQ"/>
-                        <outletCollection property="previewViews" destination="wNs-ze-18S" collectionClass="NSMutableArray" id="6OZ-wj-2oo"/>
                         <outletCollection property="previewViews" destination="MzI-hR-xB8" collectionClass="NSMutableArray" id="uY4-bF-YaO"/>
                         <outletCollection property="recordViews" destination="a7Z-fa-iei" collectionClass="NSMutableArray" id="LDv-4J-YCq"/>
+                        <outletCollection property="previewViews" destination="wNs-ze-18S" collectionClass="NSMutableArray" id="gLn-r7-XXk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQW-d5-NWG" userLabel="First Responder" sceneMemberID="firstResponder"/>

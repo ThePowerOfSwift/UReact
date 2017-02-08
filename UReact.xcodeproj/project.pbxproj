@@ -29,7 +29,7 @@
 		ED24C5671E0F581600074130 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24C5661E0F581600074130 /* ViewControllerExtension.swift */; };
 		ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7C90131E25E867001DAB33 /* GifEditor.swift */; };
 		ED9267DF1E04F40600937E53 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9267DE1E04F40600937E53 /* Constants.swift */; };
-		EDBEEAED1E30565D00A086AF /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBEEAEC1E30565D00A086AF /* AlertView.swift */; };
+		EDD86B601E4AC22A0009F07D /* URGhostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD86B5F1E4AC22A0009F07D /* URGhostButton.swift */; };
 		EDF2595D1E1AD9720034C821 /* CollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +83,7 @@
 		ED24C5661E0F581600074130 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		ED7C90131E25E867001DAB33 /* GifEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifEditor.swift; sourceTree = "<group>"; };
 		ED9267DE1E04F40600937E53 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		EDBEEAEC1E30565D00A086AF /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		EDD86B5F1E4AC22A0009F07D /* URGhostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URGhostButton.swift; sourceTree = "<group>"; };
 		EDF2595C1E1AD9720034C821 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,7 +180,6 @@
 				ED1EFA6F1E1B534F00DE9F4D /* Camera.swift */,
 				14A2E95D1D84EADA00CF6495 /* Regift.swift */,
 				ED7C90131E25E867001DAB33 /* GifEditor.swift */,
-				EDBEEAEC1E30565D00A086AF /* AlertView.swift */,
 			);
 			name = Abstractions;
 			sourceTree = "<group>";
@@ -190,6 +189,7 @@
 			children = (
 				ED1EFA6D1E1B4E9C00DE9F4D /* CameraOverlay.swift */,
 				ED04A8821E46BFF4005E782E /* RecordButton.swift */,
+				EDD86B5F1E4AC22A0009F07D /* URGhostButton.swift */,
 			);
 			name = SubClasses;
 			sourceTree = "<group>";
@@ -312,7 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0F30DC1E18C8B100E37C7C /* Persistence.swift in Sources */,
-				EDBEEAED1E30565D00A086AF /* AlertView.swift in Sources */,
 				ED21DB9C1E28662500A82834 /* RemoveReactionCell.swift in Sources */,
 				ED04A8831E46BFF4005E782E /* RecordButton.swift in Sources */,
 				ED7C90141E25E867001DAB33 /* GifEditor.swift in Sources */,
@@ -321,6 +320,7 @@
 				ED21DB9E1E29B24A00A82834 /* UIViewExtension.swift in Sources */,
 				14C2FA231D2222120065344B /* MessagesViewController.swift in Sources */,
 				140F8C851D696F92005454F1 /* ReactionCell.swift in Sources */,
+				EDD86B601E4AC22A0009F07D /* URGhostButton.swift in Sources */,
 				1492B91B1D73C27600C2F1EA /* CameraScreen.swift in Sources */,
 				ED9267DF1E04F40600937E53 /* Constants.swift in Sources */,
 				143A2EFD1DD4201600F41A2D /* UIImageGIFExtension.swift in Sources */,

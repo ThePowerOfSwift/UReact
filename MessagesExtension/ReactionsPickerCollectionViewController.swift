@@ -13,6 +13,12 @@ import ImageIO
 class ReactionsPickerViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var deleteButton: URGhostButton!
+    @IBOutlet weak var keepButton: UIButton!
+    @IBOutlet var confirmationViews: [UIView]!
+    
+    var transparencyView: UIView!
+    var indexPathToDelete: IndexPath?
     
     enum CollectionViewItem {
         case reactionSticker(MSSticker)
@@ -28,12 +34,12 @@ class ReactionsPickerViewController: UIViewController {
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
         view.setGradientBackground(top: Colors.lightGrey, bottom: Colors.veryDarkGrey)
+        transparencyView = createTransparencyView()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // find out why this gets called twice when laoding the app or switching to this screen
         createGIFArray()
     }
     
@@ -70,6 +76,32 @@ class ReactionsPickerViewController: UIViewController {
             print("Error creating sticker = \(error)")
             return
         }
+    }
+    
+    func showDeletionConfiration(bool: Bool) {
+        
+        self.transparencyView.alpha = bool ? 0.9 : 0.0
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            for button in self.confirmationViews {
+                button.alpha = bool ? 1.0 : 0.0
+                self.view.bringSubview(toFront: button)
+            }
+        })
+    }
+    
+    
+    @IBAction func keepButtonPressed(_ sender: UIButton) {
+        showDeletionConfiration(bool: false)
+    }
+    
+    
+    @IBAction func deleteButtonPressed(_ sender: URGhostButton) {
+        guard let indexPath = indexPathToDelete else { return }
+        reactions.remove(at: indexPath.row)
+        Persistence.removeURL(at: indexPath)
+        collectionView.reloadDataOnMainThread()
+        showDeletionConfiration(bool: false)
     }
 }
 
@@ -159,29 +191,9 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
         case.reactionSticker(_):
             
             if isEditing {
-                
-                // Abstract this away eventually. 
-                
-                let alertController = UIAlertController(title: "Delete Reaction", message: "Are you sure you want to permanently delete this reaction?", preferredStyle: .alert)
-                let DestructiveAction = UIAlertAction(title: "Bye, Felicia", style: .destructive) {
-                    (result : UIAlertAction) -> Void in
-                    self.reactions.remove(at: indexPath.row)
-                    DispatchQueue.main.async {
-                        collectionView.reloadData()
-                    }
-                    
-                    Persistence.removeURL(at: indexPath)
-                }
-                
-                let okAction = UIAlertAction(title: "Keep it", style: .default) {
-                    (result : UIAlertAction) -> Void in
-                    print("Keep Reaction")
-                }
-                
-                alertController.addAction(DestructiveAction)
-                alertController.addAction(okAction)
-//                let alertController = AlertView.deleteReaction()
-                self.present(alertController, animated: true, completion: nil)
+                indexPathToDelete = indexPath
+                print(indexPathToDelete as Any)
+                showDeletionConfiration(bool: true)
             }
         }
     }
