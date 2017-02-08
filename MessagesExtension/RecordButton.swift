@@ -29,7 +29,6 @@ import UIKit
         }
     }
     
-    /// Closes the circle and hides when the RecordButton is finished
     open var closeWhenFinished: Bool = false
     
     open var buttonState : RecordButtonState = .idle {
@@ -178,7 +177,7 @@ import UIKit
         gradientLayer.locations = [0.0, 1.0]
         let topColor = progressColor
         let bottomColor = progressColor
-        gradientLayer.colors = [topColor?.cgColor, bottomColor?.cgColor]
+        gradientLayer.colors = [topColor?.cgColor as Any, bottomColor?.cgColor as Any]
         return gradientLayer
     }
     
@@ -214,7 +213,7 @@ import UIKit
     /**
      Set the relative length of the circle border to the specified progress
      
-     - parameter newProgress: the relative lenght, a percentage as float.
+     - parameter newProgress: the relative length, a percentage as float.
      */
     open func setProgress(_ newProgress: CGFloat) {
         progressLayer.strokeEnd = newProgress

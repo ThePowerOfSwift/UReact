@@ -33,8 +33,8 @@ class ReactionsPickerViewController: UIViewController {
         Persistence.createGifPersistence()
         reactions.append(.removeReaction)
         reactions.append(.addReaction)
-        view.setGradientBackground(top: Colors.lightGrey, bottom: Colors.veryDarkGrey)
         transparencyView = createTransparencyView()
+        view.setGradientBackground(top: Colors.lightGrey, bottom: Colors.veryDarkGrey)
     }
     
     
@@ -56,7 +56,6 @@ class ReactionsPickerViewController: UIViewController {
             
             for urlString in gifURLArray {
                 createSticker(urlString)
-//                Persistence.printFileSize(url: urlString) // Temp for debugging
             }
         }
         collectionView.reloadDataOnMainThread()
@@ -66,17 +65,17 @@ class ReactionsPickerViewController: UIViewController {
     func createSticker(_ gifPath: String) {
         
         let stickerURL = URL(fileURLWithPath: gifPath)
-        
         let sticker: MSSticker
+        
         do {
             try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: "Reaction GIF")
             reactions.append(.reactionSticker(sticker))
         } catch {
-            // Show an error pop up
             print("Error creating sticker = \(error)")
             return
         }
     }
+    
     
     func showDeletionConfiration(bool: Bool) {
         
@@ -185,14 +184,11 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
                     NotificationCenter.default.post(name: Notification.Name(rawValue: reactionKey), object: nil)
                 }
             }
-    
-            print("IsEditing = \(isEditing)")
             
         case.reactionSticker(_):
             
             if isEditing {
                 indexPathToDelete = indexPath
-                print(indexPathToDelete as Any)
                 showDeletionConfiration(bool: true)
             }
         }

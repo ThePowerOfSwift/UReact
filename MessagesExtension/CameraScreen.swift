@@ -22,7 +22,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     @IBOutlet weak var previewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previewWidthConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var retakeButtonTopSpace: NSLayoutConstraint!
     @IBOutlet weak var retakeButtonTrailingSpace: NSLayoutConstraint!
     
@@ -53,7 +52,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
-        
         Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
         previewImage.setPreviewShadow()
         adjustPreview()
@@ -74,7 +72,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         if (size.width / size.height > 1) {
             
             adjustForiPhone5()
-            
             previewLayer.connection.videoOrientation = .landscapeRight
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
@@ -141,7 +138,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     func updateProgress() {
         
-        let maxDuration: CGFloat = 3.0 // max duration of the recordButton
+        let maxDuration: CGFloat = 3.0
         
         progress = progress + (CGFloat(0.05) / maxDuration)
         recordButton.setProgress(progress)
@@ -176,7 +173,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         destinationURL = Persistence.createGifFilePath()
         
         let regift = Regift(sourceFileURL: videoOutputURL!, destinationFileURL: destinationURL, startTime: 0.0, duration: Float(gifDuration!), frameRate: frameCount, loopCount: loopCount)
-        
         let gifDataURL = regift.createGif()
         
         gestureDuration = nil
@@ -184,8 +180,6 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         do {
             gifData = try Data(contentsOf: gifDataURL!)
         } catch {
-            
-            // show error pop up here
             print("No URL found at document picked")
         }
         
