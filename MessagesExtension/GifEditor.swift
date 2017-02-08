@@ -25,14 +25,16 @@ class GifEditor: NSObject {
         return croppedImage!
     }
     
-    class func mask(image: CGImage, mask: CGImage) -> CGImage {
-        
-        let imageMask = CGImage(maskWidth: mask.width, height: mask.height, bitsPerComponent: mask.bitsPerComponent, bitsPerPixel: mask.bitsPerPixel, bytesPerRow: mask.bytesPerRow, provider: mask.dataProvider!, decode: nil, shouldInterpolate: true)
-        
-        let maskedImage = image.masking(imageMask!)
-        
-        return maskedImage!
-    }
+//    Save for when you implement "shapes"
+    
+//    class func mask(image: CGImage, mask: CGImage) -> CGImage {
+//        
+//        let imageMask = CGImage(maskWidth: mask.width, height: mask.height, bitsPerComponent: mask.bitsPerComponent, bitsPerPixel: mask.bitsPerPixel, bytesPerRow: mask.bytesPerRow, provider: mask.dataProvider!, decode: nil, shouldInterpolate: true)
+//        
+//        let maskedImage = image.masking(imageMask!)
+//        
+//        return maskedImage!
+//    }
     
     
     class func rotate90Degree(_ cgImage: CGImage) -> CGImage {

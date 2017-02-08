@@ -69,31 +69,33 @@ class Camera: NSObject {
         
         let view = cameraOverlay.createSquareOverlay(frame: frame, xOffset: xOffset, yOffset: yOffset, visibleWidth: width, visibleHeight: height)
         
-        view.setGradientBackground(top: Colors.veryDarkGrey, bottom: Colors.lightGrey)
         
         cameraView.addSubview(view)
         cameraView.bringSubview(toFront: view)
     }
 
     
-    class func createCircleCameraOverlay(cameraView: UIView) {
-        let cameraOverlay = CameraOverlay()
-        
-        var radius: CGFloat = 120
-        
-        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
-            radius = 100
-        } else if DeviceTypes.iPhone7PlusStandard {
-            radius = 130
-        } else if DeviceTypes.iPad {
-            radius = 240
-        }
-      
-        let view = cameraOverlay.createCircleOverlay(frame: cameraView.bounds, xOffset: cameraView.bounds.size.width/2, yOffset: cameraView.bounds.size.height/2, radius: radius)
-        
-        cameraView.addSubview(view)
-        cameraView.bringSubview(toFront: view)
-    }
+//    Creates a circle overlay
+    
+//    class func createCircleCameraOverlay(cameraView: UIView) {
+//        let cameraOverlay = CameraOverlay()
+//        
+//        var radius: CGFloat = 120
+//        
+//        if DeviceTypes.iPhone5 || DeviceTypes.iPhone7Zoomed {
+//            radius = 100
+//        } else if DeviceTypes.iPhone7PlusStandard {
+//            radius = 130
+//        } else if DeviceTypes.iPad {
+//            radius = 240
+//        }
+//      
+//        let view = cameraOverlay.createCircleOverlay(frame: cameraView.bounds, xOffset: cameraView.bounds.size.width/2, yOffset: cameraView.bounds.size.height/2, radius: radius)
+//        view.setGradientBackground(top: Colors.veryDarkGrey, bottom: Colors.lightGrey)
+//        
+//        cameraView.addSubview(view)
+//        cameraView.bringSubview(toFront: view)
+//    }
     
     
     class func toggleTorch(on: Bool) {
