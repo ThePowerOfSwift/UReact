@@ -124,15 +124,12 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // Record Button functions
     func addRecordButtonTargets() {
-        recordButton.addTarget(self, action: #selector(CameraScreen.record), for: .touchDown)
-        recordButton.addTarget(self, action: #selector(CameraScreen.stop), for: UIControlEvents.touchUpInside)
+        recordButton.addTarget(self, action: #selector(CameraScreen.stop), for: .touchDown)
     }
     
     
-    func record() {
-        dispatchDelayedOnMainThread(seconds: 0.2, action: {
-            self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CameraScreen.updateProgress), userInfo: nil, repeats: true)
-        })
+    func startProgressTimer() {
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CameraScreen.updateProgress), userInfo: nil, repeats: true)
     }
     
     
@@ -152,7 +149,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     
     func stop() {
-        self.progressTimer.invalidate()
+        
+        
+        if progressTimer != nil {
+            self.progressTimer.invalidate()
+        }
+        
+        progress = 0.0
     }
     
     
@@ -244,6 +247,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     
     // MARK: Capture Delegate Methods
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!) {
+        startProgressTimer()
     }
     
     

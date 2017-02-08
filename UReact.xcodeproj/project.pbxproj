@@ -452,14 +452,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sean Allen (H69U55MWXW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "467e8110-0a4a-43c5-802e-a69a28d51226";
-				PROVISIONING_PROFILE_SPECIFIER = "UReact - Dist";
+				PROVISIONING_PROFILE = "c90f84f5-f363-4c49-86d1-1cdf7ff17a3b";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -470,14 +470,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "467e8110-0a4a-43c5-802e-a69a28d51226";
-				PROVISIONING_PROFILE_SPECIFIER = "UReact - Dist";
+				PROVISIONING_PROFILE = "c90f84f5-f363-4c49-86d1-1cdf7ff17a3b";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - Dev";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -489,13 +489,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = UReact/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e0933156-ca80-4dfd-91e3-1b0bc64d1323";
-				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dist";
+				PROVISIONING_PROFILE = "fd1be66b-4eef-4587-a632-88eeb72bdd4d";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dev";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -506,12 +506,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = UReact/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e0933156-ca80-4dfd-91e3-1b0bc64d1323";
-				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dist";
+				PROVISIONING_PROFILE = "fd1be66b-4eef-4587-a632-88eeb72bdd4d";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dev";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
