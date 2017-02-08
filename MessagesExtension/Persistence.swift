@@ -28,21 +28,6 @@ class Persistence {
         return array
     }
     
-    
-    // Temp debugging function
-    class func printFileSize(url: String) {
-        
-        let fileManager = FileManager.default
-        var gifData: Data?
-        
-        let appendString = fileManager.displayName(atPath: url)
-        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(appendString)
-        gifData = fileManager.contents(atPath: imagePath)
-        print("gif Data = \(gifData!)")
-        
-    }
-    
-    
     class func getDirectoryPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
@@ -85,4 +70,24 @@ class Persistence {
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
         // Need to handle error if URL not generated from .createGIF() in Camera Screen
     }
+    
+    class func removeURL(at: IndexPath) {
+        var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
+        gifURLArray.remove(at: at.row - 2)
+        Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
+        // Need to handle error if URL not generated from .createGIF() in Camera Screen
+    }
+    
+    //    // Temp debugging function
+    //    class func printFileSize(url: String) {
+    //
+    //        let fileManager = FileManager.default
+    //        var gifData: Data?
+    //
+    //        let appendString = fileManager.displayName(atPath: url)
+    //        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(appendString)
+    //        gifData = fileManager.contents(atPath: imagePath)
+    //        print("gif Data = \(gifData!)")
+    //        
+    //    }
 }

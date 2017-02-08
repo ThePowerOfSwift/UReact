@@ -88,14 +88,12 @@ extension MSMessagesAppViewController {
     
     func instantiateCameraViewController() -> UIViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: StoryboardIDs.camera) as? CameraScreen else { fatalError("Unable to instantiate a camera screen") }
-        
         return controller
     }
     
     
     func instantiateReactionsPickerViewController() -> UIViewController {
         guard let controller = storyboard?.instantiateViewController(withIdentifier: StoryboardIDs.reactions) as? ReactionsPickerViewController else { fatalError("Unable to instantiate a camera screen") }
-        
         return controller
     }
 }

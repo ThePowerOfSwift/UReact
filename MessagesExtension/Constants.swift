@@ -11,9 +11,11 @@ import UIKit
 
 
 struct Colors {
-    static let peach        = UIColor(red: 250.0/255.0, green: 136.0/255.0, blue: 118.0/255.0, alpha: 1.0)
-    static let darkGrey     = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0)
-    static let lightGrey    = UIColor(red: 207.0/255.0, green: 207.0/255.0, blue: 207.0/255.0, alpha: 1.0)
+    static let uReactRed    = UIColor(red: 231.0/255.0, green: 60.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+    static let darkGrey     = UIColor(red: 50.0/255.0, green: 50.0/255.0, blue: 50.0/255.0, alpha: 1.0)
+    static let veryDarkGrey = UIColor(red: 25.0/255.0, green: 25.0/255.0, blue: 25.0/255.0, alpha: 1.0)
+    static let lightGrey    = UIColor(red: 100.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1.0)
+    static let white        = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
     static let black        = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
 }
 
@@ -23,6 +25,13 @@ struct Keys {
     static let fileURLCounter       = "fileURLCounter"
     static let createReaction       = "createReaction"
     static let keepReaction         = "keepReaction"
+    static let showRedXs            = "showRedX"
+    static let hideRedXs            = "hideRedX"
+    static let showBackArrow        = "showBackArrow"
+    static let showDeleteButton     = "showDeleteButton"
+    static let disableAddButton     = "disableAddButton"
+    static let enableAddButton      = "enableAddButton"
+    static let deleteReaction       = "deleteReaction"
 }
 
 
@@ -35,6 +44,7 @@ struct StoryboardIDs {
 struct Cells {
     static let reaction             = "ReactionCell"
     static let addReaction          = "AddReactionCell"
+    static let removeReaction       = "RemoveReactionCell"
 }
 
 
@@ -55,4 +65,16 @@ struct DeviceTypes {
     static let iPhone7PlusZoomed    = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0 && UIScreen.main.nativeScale < UIScreen.main.scale
     static let iPad                 = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.SCREEN_MAX_LENGTH == 1024.0
     // Add iPad Pro 12inch, and iPad Mini
+}
+
+
+func dispatchDelayedOnMainThread(seconds: Double, action:(() -> ())!) {
+    
+    let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64( seconds * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+    DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
+        action()
+    })
+    
+    let queue = DispatchQueue(label: "com.test.myqueue")
+    queue.async {}
 }

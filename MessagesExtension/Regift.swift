@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import ImageIO
 import AVFoundation
+import QuartzCore
 
 public typealias TimePoint = CMTime
 
@@ -288,6 +289,7 @@ public struct Regift {
         gifGroup.enter()
         
         generator.generateCGImagesAsynchronously(forTimes: times, completionHandler: { (requestedTime, image, actualTime, result, error) in
+            
             guard let imageRef = image , error == nil else {
                 print("An error occurred: \(error), image is \(image)")
                 dispatchError = true
@@ -295,14 +297,14 @@ public struct Regift {
                 return
             }
             
-            // Starting to tweak the cropping - original was 800x800
-            let croppedWidth = 215
-            let croppedHeight = 215
-            let centerX = (imageRef.width/2) - (croppedWidth/2)
-            let centerY = (imageRef.height/2) - (croppedHeight/2)
+            var isLandscape: Bool!
+            let size: CGSize = UIScreen.main.bounds.size
+            isLandscape = (size.width / size.height) > 1 ? true : false
             
-            let croppedImage = imageRef.cropping(to: CGRect(x: centerX, y: centerY, width: croppedWidth, height: croppedHeight))
-            CGImageDestinationAddImage(destination, croppedImage!, frameProperties as CFDictionary)
+            let newImage = isLandscape! ? GifEditor.rotate90Degree(imageRef) : imageRef
+            let croppedImage = GifEditor.crop(imageRef: newImage)
+            
+            CGImageDestinationAddImage(destination, croppedImage, frameProperties as CFDictionary)
             
             if requestedTime == times.last?.timeValue {
                 gifGroup.leave()

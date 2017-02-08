@@ -13,25 +13,33 @@ import ImageIO
 class ReactionsPickerViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var deleteButton: URGhostButton!
+    @IBOutlet weak var keepButton: UIButton!
+    @IBOutlet var confirmationViews: [UIView]!
+    
+    var transparencyView: UIView!
+    var indexPathToDelete: IndexPath?
     
     enum CollectionViewItem {
         case reactionSticker(MSSticker)
         case addReaction
+        case removeReaction
     }
     
     var reactions: [CollectionViewItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = Colors.peach
         Persistence.createGifPersistence()
+        reactions.append(.removeReaction)
         reactions.append(.addReaction)
+        transparencyView = createTransparencyView()
+        view.setGradientBackground(top: Colors.lightGrey, bottom: Colors.veryDarkGrey)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // find out why this gets called twice when laoding the app or switching to this screen
         createGIFArray()
     }
     
@@ -43,11 +51,11 @@ class ReactionsPickerViewController: UIViewController {
         if gifURLArray.count != 0 {
     
             reactions.removeAll()
+            reactions.append(.removeReaction)
             reactions.append(.addReaction)
             
             for urlString in gifURLArray {
                 createSticker(urlString)
-                Persistence.printFileSize(url: urlString) // Temp for debugging
             }
         }
         collectionView.reloadDataOnMainThread()
@@ -57,8 +65,8 @@ class ReactionsPickerViewController: UIViewController {
     func createSticker(_ gifPath: String) {
         
         let stickerURL = URL(fileURLWithPath: gifPath)
-        
         let sticker: MSSticker
+        
         do {
             try sticker = MSSticker(contentsOfFileURL: stickerURL, localizedDescription: "Reaction GIF")
             reactions.append(.reactionSticker(sticker))
@@ -66,6 +74,33 @@ class ReactionsPickerViewController: UIViewController {
             print("Error creating sticker = \(error)")
             return
         }
+    }
+    
+    
+    func showDeletionConfiration(bool: Bool) {
+        
+        self.transparencyView.alpha = bool ? 0.9 : 0.0
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            for button in self.confirmationViews {
+                button.alpha = bool ? 1.0 : 0.0
+                self.view.bringSubview(toFront: button)
+            }
+        })
+    }
+    
+    
+    @IBAction func keepButtonPressed(_ sender: UIButton) {
+        showDeletionConfiration(bool: false)
+    }
+    
+    
+    @IBAction func deleteButtonPressed(_ sender: URGhostButton) {
+        guard let indexPath = indexPathToDelete else { return }
+        reactions.remove(at: indexPath.row)
+        Persistence.removeURL(at: indexPath)
+        collectionView.reloadDataOnMainThread()
+        showDeletionConfiration(bool: false)
     }
 }
 
@@ -92,6 +127,9 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
             
         case .addReaction:
             return dequeueAddStickerCell(at: indexPath)
+            
+        case .removeReaction:
+            return dequeueRemoveStickerCell(at: indexPath)
         }
     }
     
@@ -105,20 +143,54 @@ extension ReactionsPickerViewController: UICollectionViewDataSource, UICollectio
     
     fileprivate func dequeueAddStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.addReaction, for: indexPath) as! AddReactionCell
-        cell.addImage.image = #imageLiteral(resourceName: "Plus-500")
+        cell.addImage.image = #imageLiteral(resourceName: "add-button")
+        return cell
+    }
+    
+    
+    fileprivate func dequeueRemoveStickerCell(at indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Cells.removeReaction, for: indexPath) as! RemoveReactionCell
+        
+        let image: UIImage = isEditing ? #imageLiteral(resourceName: "back-arrow") : #imageLiteral(resourceName: "delete-button")
+        cell.removeImage.image = image
+        
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reaction = reactions[indexPath.row]
-        
+
         switch reaction {
         case .addReaction:
             NotificationCenter.default.post(name: Notification.Name(rawValue: Keys.createReaction), object: nil)
             
-        default:
-            break
+        case .removeReaction:
+            
+            isEditing = isEditing ? false : true
+            
+            let addReactionKey      = isEditing ? Keys.disableAddButton : Keys.enableAddButton
+            let removeReactionKey   = isEditing ? Keys.showBackArrow : Keys.showDeleteButton
+            let reactionKey         = isEditing ? Keys.showRedXs : Keys.hideRedXs
+            
+            for reaction in reactions {
+                
+                switch reaction {
+                case .addReaction:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: addReactionKey), object: nil)
+                case .removeReaction:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: removeReactionKey), object: nil)
+                case .reactionSticker(_):
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: reactionKey), object: nil)
+                }
+            }
+            
+        case.reactionSticker(_):
+            
+            if isEditing {
+                indexPathToDelete = indexPath
+                showDeletionConfiration(bool: true)
+            }
         }
     }
     

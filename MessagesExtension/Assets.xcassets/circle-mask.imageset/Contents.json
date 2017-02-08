@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "circle-mask.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Plus-500.png",
       "scale" : "2x"
     },
     {
