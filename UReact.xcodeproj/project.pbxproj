@@ -256,7 +256,7 @@
 						DevelopmentTeam = H69U55MWXW;
 						DevelopmentTeamName = "Sean Allen";
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					14C2FA191D2222120065344B = {
 						CreatedOnToolsVersion = 8.0;
@@ -489,9 +489,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = UReact/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e0933156-ca80-4dfd-91e3-1b0bc64d1323";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dist";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,9 +506,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H69U55MWXW;
 				INFOPLIST_FILE = UReact/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = co.seanallen.UReact;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e0933156-ca80-4dfd-91e3-1b0bc64d1323";
+				PROVISIONING_PROFILE_SPECIFIER = "UReact - MB - Dist";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
