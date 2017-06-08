@@ -17,7 +17,11 @@ class MessagesViewController: MSMessagesAppViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
-        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: nil)
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { (bool) in
+            if bool != true {
+                // Handle what to do if user denies permission. Maybe show a pop up?
+            }
+        }
     }
     
     
@@ -26,9 +30,9 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     
-    override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
-        super.didTransition(to: presentationStyle)
-    }
+//    override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
+//        super.didTransition(to: presentationStyle)
+//    }
     
     
     override func willTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
@@ -36,12 +40,12 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     
-    func tappedAddNewReaction() {
+    @objc func tappedAddNewReaction() {
         requestPresentationStyle(.expanded)
     }
     
     
-    func tappedKeepReaction() {
+    @objc func tappedKeepReaction() {
         requestPresentationStyle(.compact)
     }
     

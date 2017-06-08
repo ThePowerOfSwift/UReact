@@ -24,11 +24,14 @@ class Persistence {
     
     
     class func retrieveSavedURLs() -> [String] {
+        
         let array: [String] = defaults.array(forKey: Keys.gifURLArray) as! [String]
         return array
     }
     
+    
     class func getDirectoryPath() -> String {
+        
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         
@@ -37,6 +40,7 @@ class Persistence {
     
     
     class func createTempFilePath() -> URL {
+        
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let filePath = documentsURL.appendingPathComponent("temp.mp4")
         
@@ -45,6 +49,7 @@ class Persistence {
     
     
     class func createGifFilePath() -> URL {
+        
         let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         let fileURL = documentsDirectoryURL.appendingPathComponent(incrementURL())
         
@@ -53,6 +58,7 @@ class Persistence {
     
     
     class func incrementURL() -> String {
+        
         let urlCount = Persistence.defaults.integer(forKey: Keys.fileURLCounter)
         let incrementedURLCount: Int = urlCount + 1
         let urlCountString = String(incrementedURLCount)
@@ -65,6 +71,7 @@ class Persistence {
     
     
     class func persistURL(url: String) {
+        
         var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         gifURLArray.append(url)
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
@@ -72,22 +79,10 @@ class Persistence {
     }
     
     class func removeURL(at: IndexPath) {
+        
         var gifURLArray: [String] = Persistence.defaults.array(forKey: Keys.gifURLArray) as! [String]
         gifURLArray.remove(at: at.row - 2)
         Persistence.defaults.set(gifURLArray, forKey: Keys.gifURLArray)
         // Need to handle error if URL not generated from .createGIF() in Camera Screen
     }
-    
-    //    // Temp debugging function
-    //    class func printFileSize(url: String) {
-    //
-    //        let fileManager = FileManager.default
-    //        var gifData: Data?
-    //
-    //        let appendString = fileManager.displayName(atPath: url)
-    //        let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(appendString)
-    //        gifData = fileManager.contents(atPath: imagePath)
-    //        print("gif Data = \(gifData!)")
-    //        
-    //    }
 }

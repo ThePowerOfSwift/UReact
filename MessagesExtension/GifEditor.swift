@@ -25,18 +25,6 @@ class GifEditor: NSObject {
         return croppedImage!
     }
     
-//    Save for when you implement "shapes"
-    
-//    class func mask(image: CGImage, mask: CGImage) -> CGImage {
-//        
-//        let imageMask = CGImage(maskWidth: mask.width, height: mask.height, bitsPerComponent: mask.bitsPerComponent, bitsPerPixel: mask.bitsPerPixel, bytesPerRow: mask.bytesPerRow, provider: mask.dataProvider!, decode: nil, shouldInterpolate: true)
-//        
-//        let maskedImage = image.masking(imageMask!)
-//        
-//        return maskedImage!
-//    }
-    
-    
     class func rotate90Degree(_ cgImage: CGImage) -> CGImage {
         
         let width = Int(cgImage.width)
@@ -52,7 +40,7 @@ class GifEditor: NSObject {
 
         let context = CGContext(data: nil, width: newWidth, height: newHeight, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo)
         
-        context?.rotate(by: -(CGFloat)(M_PI_2))
+        context?.rotate(by: -(CGFloat)(Double.pi/2))
         context?.translateBy(x: -(CGFloat)(Int(newHeight)), y: 0)
         context?.draw(cgImage, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
         

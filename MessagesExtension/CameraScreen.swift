@@ -31,7 +31,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     let captureSession = AVCaptureSession()
     let videoFileOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
-    var activeInput = AVCaptureDeviceInput()
+    var activeInput: AVCaptureDeviceInput?
     var videoOutputURL: URL?
     var destinationURL: URL?
     var gestureStartTime: TimeInterval = 0.0
@@ -46,6 +46,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewDidLoad() {
         super.viewDidLoad()
         addRecordButtonTargets()
+        
     }
     
     
@@ -72,13 +73,13 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         if (size.width / size.height > 1) {
             
             adjustForiPhone5()
-            previewLayer.connection.videoOrientation = .landscapeRight
+            previewLayer.connection?.videoOrientation = .landscapeRight
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
             Camera.drawCameraSqureOverlay(cameraView: cameraView)
             
         } else {
-            previewLayer.connection.videoOrientation = .portrait
+            previewLayer.connection?.videoOrientation = .portrait
             previewLayer.frame = self.view.bounds
             cameraView.frame = self.view.bounds
             Camera.drawCameraSqureOverlay(cameraView: cameraView)
@@ -108,7 +109,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         switch sender.state {
             
         case .began:
-            videoFileOutput.startRecording(toOutputFileURL: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate)
+            videoFileOutput.startRecording(to: Persistence.createTempFilePath(), recordingDelegate: recordingDelegate!)
             gestureStartTime = Date.timeIntervalSinceReferenceDate
             
         case .ended:
@@ -133,7 +134,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
-    func updateProgress() {
+    @objc func updateProgress() {
         
         let maxDuration: CGFloat = 3.0
         
@@ -148,7 +149,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     }
     
     
-    func stop() {
+    @objc func stop() {
         
         
         if progressTimer != nil {
@@ -256,6 +257,10 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
         createGIFFromVideo()
         showGifPreview(bool: true)
         stop()
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        // Not sure what to do here? Xcode 9 made me conform to delegate
     }
 }
 

@@ -22,12 +22,12 @@ class AddReactionCell: UICollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(AddReactionCell.hideDeletionUI), name:NSNotification.Name(rawValue: Keys.enableAddButton), object: nil)
     }
     
-    func showDeletionUI() {
+    @objc func showDeletionUI() {
         addImage.alpha = 0.25
         isUserInteractionEnabled = false
     }
     
-    func hideDeletionUI() {
+    @objc func hideDeletionUI() {
         addImage.alpha = 1.0
         isUserInteractionEnabled = true
     }

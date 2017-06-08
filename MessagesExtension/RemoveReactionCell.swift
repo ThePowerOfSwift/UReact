@@ -23,11 +23,11 @@ class RemoveReactionCell: UICollectionViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(RemoveReactionCell.hideDeletionUI), name:NSNotification.Name(rawValue: Keys.showDeleteButton), object: nil)
     }
     
-    func showDeletionUI() {
+    @objc func showDeletionUI() {
         removeImage.image = #imageLiteral(resourceName: "back-arrow")
     }
     
-    func hideDeletionUI() {
+    @objc func hideDeletionUI() {
         removeImage.image = #imageLiteral(resourceName: "delete-button")
     }
 }

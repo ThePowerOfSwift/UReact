@@ -14,11 +14,11 @@ class Camera: NSObject {
     
     class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
         
-        let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
-        captureSession.sessionPreset = AVCaptureSessionPresetMedium
-        
+        let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front)
+        captureSession.sessionPreset = AVCaptureSession.Preset.medium
+    
         do {
-            let input = try AVCaptureDeviceInput(device: camera)
+            let input = try AVCaptureDeviceInput(device: camera!)
             
             if captureSession.canAddInput(input) {
                 captureSession.addInput(input)
@@ -28,8 +28,8 @@ class Camera: NSObject {
                     
                     captureSession.addOutput(fileOutPut)
                     previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                    previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
-                    previewLayer.connection.videoOrientation = .portrait
+                    previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+                    previewLayer.connection?.videoOrientation = .portrait
                     cameraView.layer.addSublayer(previewLayer)
                     captureSession.startRunning()
                 }
@@ -100,7 +100,8 @@ class Camera: NSObject {
     
     class func toggleTorch(on: Bool) {
         
-        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else { return }
+//        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaType.video) else { return }
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         
         if device.hasTorch {
             do {
@@ -120,15 +121,15 @@ class Camera: NSObject {
     
     class func flipCamera(activeInput: inout AVCaptureDeviceInput, session: AVCaptureSession, button: UIButton) {
         
-        var newPosition: AVCaptureDevicePosition!
+        var newPosition: AVCaptureDevice.Position!
         var newCamera: AVCaptureDevice!
-        let deviceList = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .unspecified)
-        let isBackCamera = activeInput.device.position == AVCaptureDevicePosition.back
+        let deviceList = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
+        let isBackCamera = activeInput.device.position == AVCaptureDevice.Position.back
         
         newPosition = isBackCamera ? .front : .back
         button.alpha = isBackCamera ? 0.0 : 1.0
         
-        for device in (deviceList?.devices)! {
+        for device in (deviceList.devices) {
             if (device as AnyObject).position == newPosition {
                 newCamera = device
             }
