@@ -12,13 +12,18 @@ import AVKit
 
 class Camera: NSObject {
     
-    class func createVideoCaptureSession(captureSession: AVCaptureSession, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
-        
+    class func createCaptureDevice() -> AVCaptureDevice {
         let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front)
-        captureSession.sessionPreset = AVCaptureSession.Preset.medium
+        return camera!
+    }
     
+    class func createVideoCaptureSession(captureSession: AVCaptureSession, camera: AVCaptureDevice, activeInput: inout AVCaptureDeviceInput, fileOutPut: AVCaptureMovieFileOutput, previewLayer: inout AVCaptureVideoPreviewLayer, cameraView: UIView) {
+        
+//        let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front)
+        captureSession.sessionPreset = AVCaptureSession.Preset.medium
+        
         do {
-            let input = try AVCaptureDeviceInput(device: camera!)
+            let input = try AVCaptureDeviceInput(device: camera)
             
             if captureSession.canAddInput(input) {
                 captureSession.addInput(input)

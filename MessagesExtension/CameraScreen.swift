@@ -53,7 +53,17 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraView.layoutIfNeeded()
-        Camera.createVideoCaptureSession(captureSession: self.captureSession, activeInput: &self.activeInput, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
+        let camera = Camera.createCaptureDevice()
+        
+        do {
+            try activeInput = AVCaptureDeviceInput(device: camera)
+            Camera.createVideoCaptureSession(captureSession: self.captureSession, camera: camera, activeInput: &self.activeInput!, fileOutPut: self.videoFileOutput, previewLayer: &self.previewLayer, cameraView: self.cameraView)
+        } catch {
+            // handle error
+        }
+        
+        
+        
         previewImage.setPreviewShadow()
         adjustPreview()
     }
@@ -97,7 +107,7 @@ class CameraScreen: UIViewController, UINavigationControllerDelegate, AVCaptureF
 
     
     @IBAction func flipCamera(_ sender: UIButton) {
-        Camera.flipCamera(activeInput: &activeInput, session: captureSession, button: flashToggleButton)
+        Camera.flipCamera(activeInput: &activeInput!, session: captureSession, button: flashToggleButton)
         isBackCamera = isBackCamera ? false : true
     }
 
